@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="qso-graph — MCP Servers for Ham Radio" />
+<meta property="og:title" content="{{ page.title }} — qso-graph" />
+<meta property="og:description" content="{{ config.site_description }}" />
+<meta property="og:url" content="{{ page.canonical_url }}" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{ page.title }} — qso-graph" />
+<meta name="twitter:description" content="{{ config.site_description }}" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "qso-graph",
+  "description": "Open-source MCP servers connecting AI assistants to ham radio services. 44 tools across 9 packages for QSO logging, awards tracking, DXpeditions, parks on the air, summits, space weather, and WSPR beacon analytics.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Linux, macOS, Windows",
+  "author": {
+    "@type": "Person",
+    "name": "Greg Beam",
+    "callSign": "KI7MT",
+    "url": "https://github.com/KI7MT"
+  },
+  "sourceOrganization": {
+    "@type": "Organization",
+    "name": "qso-graph",
+    "url": "https://github.com/qso-graph"
+  },
+  "url": "https://qso-graph.io/",
+  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "isAccessibleForFree": true,
+  "programmingLanguage": ["Python"]
+}
+</script>
+{% endblock %}

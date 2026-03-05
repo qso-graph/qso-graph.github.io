@@ -1,0 +1,76 @@
+site_name: qso-graph — MCP Servers for Ham Radio
+site_description: >-
+  Open-source MCP servers connecting AI assistants to ham radio services.
+  44 tools across 9 packages — eQSL, QRZ, Club Log, LoTW, HamQTH, POTA,
+  SOTA, space weather, and WSPR analytics. Secure by design.
+site_author: Greg Beam, KI7MT
+site_url: https://qso-graph.io/
+repo_url: https://github.com/qso-graph/qso-graph.github.io
+
+theme:
+  name: material
+  custom_dir: overrides
+  palette:
+    - scheme: default
+      primary: green
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: green
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - content.code.copy
+
+markdown_extensions:
+  - tables
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/qso-graph
+      name: qso-graph on GitHub
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/search/?q=qso-graph
+      name: qso-graph packages on PyPI
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Servers:
+    - servers/index.md
+    - eQSL: servers/eqsl.md
+    - QRZ: servers/qrz.md
+    - Club Log: servers/clublog.md
+    - LoTW: servers/lotw.md
+    - HamQTH: servers/hamqth.md
+    - POTA: servers/pota.md
+    - SOTA: servers/sota.md
+    - Solar Weather: servers/solar.md
+    - WSPR: servers/wspr.md
+  - Security: security.md
+  - About:
+    - about/index.md
+    - Contributing: about/contributing.md
