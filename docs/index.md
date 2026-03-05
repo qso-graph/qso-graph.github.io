@@ -6,7 +6,15 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 
 ---
 
-## 9 Packages, 44 Tools
+## 10 Packages, 51 Tools
+
+### Foundation
+
+| Package | Tools | What It Does |
+|---------|:-----:|--------------|
+| [adif-mcp](servers/adif-mcp.md) | 7 | ADIF 3.1.6 spec engine, validation, persona management, keyring credentials |
+
+### Logbook Services (Authenticated)
 
 | Package | Tools | Auth | What It Does |
 |---------|:-----:|------|--------------|
@@ -15,20 +23,28 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 | [clublog-mcp](servers/clublog.md) | 6 | API key | DXCC resolution, expedition logs, Most Wanted |
 | [lotw-mcp](servers/lotw.md) | 4 | Persona | LoTW confirmations, QSOs, DXCC credits |
 | [hamqth-mcp](servers/hamqth.md) | 4 | Persona | Free callsign lookup, DXCC, bio, activity |
-| [pota-mcp](servers/pota.md) | 6 | None | Live spots, park info, stats, schedules |
-| [sota-mcp](servers/sota.md) | 5 | None | Spots, alerts, summit info, nearby search |
-| [solar-mcp](servers/solar.md) | 6 | None | SFI, Kp, solar wind, X-ray, band outlook |
-| [wspr-mcp](servers/wspr.md) | 5 | None | Beacon spots, band activity, propagation |
+
+### Public Services (No Auth Required)
+
+| Package | Tools | What It Does |
+|---------|:-----:|--------------|
+| [pota-mcp](servers/pota.md) | 6 | Live spots, park info, stats, schedules |
+| [sota-mcp](servers/sota.md) | 5 | Spots, alerts, summit info, nearby search |
+| [solar-mcp](servers/solar.md) | 6 | SFI, Kp, solar wind, X-ray, band outlook |
+| [wspr-mcp](servers/wspr.md) | 5 | Beacon spots, band activity, propagation |
 
 ---
 
 ## Quick Install
 
 ```bash
-# Install any package
-pip install eqsl-mcp qrz-mcp clublog-mcp lotw-mcp
+# Foundation (credential management + ADIF validation)
+pip install adif-mcp
 
-# Public-only packages (no credentials needed)
+# Logbook services (authenticated)
+pip install eqsl-mcp qrz-mcp clublog-mcp lotw-mcp hamqth-mcp
+
+# Public services (no credentials needed)
 pip install pota-mcp sota-mcp solar-mcp wspr-mcp
 ```
 
@@ -90,5 +106,6 @@ Dashboard, physics lab, DXCC progress, path analyzer, and log viewer — all pow
 - **Demo**: [qso-graph-demo.vercel.app](https://qso-graph-demo.vercel.app/)
 - **GitHub**: [github.com/qso-graph](https://github.com/qso-graph)
 - **PyPI**: [eqsl-mcp](https://pypi.org/project/eqsl-mcp/) · [qrz-mcp](https://pypi.org/project/qrz-mcp/) · [clublog-mcp](https://pypi.org/project/clublog-mcp/) · [lotw-mcp](https://pypi.org/project/lotw-mcp/)
-- **Foundation**: [adif-mcp](https://pypi.org/project/adif-mcp/) — ADIF parsing + credential management
+- **Foundation**: [adif-mcp](servers/adif-mcp.md) — ADIF 3.1.6 spec engine + credential management ([PyPI](https://pypi.org/project/adif-mcp/))
+- **Testing**: [48/48 PASS](testing.md) — security audit + ADIF 3.1.6 official test corpus + forensic validation
 - **Related**: [IONIS](https://ionis-ai.com/) — HF propagation prediction from 14B amateur radio observations

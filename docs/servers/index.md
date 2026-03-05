@@ -1,10 +1,18 @@
 # Server Overview
 
-qso-graph provides 9 MCP servers with 44 tools covering the major ham radio services.
+qso-graph provides 10 MCP packages with 51 tools covering amateur radio logging, confirmations, and propagation services.
 
 ---
 
 ## Fleet Summary
+
+### Foundation
+
+| Package | Tools | Service | Auth Pattern |
+|---------|:-----:|---------|-------------|
+| [adif-mcp](adif-mcp.md) | 7 | ADIF 3.1.6 spec | None (local) |
+
+### Logbook Services
 
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
@@ -13,6 +21,11 @@ qso-graph provides 9 MCP servers with 44 tools covering the major ham radio serv
 | [clublog-mcp](clublog.md) | 6 | Club Log | API key (env var) |
 | [lotw-mcp](lotw.md) | 4 | LoTW (ARRL) | Persona (HTTPS) |
 | [hamqth-mcp](hamqth.md) | 4 | HamQTH.com | Persona (XML session) |
+
+### Public Services
+
+| Package | Tools | Service | Auth Pattern |
+|---------|:-----:|---------|-------------|
 | [pota-mcp](pota.md) | 6 | Parks on the Air | None (public) |
 | [sota-mcp](sota.md) | 5 | Summits on the Air | None (public) |
 | [solar-mcp](solar.md) | 6 | NOAA SWPC | None (public) |
