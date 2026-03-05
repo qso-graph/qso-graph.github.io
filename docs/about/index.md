@@ -16,7 +16,7 @@ A **QSO** is a radio contact between two stations. **Graph** refers to the netwo
 
 ## Author
 
-**Greg Beam, KI7MT** — Extra class amateur radio operator, software engineer, and builder of the [IONIS](https://ionis-ai.com/) HF propagation prediction system. 49,000+ QSOs across all HF bands. Based in Idaho.
+**Greg Beam, KI7MT** — Advanced class amateur radio operator, software engineer, and builder of the [IONIS](https://ionis-ai.com/) HF propagation prediction system. 49,000+ QSOs across all HF bands. Based in Idaho.
 
 qso-graph grew out of the IONIS project's need to integrate with ham radio services for validation and analysis. The MCP servers were designed to be useful on their own — you don't need IONIS to use qso-graph.
 
