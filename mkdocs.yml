@@ -70,6 +70,7 @@ nav:
     - SOTA: servers/sota.md
     - Solar Weather: servers/solar.md
     - WSPR: servers/wspr.md
+  - Demo: https://qso-graph-demo.vercel.app/
   - Security: security.md
   - About:
     - about/index.md

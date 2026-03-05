@@ -75,8 +75,19 @@ All qso-graph servers follow a [security framework](security.md) with 10 non-neg
 
 ---
 
+## Live Demo
+
+See qso-graph tools in action — no install required:
+
+**[:material-open-in-new: Launch Demo](https://qso-graph-demo.vercel.app/){ .md-button .md-button--primary }**
+
+Dashboard, physics lab, DXCC progress, path analyzer, and log viewer — all powered by pre-computed MCP tool output from 49,233 real QSOs.
+
+---
+
 ## Project Links
 
+- **Demo**: [qso-graph-demo.vercel.app](https://qso-graph-demo.vercel.app/)
 - **GitHub**: [github.com/qso-graph](https://github.com/qso-graph)
 - **PyPI**: [eqsl-mcp](https://pypi.org/project/eqsl-mcp/) · [qrz-mcp](https://pypi.org/project/qrz-mcp/) · [clublog-mcp](https://pypi.org/project/clublog-mcp/) · [lotw-mcp](https://pypi.org/project/lotw-mcp/)
 - **Foundation**: [adif-mcp](https://pypi.org/project/adif-mcp/) — ADIF parsing + credential management
