@@ -12,13 +12,13 @@ theme:
   custom_dir: overrides
   palette:
     - scheme: default
-      primary: green
+      primary: indigo
       accent: amber
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - scheme: slate
-      primary: green
+      primary: indigo
       accent: amber
       toggle:
         icon: material/brightness-4
