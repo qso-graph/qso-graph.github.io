@@ -8,36 +8,36 @@
 
 ```
 ┌───────────────────────────────────────────────────────┐
-│                    AI Assistant                        │
-│         Claude · ChatGPT · Cursor · Gemini            │
-└──────────────────────────┬────────────────────────────┘
-                           │ MCP Protocol (stdio)
-                           ▼
+│                     AI Assistant                      │
+│          Claude · ChatGPT · Cursor · Gemini           │
+└───────────────────────────┬───────────────────────────┘
+                            │ MCP Protocol (stdio)
+                            ▼
 ┌───────────────────────────────────────────────────────┐
-│                  MCP Servers (local)                   │
+│                   MCP Servers (local)                  │
 │                                                       │
-│  ┌──────────┐ ┌─────────┐ ┌─────────┐ ┌──────────┐   │
-│  │ eqsl-mcp │ │ qrz-mcp │ │lotw-mcp │ │ pota-mcp │   │
-│  └─────┬────┘ └────┬────┘ └────┬────┘ └─────┬────┘   │
-│        │           │           │             │        │
-│  ┌─────┴───────────┴───────────┴─────────────┘        │
-│  │                                                    │
-│  │  adif-mcp (foundation)                             │
-│  │  ├── PersonaManager → OS Keyring                   │
-│  │  ├── ADIF 3.1.6 Spec (186 fields, 25 enums)       │
-│  │  ├── Validation Engine                             │
-│  │  └── Geospatial (distance, heading)                │
-│  │                                                    │
-│  └────────────────────────────────────────────────────┘
+│  ┌──────────┐ ┌─────────┐ ┌─────────┐ ┌──────────┐  │
+│  │ eqsl-mcp │ │ qrz-mcp │ │lotw-mcp │ │ pota-mcp │  │
+│  └─────┬────┘ └────┬────┘ └────┬────┘ └─────┬────┘  │
+│        │           │           │             │       │
+│  ┌─────┴───────────┴───────────┴─────────────┘       │
+│  │                                                   │
+│  │  adif-mcp (foundation)                            │
+│  │  ├── PersonaManager → OS Keyring                  │
+│  │  ├── ADIF 3.1.6 Spec (186 fields, 25 enums)      │
+│  │  ├── Validation Engine                            │
+│  │  └── Geospatial (distance, heading)               │
+│  │                                                   │
+│  └───────────────────────────────────────────────────┘
 │                                                       │
 └───────────────────────────────────────────────────────┘
-                           │ HTTPS only
-                           ▼
+                            │ HTTPS only
+                            ▼
 ┌───────────────────────────────────────────────────────┐
-│                  External Services                    │
+│                   External Services                   │
 │                                                       │
-│  eQSL.cc · QRZ.com · LoTW · Club Log · HamQTH        │
-│  POTA · SOTA · NOAA SWPC · WSPR Network               │
+│   eQSL.cc · QRZ.com · LoTW · Club Log · HamQTH       │
+│   POTA · SOTA · NOAA SWPC · WSPR Network              │
 └───────────────────────────────────────────────────────┘
 ```
 

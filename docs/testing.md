@@ -179,9 +179,9 @@ done
 
 The qso-graph release process requires three rounds of review before any PyPI publication:
 
-1. **Bob** (Claude-9975) — writes code, runs all tests locally
-2. **Watson** (Claude-M3) — independent functional review, pulls code, runs tests on separate machine
-3. **Patton** (Claude Desktop) — failure analysis and security audit, reviews all source files for credential leaks, injection surfaces, and error message safety
+1. **Bob** (Claude-9975) — Writer, writes code and runs all tests locally
+2. **Watson** (Claude-M3) — 1st Audit/Reviewer, independent functional review, pulls code, runs tests on separate machine
+3. **Patton** (Claude Desktop) — 2nd Audit/Reviewer, failure analysis and security audit, reviews all source files for credential leaks, injection surfaces, and error message safety
 
 All three must pass before the tag is created.
 
