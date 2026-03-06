@@ -11,18 +11,17 @@
 | [adif-mcp](servers/adif-mcp.md) | v0.7.0 | 6 | Yes | PASS |
 | [eqsl-mcp](servers/eqsl.md) | v0.1.1 | 6 | Yes | PASS |
 | [qrz-mcp](servers/qrz.md) | v0.1.1 | 6 | Yes | PASS |
-| [clublog-mcp](servers/clublog.md) | v0.1.1 | 6 | Yes | PASS |
 | [lotw-mcp](servers/lotw.md) | v0.1.1 | 6 | Yes | PASS |
 | [hamqth-mcp](servers/hamqth.md) | v0.1.1 | 6 | Yes | PASS |
 | [pota-mcp](servers/pota.md) | v0.1.0 | 6 | Yes | PASS |
 | [sota-mcp](servers/sota.md) | v0.1.0 | 6 | Yes | PASS |
 | [solar-mcp](servers/solar.md) | v0.1.0 | 6 | Yes | PASS |
 | [wspr-mcp](servers/wspr.md) | v0.1.0 | 6 | Yes | PASS |
-| **Total** | — | **60** | **10/10** | **10/10 PASS** |
+| **Total** | — | **54** | **9/9** | **9/9 PASS** |
 
 ---
 
-## Security Test Suite (All 10 Packages)
+## Security Test Suite (All 9 Packages)
 
 Every package includes `test_security.py` with 6 source-code audit tests. These are not runtime tests — they scan all Python source files for forbidden patterns:
 
@@ -167,7 +166,7 @@ cd eqsl-mcp  # or any server
 ### All servers at once
 
 ```bash
-for pkg in eqsl-mcp qrz-mcp clublog-mcp lotw-mcp hamqth-mcp pota-mcp sota-mcp solar-mcp wspr-mcp; do
+for pkg in eqsl-mcp qrz-mcp lotw-mcp hamqth-mcp pota-mcp sota-mcp solar-mcp wspr-mcp; do
   echo "=== $pkg ==="
   cd /path/to/$pkg && .venv/bin/python -m pytest tests/test_security.py -v
 done

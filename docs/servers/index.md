@@ -1,6 +1,6 @@
 # Server Overview
 
-qso-graph provides 10 MCP packages with 51 tools covering amateur radio logging, confirmations, and propagation services.
+qso-graph provides 9 MCP packages covering amateur radio logging, confirmations, and propagation services.
 
 ---
 
@@ -18,7 +18,6 @@ qso-graph provides 10 MCP packages with 51 tools covering amateur radio logging,
 |---------|:-----:|---------|-------------|
 | [eqsl-mcp](eqsl.md) | 4 | eQSL.cc | Persona (session) |
 | [qrz-mcp](qrz.md) | 4 | QRZ.com | Persona (XML) + API key (Logbook) |
-| [clublog-mcp](clublog.md) | 6 | Club Log | API key (env var) |
 | [lotw-mcp](lotw.md) | 4 | LoTW (ARRL) | Persona (HTTPS) |
 | [hamqth-mcp](hamqth.md) | 4 | HamQTH.com | Persona (XML session) |
 
@@ -45,10 +44,6 @@ adif-mcp creds set --persona ki7mt --provider eqsl --password ****
 ```
 
 Every tool call includes a `persona` parameter so the server knows which credentials to use. See [Getting Started](../getting-started.md) for setup.
-
-### API Key (Environment Variable)
-
-Club Log uses a per-application API key set via `CLUBLOG_API_KEY` environment variable.
 
 ### Public (No Auth)
 
@@ -92,7 +87,6 @@ Each server implements rate limiting appropriate for its service:
 |--------|-----------|----------|------------|
 | eqsl-mcp | 500ms | — | — |
 | qrz-mcp | 500ms | 35/min | 3600s (IP ban) |
-| clublog-mcp | 500ms | 30/min | 3600s |
 | lotw-mcp | 500ms | — | — |
 | hamqth-mcp | 500ms | — | — |
 | pota-mcp | 100ms | — | — |

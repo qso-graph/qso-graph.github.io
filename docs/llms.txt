@@ -1,6 +1,6 @@
 # qso-graph — MCP Servers for Amateur Radio
 
-> Open-source Model Context Protocol servers connecting AI assistants to amateur radio services. 10 packages, 51 tools, secure by design.
+> Open-source Model Context Protocol servers connecting AI assistants to amateur radio services. 9 packages, secure by design.
 
 ## Foundation
 
@@ -10,7 +10,6 @@
 
 - [eqsl-mcp](https://qso-graph.io/servers/eqsl/): eQSL.cc — inbox download, QSO verification, AG status, last upload. 4 tools.
 - [qrz-mcp](https://qso-graph.io/servers/qrz/): QRZ.com — callsign lookup, DXCC resolution, logbook access. 4 tools.
-- [clublog-mcp](https://qso-graph.io/servers/clublog/): Club Log — DXCC, log search, propagation activity, Most Wanted, expeditions. 6 tools.
 - [lotw-mcp](https://qso-graph.io/servers/lotw/): LoTW (ARRL) — confirmations, QSOs, DXCC credits, user activity. 4 tools.
 - [hamqth-mcp](https://qso-graph.io/servers/hamqth/): HamQTH — callsign lookup, DXCC, bio, activity. 4 tools.
 
@@ -25,7 +24,7 @@
 
 - [Getting Started](https://qso-graph.io/getting-started/): Installation, credential setup, MCP client configuration for Claude Desktop, Claude Code, ChatGPT, Cursor, VS Code, and Gemini CLI.
 - [Architecture](https://qso-graph.io/architecture/): System design — foundation layer, credential flow, rate limiting, read-only security model.
-- [Testing & Validation](https://qso-graph.io/testing/): 60 security tests across 10 packages, ADIF 3.1.6 official test corpus validation, forensic tests from real operator data.
+- [Testing & Validation](https://qso-graph.io/testing/): 54 security tests across 9 packages, ADIF 3.1.6 official test corpus validation, forensic tests from real operator data.
 - [Security](https://qso-graph.io/security/): 10 non-negotiable security guarantees, credential architecture, forbidden patterns, release process, incident response.
 
 ## Key Facts

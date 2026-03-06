@@ -4,7 +4,7 @@
 
 qso-graph connects AI assistants to ham radio services through the [Model Context Protocol](https://modelcontextprotocol.io/). Instead of switching between browser tabs, logging platforms, and propagation tools, operators can ask questions in natural language and get answers from their actual data.
 
-"Do I have any new LoTW confirmations?" "What's the solar forecast?" "Is 3Y0J in the Club Log?" — these should be as easy to ask as they are to think.
+"Do I have any new LoTW confirmations?" "What's the solar forecast?" "What POTA spots are on 20m right now?" — these should be as easy to ask as they are to think.
 
 ---
 

@@ -1,6 +1,6 @@
 # Architecture
 
-**How qso-graph servers work together — one foundation, ten packages, zero cloud dependencies.**
+**How qso-graph servers work together — one foundation, nine packages, zero cloud dependencies.**
 
 ---
 
@@ -16,7 +16,6 @@ graph TD
         eqsl["eqsl-mcp"]
         qrz["qrz-mcp"]
         lotw["lotw-mcp"]
-        clublog["clublog-mcp"]
         hamqth["hamqth-mcp"]
         pota["pota-mcp"]
         sota["sota-mcp"]
@@ -30,13 +29,13 @@ graph TD
             geo["Geospatial (distance, heading)"]
         end
 
-        eqsl & qrz & lotw & clublog & hamqth --> Foundation
+        eqsl & qrz & lotw & hamqth --> Foundation
     end
 
     Servers -->|"HTTPS only"| Services
 
     subgraph Services["External Services"]
-        svc["eQSL.cc · QRZ.com · LoTW · Club Log · HamQTH<br/>POTA · SOTA · NOAA SWPC · WSPR Network"]
+        svc["eQSL.cc · QRZ.com · LoTW · HamQTH<br/>POTA · SOTA · NOAA SWPC · WSPR Network"]
     end
 ```
 
@@ -127,7 +126,6 @@ Each server implements rate limiting appropriate for its service:
 |--------|-----------|----------|-------|
 | eqsl-mcp | 500ms | — | Respectful crawl |
 | qrz-mcp | 500ms | 35/min | IP ban risk above 35/min |
-| clublog-mcp | 500ms | 30/min | API key rate limit |
 | lotw-mcp | 500ms | — | Respectful crawl |
 | hamqth-mcp | 500ms | — | XML session rate limit |
 | pota-mcp | 100ms | — | Public API |
@@ -171,7 +169,7 @@ pip install eqsl-mcp    # just eqsl-mcp + its dependencies
 pip install pota-mcp     # just pota-mcp, no auth needed
 ```
 
-Servers don't depend on each other. You can install one or all ten.
+Servers don't depend on each other. You can install one or all nine.
 
 Authenticated servers depend on `adif-mcp` for credential management. Public servers (POTA, SOTA, Solar, WSPR) have no dependency on adif-mcp.
 
@@ -224,7 +222,7 @@ No qso-graph server writes to external services. All operations are read-only: l
 
 ### Validate Before Upload
 
-adif-mcp's validation engine catches data defects at the source. A busted QSO is not a confirmation — and a rare DXpedition contact may be irreplaceable. Validate before uploading to LoTW, eQSL, or Club Log.
+adif-mcp's validation engine catches data defects at the source. A busted QSO is not a confirmation — and a rare DXpedition contact may be irreplaceable. Validate before uploading to LoTW or eQSL.
 
 ### Pip Install and Go
 

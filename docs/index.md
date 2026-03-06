@@ -6,7 +6,7 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 
 ---
 
-## 10 Packages, 51 Tools
+## 9 Packages
 
 ### Foundation
 
@@ -20,7 +20,6 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 |---------|:-----:|------|--------------|
 | [eqsl-mcp](servers/eqsl.md) | 4 | Persona | eQSL inbox, QSO verification, AG status |
 | [qrz-mcp](servers/qrz.md) | 4 | Persona + API key | Callsign lookup, DXCC, logbook access |
-| [clublog-mcp](servers/clublog.md) | 6 | API key | DXCC resolution, expedition logs, Most Wanted |
 | [lotw-mcp](servers/lotw.md) | 4 | Persona | LoTW confirmations, QSOs, DXCC credits |
 | [hamqth-mcp](servers/hamqth.md) | 4 | Persona | Free callsign lookup, DXCC, bio, activity |
 
@@ -42,7 +41,7 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 pip install adif-mcp
 
 # Logbook services (authenticated)
-pip install eqsl-mcp qrz-mcp clublog-mcp lotw-mcp hamqth-mcp
+pip install eqsl-mcp qrz-mcp lotw-mcp hamqth-mcp
 
 # Public services (no credentials needed)
 pip install pota-mcp sota-mcp solar-mcp wspr-mcp
@@ -105,7 +104,7 @@ Dashboard, physics lab, DXCC progress, path analyzer, and log viewer — all pow
 
 - **Demo**: [qso-graph-demo.vercel.app](https://qso-graph-demo.vercel.app/)
 - **GitHub**: [github.com/qso-graph](https://github.com/qso-graph)
-- **PyPI**: [eqsl-mcp](https://pypi.org/project/eqsl-mcp/) · [qrz-mcp](https://pypi.org/project/qrz-mcp/) · [clublog-mcp](https://pypi.org/project/clublog-mcp/) · [lotw-mcp](https://pypi.org/project/lotw-mcp/)
+- **PyPI**: [eqsl-mcp](https://pypi.org/project/eqsl-mcp/) · [qrz-mcp](https://pypi.org/project/qrz-mcp/) · [lotw-mcp](https://pypi.org/project/lotw-mcp/)
 - **Foundation**: [adif-mcp](servers/adif-mcp.md) — ADIF 3.1.6 spec engine + credential management ([PyPI](https://pypi.org/project/adif-mcp/))
 - **Testing**: [48/48 PASS](testing.md) — security audit + ADIF 3.1.6 official test corpus + forensic validation
 - **Related**: [IONIS](https://ionis-ai.com/) — HF propagation prediction from 14B amateur radio observations

@@ -8,7 +8,6 @@ Every qso-graph package is a standalone `pip install`:
 # Authenticated servers (require credential setup)
 pip install eqsl-mcp
 pip install qrz-mcp
-pip install clublog-mcp
 pip install lotw-mcp
 pip install hamqth-mcp
 
@@ -46,16 +45,6 @@ adif-mcp creds set --persona ki7mt --provider qrz --api-key YOUR_API_KEY
 
 Your credentials are stored in the OS keyring (macOS Keychain, Windows Credential Manager, or Linux Secret Service) — never in config files.
 
-### Club Log API Key
-
-Club Log uses a per-application API key set via environment variable:
-
-```bash
-export CLUBLOG_API_KEY="your-40-character-hex-key"
-```
-
-Get your API key at [clublog.org/getapi.php](https://clublog.org/getapi.php).
-
 ---
 
 ## MCP Client Configuration
@@ -72,12 +61,6 @@ Add servers to `~/Library/Application Support/Claude/claude_desktop_config.json`
     },
     "qrz": {
       "command": "qrz-mcp"
-    },
-    "clublog": {
-      "command": "clublog-mcp",
-      "env": {
-        "CLUBLOG_API_KEY": "your-key-here"
-      }
     },
     "lotw": {
       "command": "lotw-mcp"
@@ -184,7 +167,6 @@ Every server supports a mock mode for testing without real credentials:
 # Run any server in mock mode
 EQSL_MCP_MOCK=1 eqsl-mcp
 QRZ_MCP_MOCK=1 qrz-mcp
-CLUBLOG_MCP_MOCK=1 clublog-mcp
 LOTW_MCP_MOCK=1 lotw-mcp
 HAMQTH_MCP_MOCK=1 hamqth-mcp
 POTA_MCP_MOCK=1 pota-mcp
@@ -212,7 +194,6 @@ Each server uses a default port for Inspector mode:
 |--------|------|
 | eqsl-mcp | 8001 |
 | qrz-mcp | 8002 |
-| clublog-mcp | 8003 |
 | lotw-mcp | 8004 |
 | hamqth-mcp | 8005 |
 | pota-mcp | 8006 |
@@ -232,5 +213,4 @@ Once configured, ask your AI assistant:
 - "What POTA spots are on 20m right now?"
 - "Find SOTA summits near Boise, Idaho"
 - "What are the current solar conditions?"
-- "Is 3Y0J in the Club Log?"
 - "What bands are open on WSPR right now?"

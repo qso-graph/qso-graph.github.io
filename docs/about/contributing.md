@@ -8,7 +8,6 @@ Found a bug or have a feature request? Open an issue on the relevant repository:
 |---------|--------|
 | eqsl-mcp | [github.com/qso-graph/eqsl-mcp/issues](https://github.com/qso-graph/eqsl-mcp/issues) |
 | qrz-mcp | [github.com/qso-graph/qrz-mcp/issues](https://github.com/qso-graph/qrz-mcp/issues) |
-| clublog-mcp | [github.com/qso-graph/clublog-mcp/issues](https://github.com/qso-graph/clublog-mcp/issues) |
 | lotw-mcp | [github.com/qso-graph/lotw-mcp/issues](https://github.com/qso-graph/lotw-mcp/issues) |
 | hamqth-mcp | [github.com/qso-graph/hamqth-mcp/issues](https://github.com/qso-graph/hamqth-mcp/issues) |
 | pota-mcp | [github.com/qso-graph/pota-mcp/issues](https://github.com/qso-graph/pota-mcp/issues) |
