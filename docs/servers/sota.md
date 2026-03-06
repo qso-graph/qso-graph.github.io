@@ -28,7 +28,7 @@ All 5 tools are **public** — no credentials needed.
 
 ### sota_spots
 
-Get current and recent SOTA spots from SOTALive.
+Get current and recent SOTA spots.
 
 | Parameter | Type | Required | Description |
 |-----------|------|:--------:|-------------|
@@ -89,7 +89,7 @@ Returns total activations, unique summits, QSO count, points, and recent activat
 sota-mcp uses two public APIs:
 
 - **SOTLAS** (`api.sotl.as`) — summit data, statistics, geospatial search
-- **SOTALive** (`sotalive.tk`) — live spots and alerts
+- **SOTA API** (`api2.sota.org.uk`) — live spots and alerts
 
 ---
 
