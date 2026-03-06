@@ -26,24 +26,26 @@ All packages require **Python 3.10+**.
 
 Servers that access your accounts use [adif-mcp](https://pypi.org/project/adif-mcp/) to store credentials securely in your OS keyring.
 
-### Create a Persona
-
-A persona is a named identity that holds your credentials:
-
 ```bash
 pip install adif-mcp
 
-# Set up credentials for each service you use
-adif-mcp creds set --persona ki7mt --provider eqsl --password YOUR_PASSWORD
-adif-mcp creds set --persona ki7mt --provider qrz --password YOUR_PASSWORD
-adif-mcp creds set --persona ki7mt --provider lotw --password YOUR_PASSWORD
-adif-mcp creds set --persona ki7mt --provider hamqth --password YOUR_PASSWORD
+# Create a persona (your callsign identity)
+adif-mcp persona add --name ki7mt --callsign KI7MT --start 2020-01-01
 
-# QRZ Logbook requires a separate API key
-adif-mcp creds set --persona ki7mt --provider qrz --api-key YOUR_API_KEY
+# Store credentials for each service (prompts interactively — never pass passwords on the command line)
+adif-mcp creds set ki7mt eqsl
+adif-mcp creds set ki7mt lotw
+adif-mcp creds set ki7mt qrz
+adif-mcp creds set ki7mt qrz_logbook
+adif-mcp creds set ki7mt hamqth
+
+# Verify everything is wired up
+adif-mcp creds doctor
 ```
 
 Your credentials are stored in the OS keyring (macOS Keychain, Windows Credential Manager, or Linux Secret Service) — never in config files.
+
+See the [Credential Setup Guide](credentials.md) for full details, per-server examples, and troubleshooting.
 
 ---
 

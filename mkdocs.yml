@@ -63,6 +63,7 @@ extra:
 nav:
   - Home: index.md
   - Getting Started: getting-started.md
+  - Credential Setup: credentials.md
   - Servers:
     - servers/index.md
     - Foundation:
