@@ -84,12 +84,11 @@ Returns total activations, unique summits, QSO count, points, and recent activat
 
 ---
 
-## Data Sources
+## Data Source
 
-sota-mcp uses two public APIs:
+sota-mcp uses the official SOTA API exclusively:
 
-- **SOTLAS** (`api.sotl.as`) — summit data, statistics, geospatial search
-- **SOTA API** (`api2.sota.org.uk`) — live spots and alerts
+- **SOTA API** (`api2.sota.org.uk`) — spots, alerts, summit data, and region listings
 
 ---
 

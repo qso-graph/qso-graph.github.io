@@ -63,12 +63,11 @@ Portable amateur radio operations from parks and protected areas worldwide. pota
 
 ### Summits on the Air (sota-mcp)
 
-Portable amateur radio activations from mountain summits. sota-mcp uses two APIs for live spots, activation alerts, summit information, nearby summit search, and activator statistics.
+Portable amateur radio activations from mountain summits. sota-mcp queries the official SOTA API for live spots, activation alerts, summit information, and nearby summit search.
 
 - **Organisation**: Summits on the Air (SOTA)
 - **Website**: [sota.org.uk](https://www.sota.org.uk/)
-- **SOTA API**: [api2.sota.org.uk](https://api2.sota.org.uk/) — live spots and alerts
-- **SOTLAS**: [sotl.as](https://sotl.as/) by Manuel, HB9DQM — summit data, geospatial search, activator stats
+- **SOTA API**: [api2.sota.org.uk](https://api2.sota.org.uk/) — spots, alerts, summit data, region listings
 
 ### Islands on the Air (iota-mcp)
 
