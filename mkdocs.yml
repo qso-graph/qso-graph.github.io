@@ -84,4 +84,5 @@ nav:
   - Security: security.md
   - About:
     - about/index.md
+    - Attributions: about/attributions.md
     - Contributing: about/contributing.md
