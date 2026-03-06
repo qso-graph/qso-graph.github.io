@@ -41,9 +41,9 @@ Returns day-by-day forecast with predicted SFI and Kp values for the next 27 day
 
 ### solar_alerts
 
-Get active NOAA space weather alerts and warnings. Shows solar flare alerts, geomagnetic storm warnings, radiation storm alerts, and other SWPC bulletins. No parameters.
+Get NOAA space weather alerts and warnings from the last 24 hours. Shows solar flare alerts, geomagnetic storm warnings, radiation storm alerts, and other SWPC bulletins. No parameters.
 
-Returns list of active alerts with product ID, issue time, and message text.
+Returns list of recent alerts with product ID, issue time, and message summary.
 
 ### solar_wind
 
@@ -67,17 +67,18 @@ Returns per-band condition rating (Poor/Fair/Good/Excellent) with explanation, p
 
 ## Data Sources
 
-All data comes from [NOAA Space Weather Prediction Center](https://www.swpc.noaa.gov/) public JSON endpoints:
+All data comes from [NOAA Space Weather Prediction Center](https://www.swpc.noaa.gov/) public endpoints:
 
 | Endpoint | Data |
 |----------|------|
-| 10cm-flux | Solar Flux Index (SFI) |
-| planetary-k-index | Geomagnetic Kp index |
-| solar-wind-mag-field | DSCOVR interplanetary Bz |
-| plasma-5-minute | Solar wind speed and density |
-| alerts | SWPC bulletins and warnings |
-| GOES X-ray | Solar flare classification |
-| 27-day forecast | Predicted SFI and Kp |
+| 10cm-flux (JSON) | Solar Flux Index (SFI) |
+| planetary-k-index (JSON) | Geomagnetic Kp index |
+| noaa-scales (JSON) | R/S/G space weather scales |
+| solar-wind mag-5-minute (JSON) | DSCOVR interplanetary Bz |
+| solar-wind plasma-5-minute (JSON) | Solar wind speed and density |
+| alerts (JSON) | SWPC bulletins and warnings (last 24h) |
+| GOES xrays-6-hour (JSON) | X-ray flux, flare class derived from flux |
+| 27-day-outlook (text) | Predicted SFI and Kp |
 
 ---
 
