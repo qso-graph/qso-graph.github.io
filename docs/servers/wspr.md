@@ -1,6 +1,8 @@
 # wspr-mcp
 
-**WSPR beacon analytics — spots, band activity, top paths, and propagation analysis.**
+**WSPR beacon analytics — live spots, band activity, top beacons, propagation paths, SNR trends, and more.**
+
+Data from [wspr.live](https://wspr.live/) (~2.7 billion spots, 2008-present).
 
 ```bash
 pip install wspr-mcp
@@ -12,15 +14,18 @@ pip install wspr-mcp
 
 ## Tools
 
-All 5 tools are **public** — no credentials needed.
+All 8 tools are **public** — no credentials needed.
 
 | Tool | Description |
 |------|-------------|
-| `wspr_spots` | Recent WSPR spots |
-| `wspr_activity` | Activity summary for a callsign |
-| `wspr_band_activity` | Per-band activity overview |
-| `wspr_top_paths` | Longest/best paths in last 24 hours |
-| `wspr_propagation` | Band-by-band propagation between two grids |
+| `wspr_spots` | Recent WSPR spots with flexible filtering |
+| `wspr_band_activity` | Per-band activity — spots, stations, distances, SNR |
+| `wspr_top_beacons` | Top transmitters ranked by spot count or distance |
+| `wspr_top_spotters` | Top receivers ranked by spot count or distance |
+| `wspr_propagation` | Propagation between two locations (callsign or grid) |
+| `wspr_grid_activity` | All WSPR activity in/out of a Maidenhead grid square |
+| `wspr_longest_paths` | Longest distance paths in a time window |
+| `wspr_snr_trend` | Hourly SNR trend for a specific path over time |
 
 ---
 
@@ -32,45 +37,112 @@ Get recent WSPR spots. Each spot is a 2-minute integration proving a propagation
 
 | Parameter | Type | Required | Description |
 |-----------|------|:--------:|-------------|
-| `callsign` | str | No | Filter by TX or RX callsign |
-| `band` | str | No | Filter by band (e.g., "20m", "40m") |
+| `callsign` | str | No | Filter by TX or RX callsign (e.g., KI7MT) |
+| `band` | str | No | Filter by band (e.g., "20m", "40m", "10m") |
+| `hours` | int | No | Time window in hours. Default: 24, max: 72 |
 | `limit` | int | No | Maximum spots to return. Default: 50, max: 200 |
-
-Returns list of spots with TX/RX callsigns, grids, SNR, distance, and band.
-
-### wspr_activity
-
-Get WSPR activity summary for a callsign. Shows TX/RX spot counts, active bands, unique reporters, maximum distance, and best SNR.
-
-| Parameter | Type | Required | Description |
-|-----------|------|:--------:|-------------|
-| `callsign` | str | Yes | Callsign to look up (e.g., KI7MT, K9AN) |
+| `grid` | str | No | Filter by grid square prefix (e.g., DN13). Matches TX or RX |
+| `min_snr` | int | No | Minimum SNR in dB (e.g., -20) |
+| `max_snr` | int | No | Maximum SNR in dB (e.g., -5) |
+| `min_distance` | int | No | Minimum path distance in km (e.g., 5000) |
 
 ### wspr_band_activity
 
-Get current per-band WSPR activity summary. Shows how many spots, TX stations, and RX stations are active on each band, with average path distance. No parameters.
+Per-band WSPR activity summary. Shows spot counts, TX/RX station counts, average and max distance, and average SNR for each band.
 
-### wspr_top_paths
+| Parameter | Type | Required | Description |
+|-----------|------|:--------:|-------------|
+| `hours` | int | No | Time window in hours. Default: 1, max: 6 |
 
-Get the longest/best WSPR paths in the last 24 hours. Long paths prove the band is open.
+### wspr_top_beacons
+
+Top WSPR transmitters ranked by spot count or maximum distance.
 
 | Parameter | Type | Required | Description |
 |-----------|------|:--------:|-------------|
 | `band` | str | No | Filter by band (e.g., "20m") |
-| `limit` | int | No | Maximum paths to return. Default: 20 |
+| `hours` | int | No | Time window in hours. Default: 24, max: 72 |
+| `sort_by` | str | No | Ranking: "spots" (default) or "distance" |
+| `limit` | int | No | Number of results. Default: 20, max: 50 |
 
-Returns list of top paths with TX/RX callsigns, grids, band, SNR, and distance.
+### wspr_top_spotters
 
-### wspr_propagation
-
-Get WSPR-derived propagation between two grid squares. Shows which bands have been open between two locations in the last 24 hours, with spot counts, average SNR, best SNR, and hours of opening.
+Top WSPR receivers ranked by spot count or maximum distance.
 
 | Parameter | Type | Required | Description |
 |-----------|------|:--------:|-------------|
-| `tx_grid` | str | Yes | Transmitter grid square (e.g., DN13, FN31) |
-| `rx_grid` | str | Yes | Receiver grid square (e.g., JN48, IO91) |
+| `band` | str | No | Filter by band (e.g., "20m") |
+| `hours` | int | No | Time window in hours. Default: 24, max: 72 |
+| `sort_by` | str | No | Ranking: "spots" (default) or "distance" |
+| `limit` | int | No | Number of results. Default: 20, max: 50 |
 
-Returns per-band propagation data with spot counts, SNR stats, and open hours.
+### wspr_propagation
+
+Propagation between two locations. Accepts callsigns, grid squares, or a mix. Searches both directions automatically.
+
+| Parameter | Type | Required | Description |
+|-----------|------|:--------:|-------------|
+| `tx` | str | Yes | First endpoint — callsign (e.g., KI7MT) or grid (e.g., DN13) |
+| `rx` | str | Yes | Second endpoint — callsign (e.g., G8JNJ) or grid (e.g., IO91) |
+| `band` | str | No | Filter to a specific band (e.g., "20m") |
+| `hours` | int | No | Time window in hours. Default: 24, max: 72 |
+
+Returns per-band propagation with spot counts, SNR stats, and UTC hours open.
+
+### wspr_grid_activity
+
+All WSPR activity in or out of a Maidenhead grid square. Use 2-character (e.g., DN) for a wide area or 4-character (e.g., DN13) for a specific region.
+
+| Parameter | Type | Required | Description |
+|-----------|------|:--------:|-------------|
+| `grid` | str | Yes | Maidenhead grid — 2 char (DN) or 4 char (DN13) |
+| `band` | str | No | Filter by band (e.g., "20m") |
+| `hours` | int | No | Time window in hours. Default: 24, max: 72 |
+| `limit` | int | No | Maximum recent spots to return. Default: 50, max: 200 |
+
+Returns summary stats (totals, stations, bands) plus recent spot list.
+
+### wspr_longest_paths
+
+Longest WSPR paths in the given time window. Long paths prove the band is open.
+
+| Parameter | Type | Required | Description |
+|-----------|------|:--------:|-------------|
+| `band` | str | No | Filter by band (e.g., "10m") |
+| `hours` | int | No | Time window in hours. Default: 24, max: 72 |
+| `limit` | int | No | Maximum paths to return. Default: 20, max: 50 |
+| `min_distance` | int | No | Minimum distance in km (e.g., 15000 for near-antipodal) |
+
+### wspr_snr_trend
+
+Hourly SNR trend for a specific path. Shows when a band opens/closes and how signal strength varies.
+
+| Parameter | Type | Required | Description |
+|-----------|------|:--------:|-------------|
+| `tx` | str | Yes | First endpoint — callsign (e.g., K9AN) or grid (e.g., EN50) |
+| `rx` | str | Yes | Second endpoint — callsign (e.g., G8JNJ) or grid (e.g., IO91) |
+| `band` | str | No | Filter to a specific band (e.g., "20m") |
+| `hours` | int | No | Time window in hours. Default: 24, max: 72 |
+
+Returns hourly data points with spot counts, avg/best/worst SNR.
+
+---
+
+## Good Neighbour Policy
+
+wspr.live is a volunteer-run service. We are respectful with our query patterns:
+
+| Measure | Detail |
+|---------|--------|
+| Rate limiting | 3 seconds between requests (20 req/min) |
+| Circuit breaker | Opens after 3 consecutive failures; exponential backoff up to 5 minutes |
+| Time-bounded queries | Every query filters by time (max 72 hours) |
+| Band filtering | Queries use band indexes when provided |
+| Column selection | Only needed columns per query, never `SELECT *` |
+| Result limits | All queries cap results (200 spots, 50 leaderboard entries) |
+| Response caching | 2-10 minute TTL per tool |
+| Request timeout | 20 seconds |
+| User-Agent | Every request identifies as `wspr-mcp/{version}` |
 
 ---
 

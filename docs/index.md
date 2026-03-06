@@ -12,7 +12,7 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 
 | Package | Tools | What It Does |
 |---------|:-----:|--------------|
-| [adif-mcp](servers/adif-mcp.md) | 7 | ADIF 3.1.6 spec engine, validation, persona management, keyring credentials |
+| [adif-mcp](servers/adif-mcp.md) | 8 | ADIF 3.1.6 spec engine, validation, persona management, keyring credentials |
 
 ### Logbook Services (Authenticated)
 
@@ -31,7 +31,7 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 | [sota-mcp](servers/sota.md) | 5 | Spots, alerts, summit info, nearby search |
 | [iota-mcp](servers/iota.md) | 6 | Group lookup, island search, DXCC mapping, nearby |
 | [solar-mcp](servers/solar.md) | 6 | SFI, Kp, solar wind, X-ray, band outlook |
-| [wspr-mcp](servers/wspr.md) | 5 | Beacon spots, band activity, propagation |
+| [wspr-mcp](servers/wspr.md) | 8 | Beacon spots, band activity, top beacons/spotters, propagation, SNR trends |
 
 ---
 

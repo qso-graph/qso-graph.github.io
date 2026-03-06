@@ -10,7 +10,7 @@ qso-graph provides 10 MCP packages covering amateur radio logging, confirmations
 
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
-| [adif-mcp](adif-mcp.md) | 7 | ADIF 3.1.6 spec | None (local) |
+| [adif-mcp](adif-mcp.md) | 8 | ADIF 3.1.6 spec | None (local) |
 
 ### Logbook Services
 
@@ -29,7 +29,7 @@ qso-graph provides 10 MCP packages covering amateur radio logging, confirmations
 | [sota-mcp](sota.md) | 5 | Summits on the Air | None (public) |
 | [iota-mcp](iota.md) | 6 | Islands on the Air | None (public) |
 | [solar-mcp](solar.md) | 6 | NOAA SWPC | None (public) |
-| [wspr-mcp](wspr.md) | 5 | WSPR network | None (public) |
+| [wspr-mcp](wspr.md) | 8 | wspr.live (ClickHouse) | None (public) |
 
 ---
 
@@ -94,4 +94,4 @@ Each server implements rate limiting appropriate for its service:
 | sota-mcp | 200ms | — | — |
 | iota-mcp | 200ms | — | — |
 | solar-mcp | 200ms | — | — |
-| wspr-mcp | 200ms | — | — |
+| wspr-mcp | 3000ms | 20/min | Circuit breaker (60-300s) |

@@ -19,7 +19,7 @@
 - [sota-mcp](https://qso-graph.io/servers/sota/): Summits on the Air — spots, alerts, summit info, nearby search, activator stats. 5 tools.
 - [solar-mcp](https://qso-graph.io/servers/solar/): NOAA SWPC — SFI, Kp, solar wind, X-ray flux, band outlook, alerts. 6 tools.
 - [iota-mcp](https://qso-graph.io/servers/iota/): Islands on the Air — group lookup, island search, DXCC mapping, nearby groups, programme stats. 6 tools.
-- [wspr-mcp](https://qso-graph.io/servers/wspr/): WSPR network — beacon spots, band activity, propagation paths, TX power. 5 tools.
+- [wspr-mcp](https://qso-graph.io/servers/wspr/): wspr.live ClickHouse — beacon spots, band activity, top beacons, top spotters, propagation, grid activity, longest paths, SNR trends. 8 tools.
 
 ## Documentation
 
