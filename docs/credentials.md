@@ -2,7 +2,7 @@
 
 ## How It Works
 
-qso-graph uses two layers for credential management: a **persona index** (non-secret JSON file with your callsign and date range) and the **OS keyring** (where secrets are stored). A persona is your callsign identity; a provider is a service like eQSL or QRZ. Credentials are never stored in config files — only in your operating system's secure keyring.
+QSO-Graph uses two layers for credential management: a **persona index** (non-secret JSON file with your callsign and date range) and the **OS keyring** (where secrets are stored). A persona is your callsign identity; a provider is a service like eQSL or QRZ. Credentials are never stored in config files — only in your operating system's secure keyring.
 
 ---
 

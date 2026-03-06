@@ -1,6 +1,6 @@
 # Architecture
 
-**How qso-graph servers work together — one foundation, nine packages, zero cloud dependencies.**
+**How QSO-Graph servers work together — one foundation, nine packages, zero cloud dependencies.**
 
 ---
 
@@ -214,11 +214,11 @@ See [Getting Started](getting-started.md) for configuration for all 6 supported 
 
 ### Good Neighbor Policy
 
-qso-graph servers **wrap** external APIs — they don't replicate them. Rate limiting is built in to prevent account bans. If a service goes down, the server fails gracefully.
+QSO-Graph servers **wrap** external APIs — they don't replicate them. Rate limiting is built in to prevent account bans. If a service goes down, the server fails gracefully.
 
 ### Read-Only Security Model
 
-No qso-graph server writes to external services. All operations are read-only: lookups, downloads, queries. No log uploads, no QSO submissions, no account modifications.
+No QSO-Graph server writes to external services. All operations are read-only: lookups, downloads, queries. No log uploads, no QSO submissions, no account modifications.
 
 ### Validate Before Upload
 

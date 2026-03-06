@@ -1,6 +1,6 @@
 # Server Overview
 
-qso-graph provides 10 MCP packages covering amateur radio logging, confirmations, and propagation services.
+QSO-Graph provides 10 MCP packages covering amateur radio logging, confirmations, and propagation services.
 
 ---
 

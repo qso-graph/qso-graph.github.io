@@ -12,7 +12,7 @@ pip install adif-mcp
 
 ## What It Does
 
-adif-mcp is the foundation of every qso-graph server. It provides:
+adif-mcp is the foundation of every QSO-Graph server. It provides:
 
 - **ADIF 3.1.6 specification** — 186 fields, 25 enumerations (4,427 records), 28 data types, all bundled as JSON
 - **Record validation** — enum membership, compound CreditList format, conditional Submode checks, import-only detection
@@ -174,7 +174,7 @@ Returns the service version and ADIF spec version.
 
 ## Credential Setup
 
-adif-mcp manages credentials for all qso-graph servers:
+adif-mcp manages credentials for all QSO-Graph servers:
 
 ```bash
 # Set up a persona

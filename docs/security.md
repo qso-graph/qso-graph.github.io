@@ -6,7 +6,7 @@
 
 ## 10 Non-Negotiable Guarantees
 
-Every qso-graph MCP server guarantees:
+Every QSO-Graph MCP server guarantees:
 
 | # | Guarantee | How It's Verified |
 |---|-----------|-------------------|
@@ -85,7 +85,7 @@ Error messages never include the invalid input value — this prevents injection
 
 ## Forbidden Patterns
 
-The following are absolutely forbidden in any qso-graph server:
+The following are absolutely forbidden in any QSO-Graph server:
 
 ```python
 # FORBIDDEN — Command injection
@@ -145,7 +145,7 @@ Every server includes automated security tests:
 **Do NOT open public GitHub issues for security vulnerabilities.**
 
 Email: [ki7mt@yahoo.com](mailto:ki7mt@yahoo.com)
-Subject: `[SECURITY] qso-graph vulnerability report`
+Subject: `[SECURITY] QSO-Graph vulnerability report`
 
 Include:
 - Affected package and version

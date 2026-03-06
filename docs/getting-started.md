@@ -2,7 +2,7 @@
 
 ## Install
 
-Every qso-graph package is a standalone `pip install`:
+Every QSO-Graph package is a standalone `pip install`:
 
 ```bash
 # Authenticated servers (require credential setup)

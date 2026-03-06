@@ -1,4 +1,4 @@
-# qso-graph
+# QSO-Graph
 
 **MCP servers connecting AI assistants to ham radio services.**
 
@@ -54,7 +54,7 @@ See [Getting Started](getting-started.md) for MCP client configuration.
 
 ## How It Works
 
-qso-graph packages are [MCP servers](https://modelcontextprotocol.io/) — they run locally on your machine and expose ham radio services as tools that AI assistants can call. Your credentials stay in your OS keyring and never leave your machine.
+QSO-Graph packages are [MCP servers](https://modelcontextprotocol.io/) — they run locally on your machine and expose ham radio services as tools that AI assistants can call. Your credentials stay in your OS keyring and never leave your machine.
 
 ```
 You: "Do I have any new LoTW confirmations this week?"
@@ -79,7 +79,7 @@ You: "You have 3 new confirmations: JA1ABC on 20m FT8, ..."
 
 ## Security First
 
-All qso-graph servers follow a [security framework](security.md) with 10 non-negotiable guarantees:
+All QSO-Graph servers follow a [security framework](security.md) with 10 non-negotiable guarantees:
 
 - Credentials stored in OS keyring only — never in config files
 - Credentials never appear in logs, tool results, or error messages
@@ -93,7 +93,7 @@ All qso-graph servers follow a [security framework](security.md) with 10 non-neg
 
 ## Live Demo
 
-See qso-graph tools in action — no install required:
+See QSO-Graph tools in action — no install required:
 
 **[:material-open-in-new: Launch Demo](https://qso-graph-demo.vercel.app/){ .md-button .md-button--primary }**
 

@@ -1,7 +1,6 @@
-site_name: qso-graph — MCP Servers for Ham Radio
+site_name: QSO-Graph — MCP Servers for Amateur Radio
 site_description: >-
-  Open-source MCP servers connecting AI assistants to ham radio services.
-  Open-source MCP servers connecting AI assistants to ham radio services.
+  Open-source MCP servers connecting AI assistants to amateur radio services.
   ADIF validation, eQSL, QRZ, LoTW, HamQTH, POTA, SOTA, IOTA, space weather, and WSPR analytics. Secure by design.
 site_author: Greg Beam, KI7MT
 site_url: https://qso-graph.io/
@@ -55,10 +54,10 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/qso-graph
-      name: qso-graph on GitHub
+      name: QSO-Graph on GitHub
     - icon: fontawesome/brands/python
       link: https://pypi.org/search/?q=qso-graph
-      name: qso-graph packages on PyPI
+      name: QSO-Graph packages on PyPI
 
 nav:
   - Home: index.md

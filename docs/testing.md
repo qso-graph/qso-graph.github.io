@@ -1,6 +1,6 @@
 # Testing & Validation
 
-**Every qso-graph package ships with automated security tests and must pass an independent security audit before PyPI publication.**
+**Every QSO-Graph package ships with automated security tests and must pass an independent security audit before PyPI publication.**
 
 ---
 
@@ -177,7 +177,7 @@ done
 
 ## Audit Process
 
-The qso-graph release process requires three rounds of review before any PyPI publication:
+The QSO-Graph release process requires three rounds of review before any PyPI publication:
 
 1. **Writer** — writes code and runs all tests locally
 2. **1st Audit/Reviewer** — independent functional review, pulls code, runs tests on separate machine
