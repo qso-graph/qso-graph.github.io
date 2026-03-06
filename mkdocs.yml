@@ -49,6 +49,9 @@ markdown_extensions:
 
 plugins:
   - search
+  - redirects:
+      redirect_maps:
+        "servers/clublog.md": "servers/index.md"
 
 extra:
   social:
