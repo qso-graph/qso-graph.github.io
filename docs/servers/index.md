@@ -1,6 +1,6 @@
 # Server Overview
 
-qso-graph provides 9 MCP packages covering amateur radio logging, confirmations, and propagation services.
+qso-graph provides 10 MCP packages covering amateur radio logging, confirmations, and propagation services.
 
 ---
 
@@ -27,6 +27,7 @@ qso-graph provides 9 MCP packages covering amateur radio logging, confirmations,
 |---------|:-----:|---------|-------------|
 | [pota-mcp](pota.md) | 6 | Parks on the Air | None (public) |
 | [sota-mcp](sota.md) | 5 | Summits on the Air | None (public) |
+| [iota-mcp](iota.md) | 6 | Islands on the Air | None (public) |
 | [solar-mcp](solar.md) | 6 | NOAA SWPC | None (public) |
 | [wspr-mcp](wspr.md) | 5 | WSPR network | None (public) |
 
@@ -47,7 +48,7 @@ Every tool call includes a `persona` parameter so the server knows which credent
 
 ### Public (No Auth)
 
-POTA, SOTA, Solar, and WSPR servers access public APIs — no credentials needed. Just install and go.
+POTA, SOTA, IOTA, Solar, and WSPR servers access public APIs — no credentials needed. Just install and go.
 
 ---
 
@@ -91,5 +92,6 @@ Each server implements rate limiting appropriate for its service:
 | hamqth-mcp | 500ms | — | — |
 | pota-mcp | 100ms | — | — |
 | sota-mcp | 200ms | — | — |
+| iota-mcp | 200ms | — | — |
 | solar-mcp | 200ms | — | — |
 | wspr-mcp | 200ms | — | — |

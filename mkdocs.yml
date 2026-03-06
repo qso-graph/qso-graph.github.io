@@ -2,7 +2,7 @@ site_name: qso-graph — MCP Servers for Ham Radio
 site_description: >-
   Open-source MCP servers connecting AI assistants to ham radio services.
   Open-source MCP servers connecting AI assistants to ham radio services.
-  ADIF validation, eQSL, QRZ, LoTW, HamQTH, POTA, SOTA, space weather, and WSPR analytics. Secure by design.
+  ADIF validation, eQSL, QRZ, LoTW, HamQTH, POTA, SOTA, IOTA, space weather, and WSPR analytics. Secure by design.
 site_author: Greg Beam, KI7MT
 site_url: https://qso-graph.io/
 repo_url: https://github.com/qso-graph/qso-graph.github.io
@@ -76,6 +76,7 @@ nav:
     - Public Services:
       - POTA: servers/pota.md
       - SOTA: servers/sota.md
+      - IOTA: servers/iota.md
       - Solar Weather: servers/solar.md
       - WSPR: servers/wspr.md
   - Architecture: architecture.md

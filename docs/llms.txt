@@ -1,6 +1,6 @@
 # qso-graph — MCP Servers for Amateur Radio
 
-> Open-source Model Context Protocol servers connecting AI assistants to amateur radio services. 9 packages, secure by design.
+> Open-source Model Context Protocol servers connecting AI assistants to amateur radio services. 10 packages, secure by design.
 
 ## Foundation
 
@@ -18,13 +18,14 @@
 - [pota-mcp](https://qso-graph.io/servers/pota/): Parks on the Air — live spots, park info, stats, schedules, location search. 6 tools.
 - [sota-mcp](https://qso-graph.io/servers/sota/): Summits on the Air — spots, alerts, summit info, nearby search, activator stats. 5 tools.
 - [solar-mcp](https://qso-graph.io/servers/solar/): NOAA SWPC — SFI, Kp, solar wind, X-ray flux, band outlook, alerts. 6 tools.
+- [iota-mcp](https://qso-graph.io/servers/iota/): Islands on the Air — group lookup, island search, DXCC mapping, nearby groups, programme stats. 6 tools.
 - [wspr-mcp](https://qso-graph.io/servers/wspr/): WSPR network — beacon spots, band activity, propagation paths, TX power. 5 tools.
 
 ## Documentation
 
 - [Getting Started](https://qso-graph.io/getting-started/): Installation, credential setup, MCP client configuration for Claude Desktop, Claude Code, ChatGPT, Cursor, VS Code, and Gemini CLI.
 - [Architecture](https://qso-graph.io/architecture/): System design — foundation layer, credential flow, rate limiting, read-only security model.
-- [Testing & Validation](https://qso-graph.io/testing/): 54 security tests across 9 packages, ADIF 3.1.6 official test corpus validation, forensic tests from real operator data.
+- [Testing & Validation](https://qso-graph.io/testing/): 60 security tests across 10 packages, ADIF 3.1.6 official test corpus validation, forensic tests from real operator data.
 - [Security](https://qso-graph.io/security/): 10 non-negotiable security guarantees, credential architecture, forbidden patterns, release process, incident response.
 
 ## Key Facts

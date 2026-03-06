@@ -6,7 +6,7 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 
 ---
 
-## 9 Packages
+## 10 Packages
 
 ### Foundation
 
@@ -29,6 +29,7 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 |---------|:-----:|--------------|
 | [pota-mcp](servers/pota.md) | 6 | Live spots, park info, stats, schedules |
 | [sota-mcp](servers/sota.md) | 5 | Spots, alerts, summit info, nearby search |
+| [iota-mcp](servers/iota.md) | 6 | Group lookup, island search, DXCC mapping, nearby |
 | [solar-mcp](servers/solar.md) | 6 | SFI, Kp, solar wind, X-ray, band outlook |
 | [wspr-mcp](servers/wspr.md) | 5 | Beacon spots, band activity, propagation |
 
@@ -44,7 +45,7 @@ pip install adif-mcp
 pip install eqsl-mcp qrz-mcp lotw-mcp hamqth-mcp
 
 # Public services (no credentials needed)
-pip install pota-mcp sota-mcp solar-mcp wspr-mcp
+pip install pota-mcp sota-mcp iota-mcp solar-mcp wspr-mcp
 ```
 
 See [Getting Started](getting-started.md) for MCP client configuration.
@@ -106,5 +107,5 @@ Dashboard, physics lab, DXCC progress, path analyzer, and log viewer — all pow
 - **GitHub**: [github.com/qso-graph](https://github.com/qso-graph)
 - **PyPI**: [eqsl-mcp](https://pypi.org/project/eqsl-mcp/) · [qrz-mcp](https://pypi.org/project/qrz-mcp/) · [lotw-mcp](https://pypi.org/project/lotw-mcp/)
 - **Foundation**: [adif-mcp](servers/adif-mcp.md) — ADIF 3.1.6 spec engine + credential management ([PyPI](https://pypi.org/project/adif-mcp/))
-- **Testing**: [48/48 PASS](testing.md) — security audit + ADIF 3.1.6 official test corpus + forensic validation
+- **Testing**: [60/60 PASS](testing.md) — security audit + ADIF 3.1.6 official test corpus + forensic validation
 - **Related**: [IONIS](https://ionis-ai.com/) — HF propagation prediction from 14B amateur radio observations

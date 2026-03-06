@@ -14,6 +14,7 @@ pip install hamqth-mcp
 # Public servers (no credentials needed — just install and go)
 pip install pota-mcp
 pip install sota-mcp
+pip install iota-mcp
 pip install solar-mcp
 pip install wspr-mcp
 ```
@@ -75,6 +76,9 @@ Add servers to `~/Library/Application Support/Claude/claude_desktop_config.json`
     },
     "sota": {
       "command": "sota-mcp"
+    },
+    "iota": {
+      "command": "iota-mcp"
     },
     "solar": {
       "command": "solar-mcp"
@@ -173,6 +177,7 @@ LOTW_MCP_MOCK=1 lotw-mcp
 HAMQTH_MCP_MOCK=1 hamqth-mcp
 POTA_MCP_MOCK=1 pota-mcp
 SOTA_MCP_MOCK=1 sota-mcp
+IOTA_MCP_MOCK=1 iota-mcp
 SOLAR_MCP_MOCK=1 solar-mcp
 WSPR_MCP_MOCK=1 wspr-mcp
 ```
@@ -202,6 +207,7 @@ Each server uses a default port for Inspector mode:
 | sota-mcp | 8007 |
 | solar-mcp | 8008 |
 | wspr-mcp | 8009 |
+| iota-mcp | 8010 |
 
 ---
 
@@ -216,3 +222,5 @@ Once configured, ask your AI assistant:
 - "Find SOTA summits near Boise, Idaho"
 - "What are the current solar conditions?"
 - "What bands are open on WSPR right now?"
+- "Look up IOTA group OC-019"
+- "What IOTA groups are near Boise, Idaho?"

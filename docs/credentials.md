@@ -2,7 +2,7 @@
 
 ## How It Works
 
-qso-graph uses two layers for credential management: a **persona index** (non-secret YAML file with your callsign and date range) and the **OS keyring** (where secrets are stored). A persona is your callsign identity; a provider is a service like eQSL or QRZ. Credentials are never stored in config files — only in your operating system's secure keyring.
+qso-graph uses two layers for credential management: a **persona index** (non-secret JSON file with your callsign and date range) and the **OS keyring** (where secrets are stored). A persona is your callsign identity; a provider is a service like eQSL or QRZ. Credentials are never stored in config files — only in your operating system's secure keyring.
 
 ---
 
@@ -37,6 +37,7 @@ That's it. The MCP servers will find your credentials automatically.
 | hamqth-mcp | `hamqth` | username + password | HamQTH.com login (free account) |
 | pota-mcp | — | none | Public API, no setup needed |
 | sota-mcp | — | none | Public API, no setup needed |
+| iota-mcp | — | none | Public API, no setup needed |
 | solar-mcp | — | none | Public API, no setup needed |
 | wspr-mcp | — | none | Public API, no setup needed |
 

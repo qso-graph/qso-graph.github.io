@@ -17,11 +17,12 @@
 | [sota-mcp](servers/sota.md) | v0.1.0 | 6 | Yes | PASS |
 | [solar-mcp](servers/solar.md) | v0.1.0 | 6 | Yes | PASS |
 | [wspr-mcp](servers/wspr.md) | v0.1.0 | 6 | Yes | PASS |
-| **Total** | — | **54** | **9/9** | **9/9 PASS** |
+| [iota-mcp](servers/iota.md) | v0.1.0 | 6 | Yes | PASS |
+| **Total** | — | **60** | **10/10** | **10/10 PASS** |
 
 ---
 
-## Security Test Suite (All 9 Packages)
+## Security Test Suite (All 10 Packages)
 
 Every package includes `test_security.py` with 6 source-code audit tests. These are not runtime tests — they scan all Python source files for forbidden patterns:
 
