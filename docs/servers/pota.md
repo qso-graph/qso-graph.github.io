@@ -90,7 +90,7 @@ Returns list of parks with reference, name, coordinates, grid, type, and activat
 
 ## No Credential Setup Needed
 
-POTA's API is completely public. Just install and start using it — no `adif-mcp` dependency, no persona setup.
+POTA's API is completely public. Just install and start using it — no credential setup needed.
 
 ---
 

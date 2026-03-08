@@ -8,7 +8,7 @@
 
 ### ADIF Specification (adif-mcp)
 
-The [Amateur Data Interchange Format](https://adif.org.uk/) is the foundation of amateur radio logging interoperability. adif-mcp bundles the complete ADIF 3.1.6 specification — 186 fields, 25 enumerations, and 28 data types.
+The [Amateur Data Interchange Format](https://adif.org.uk/) is the foundation of amateur radio logging interoperability. adif-mcp bundles the complete ADIF 3.1.6 specification — 186 fields, 26 enumerations, and 28 data types.
 
 - **Author**: Joe Turley, G3ZOD (R.G. Turley OBE)
 - **Website**: [adif.org.uk](https://adif.org.uk/)

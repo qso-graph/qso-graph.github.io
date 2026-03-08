@@ -18,6 +18,9 @@ pip install hamqth-mcp
 | `hamqth_dxcc` | No | Resolve DXCC entity from callsign or code |
 | `hamqth_bio` | Yes | Fetch operator biography |
 | `hamqth_activity` | Yes | Recent DX cluster, RBN, and logbook activity |
+| `hamqth_dx_spots` | No | Recent DX cluster spots |
+| `hamqth_rbn` | No | Reverse Beacon Network spot data |
+| `hamqth_verify_qso` | No | Verify a QSO against HamQTH logs |
 
 ---
 
@@ -29,7 +32,7 @@ Look up a callsign on HamQTH. Returns name, grid, DXCC, coordinates, QSL prefere
 
 | Parameter | Type | Required | Description |
 |-----------|------|:--------:|-------------|
-| `persona` | str | Yes | Persona name configured in adif-mcp |
+| `persona` | str | Yes | Persona name configured in qso-graph-auth |
 | `callsign` | str | Yes | Callsign to look up (e.g., OK2CQR) |
 
 ### hamqth_dxcc
@@ -48,7 +51,7 @@ Fetch an operator's biography from HamQTH.
 
 | Parameter | Type | Required | Description |
 |-----------|------|:--------:|-------------|
-| `persona` | str | Yes | Persona name configured in adif-mcp |
+| `persona` | str | Yes | Persona name configured in qso-graph-auth |
 | `callsign` | str | Yes | Callsign to look up |
 
 Returns callsign and biography text (HTML stripped).
@@ -59,7 +62,7 @@ Get recent DX cluster, RBN, and logbook activity for a callsign.
 
 | Parameter | Type | Required | Description |
 |-----------|------|:--------:|-------------|
-| `persona` | str | Yes | Persona name configured in adif-mcp |
+| `persona` | str | Yes | Persona name configured in qso-graph-auth |
 | `callsign` | str | Yes | Callsign to check |
 
 Returns list of recent activity items (spots, RBN decodes, logbook entries).
@@ -71,8 +74,8 @@ Returns list of recent activity items (spots, RBN decodes, logbook entries).
 HamQTH is **free** — no paid subscription needed. Just create an account at [hamqth.com](https://www.hamqth.com/):
 
 ```bash
-pip install adif-mcp
-adif-mcp creds set --persona ki7mt --provider hamqth --password YOUR_HAMQTH_PASSWORD
+pip install qso-graph-auth
+qso-auth creds set ki7mt hamqth
 ```
 
 ---

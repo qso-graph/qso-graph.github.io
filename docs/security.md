@@ -13,7 +13,7 @@ Every QSO-Graph MCP server guarantees:
 | 1 | Credentials never in logs | Static analysis + code review |
 | 2 | Credentials never in tool results | All return paths traced |
 | 3 | Credentials never in error messages | All raise/exception statements audited |
-| 4 | Credentials never in config files | OS keyring only (via adif-mcp) |
+| 4 | Credentials never in config files | OS keyring only (via qso-graph-auth) |
 | 5 | No command injection surface | No subprocess, no shell=True, no os.system |
 | 6 | No SQL injection surface | Parameterized queries or API-only |
 | 7 | HTTPS only for external calls | All URLs audited |
@@ -28,7 +28,7 @@ Every QSO-Graph MCP server guarantees:
 Credentials flow through the OS keyring and never appear in the MCP protocol:
 
 ```
-User runs: adif-mcp creds set --persona ki7mt --provider qrz --password ****
+User runs: qso-auth creds set ki7mt qrz
                 ↓
         OS Keyring (encrypted by OS)
         - macOS: Keychain

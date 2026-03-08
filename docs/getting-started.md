@@ -25,23 +25,23 @@ All packages require **Python 3.10+**.
 
 ## Credential Setup
 
-Servers that access your accounts use [adif-mcp](https://pypi.org/project/adif-mcp/) to store credentials securely in your OS keyring.
+Servers that access your accounts use [qso-graph-auth](https://pypi.org/project/qso-graph-auth/) to store credentials securely in your OS keyring.
 
 ```bash
-pip install adif-mcp
+pip install qso-graph-auth
 
 # Create a persona (your callsign identity)
-adif-mcp persona add --name ki7mt --callsign KI7MT --start 2020-01-01
+qso-auth persona add --name ki7mt --callsign KI7MT --start 2020-01-01
 
 # Store credentials for each service (prompts interactively — never pass passwords on the command line)
-adif-mcp creds set ki7mt eqsl
-adif-mcp creds set ki7mt lotw
-adif-mcp creds set ki7mt qrz
-adif-mcp creds set ki7mt qrz_logbook
-adif-mcp creds set ki7mt hamqth
+qso-auth creds set ki7mt eqsl
+qso-auth creds set ki7mt lotw
+qso-auth creds set ki7mt qrz
+qso-auth creds set ki7mt qrz_logbook
+qso-auth creds set ki7mt hamqth
 
 # Verify everything is wired up
-adif-mcp creds doctor
+qso-auth creds doctor
 ```
 
 Your credentials are stored in the OS keyring (macOS Keychain, Windows Credential Manager, or Linux Secret Service) — never in config files.

@@ -49,9 +49,6 @@ markdown_extensions:
 
 plugins:
   - search
-  - redirects:
-      redirect_maps:
-        "servers/clublog.md": "servers/index.md"
 
 extra:
   social:
@@ -69,6 +66,7 @@ nav:
   - Servers:
     - servers/index.md
     - Foundation:
+      - qso-graph-auth: servers/qso-graph-auth.md
       - adif-mcp: servers/adif-mcp.md
     - Logbook Services:
       - eQSL: servers/eqsl.md

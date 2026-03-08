@@ -1,6 +1,6 @@
 # Server Overview
 
-QSO-Graph provides 10 MCP packages covering amateur radio logging, confirmations, and propagation services.
+QSO-Graph provides 11 MCP packages covering amateur radio logging, confirmations, and propagation services.
 
 ---
 
@@ -10,23 +10,24 @@ QSO-Graph provides 10 MCP packages covering amateur radio logging, confirmations
 
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
+| [qso-graph-auth](qso-graph-auth.md) | — | OS keyring credentials | None (local) |
 | [adif-mcp](adif-mcp.md) | 8 | ADIF 3.1.6 spec | None (local) |
 
 ### Logbook Services
 
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
-| [eqsl-mcp](eqsl.md) | 4 | eQSL.cc | Persona (session) |
-| [qrz-mcp](qrz.md) | 4 | QRZ.com | Persona (XML) + API key (Logbook) |
-| [lotw-mcp](lotw.md) | 4 | LoTW (ARRL) | Persona (HTTPS) |
-| [hamqth-mcp](hamqth.md) | 4 | HamQTH.com | Persona (XML session) |
+| [eqsl-mcp](eqsl.md) | 5 | eQSL.cc | Persona (session) |
+| [qrz-mcp](qrz.md) | 5 | QRZ.com | Persona (XML) + API key (Logbook) |
+| [lotw-mcp](lotw.md) | 5 | LoTW (ARRL) | Persona (HTTPS) |
+| [hamqth-mcp](hamqth.md) | 7 | HamQTH.com | Persona (XML session) |
 
 ### Public Services
 
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
 | [pota-mcp](pota.md) | 6 | Parks on the Air | None (public) |
-| [sota-mcp](sota.md) | 5 | Summits on the Air | None (public) |
+| [sota-mcp](sota.md) | 4 | Summits on the Air | None (public) |
 | [iota-mcp](iota.md) | 6 | Islands on the Air | None (public) |
 | [solar-mcp](solar.md) | 6 | NOAA SWPC | None (public) |
 | [wspr-mcp](wspr.md) | 8 | wspr.live (ClickHouse) | None (public) |
@@ -37,11 +38,11 @@ QSO-Graph provides 10 MCP packages covering amateur radio logging, confirmations
 
 ### Persona Auth (OS Keyring)
 
-eQSL, QRZ, LoTW, and HamQTH use **adif-mcp personas** — named identities with credentials stored in your OS keyring:
+eQSL, QRZ, LoTW, and HamQTH use **qso-graph-auth personas** — named identities with credentials stored in your OS keyring:
 
 ```bash
-pip install adif-mcp
-adif-mcp creds set --persona ki7mt --provider eqsl --password ****
+pip install qso-graph-auth
+qso-auth creds set ki7mt eqsl
 ```
 
 Every tool call includes a `persona` parameter so the server knows which credentials to use. See [Getting Started](../getting-started.md) for setup.

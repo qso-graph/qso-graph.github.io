@@ -1,6 +1,6 @@
 # adif-mcp
 
-**Foundation package — ADIF 3.1.6 spec engine, validation, persona management, and keyring credentials.**
+**Foundation package — ADIF 3.1.6 spec engine, validation, parsing, enumerations, and geospatial.**
 
 ```bash
 pip install adif-mcp
@@ -12,13 +12,14 @@ pip install adif-mcp
 
 ## What It Does
 
-adif-mcp is the foundation of every QSO-Graph server. It provides:
+adif-mcp provides ADIF specification tools for parsing, validation, and geospatial calculations:
 
-- **ADIF 3.1.6 specification** — 186 fields, 25 enumerations (4,427 records), 28 data types, all bundled as JSON
+- **ADIF 3.1.6 specification** — 186 fields, 26 enumerations (4,427+ records), 28 data types, all bundled as JSON
 - **Record validation** — enum membership, compound CreditList format, conditional Submode checks, import-only detection
 - **Log parsing** — streaming parser for large `.adi` files with pagination
-- **Persona management** — named identities with credentials stored in your OS keyring
 - **Geospatial** — Great Circle distance and beam heading between Maidenhead grids
+
+Credential management is handled by [qso-graph-auth](qso-graph-auth.md).
 
 All tools run locally against the bundled spec data. No network calls required.
 
@@ -30,7 +31,7 @@ All tools run locally against the bundled spec data. No network calls required.
 |------|-------------|
 | `validate_adif_record` | Validate ADIF records against the 3.1.6 spec |
 | `parse_adif` | Stream and paginate ADIF log files |
-| `list_enumerations` | List all 25 enumerations with record counts |
+| `list_enumerations` | List all 26 enumerations with record counts |
 | `search_enumerations` | Search across enumerations by keyword |
 | `read_specification_resource` | Load any spec module as JSON |
 | `calculate_distance` | Great Circle distance between grids |
@@ -45,7 +46,7 @@ Plus 1 MCP resource: `adif://system/version`
 
 ### validate_adif_record
 
-Validates an ADIF record string against the 3.1.6 specification. Checks field names, data types (Number validation), and enum membership for all 43 enum-typed fields across 25 enumerations.
+Validates an ADIF record string against the 3.1.6 specification. Checks field names, data types (Number validation), and enum membership for all 43 enum-typed fields across 26 enumerations.
 
 | Parameter | Type | Required | Description |
 |-----------|------|:--------:|-------------|
@@ -115,7 +116,7 @@ Lists all 25 ADIF 3.1.6 enumerations with record counts, import-only counts, and
 
 ### search_enumerations
 
-Search across all 25 enumerations or filter to a specific one. Case-insensitive matching on all searchable fields.
+Search across all 26 enumerations or filter to a specific one. Case-insensitive matching on all searchable fields.
 
 | Parameter | Type | Required | Description |
 |-----------|------|:--------:|-------------|
@@ -132,7 +133,7 @@ Search across all 25 enumerations or filter to a specific one. Case-insensitive 
 
 ### read_specification_resource
 
-Loads a named ADIF 3.1.6 spec module as raw JSON. Covers fields, data types, and all 25 enumerations.
+Loads a named ADIF 3.1.6 spec module as raw JSON. Covers fields, data types, and all 26 enumerations.
 
 | Parameter | Type | Required | Description |
 |-----------|------|:--------:|-------------|
@@ -172,28 +173,15 @@ Returns the service version and ADIF spec version.
 
 ---
 
-## Credential Setup
+## Credential Management
 
-adif-mcp manages credentials for all QSO-Graph servers:
-
-```bash
-# Set up a persona
-adif-mcp creds set --persona ki7mt --provider eqsl --password YOUR_PASSWORD
-adif-mcp creds set --persona ki7mt --provider lotw --password YOUR_PASSWORD
-adif-mcp creds set --persona ki7mt --provider qrz --password YOUR_PASSWORD
-```
-
-Credentials are stored in your OS keyring:
-
-- **macOS**: Keychain
-- **Windows**: Credential Manager
-- **Linux**: Secret Service (GNOME Keyring / KWallet)
+Credential management has moved to [qso-graph-auth](qso-graph-auth.md). See the [Credential Setup Guide](../credentials.md) for instructions.
 
 ---
 
 ## Validation Coverage
 
-adif-mcp v0.7.0 validates against all 25 ADIF 3.1.6 enumerations with 48 automated tests:
+adif-mcp v1.0.0 validates against all 26 ADIF 3.1.6 enumerations with 48 automated tests:
 
 | Category | Tests | Status |
 |----------|:-----:|--------|

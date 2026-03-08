@@ -10,16 +10,16 @@ QSO-Graph uses two layers for credential management: a **persona index** (non-se
 
 ```bash
 # 1. Install the foundation package
-pip install adif-mcp
+pip install qso-graph-auth
 
 # 2. Create a persona (your callsign identity)
-adif-mcp persona add --name ki7mt --callsign KI7MT --start 2020-01-01
+qso-auth persona add --name ki7mt --callsign KI7MT --start 2020-01-01
 
 # 3. Store credentials for a service (prompts for username + password)
-adif-mcp creds set ki7mt eqsl
+qso-auth creds set ki7mt eqsl
 
 # 4. Verify everything is wired up
-adif-mcp creds doctor
+qso-auth creds doctor
 ```
 
 That's it. The MCP servers will find your credentials automatically.
@@ -47,7 +47,7 @@ That's it. The MCP servers will find your credentials automatically.
 ### eQSL
 
 ```bash
-adif-mcp creds set ki7mt eqsl
+qso-auth creds set ki7mt eqsl
 ```
 
 ```
@@ -59,7 +59,7 @@ Password: ********
 ### LoTW
 
 ```bash
-adif-mcp creds set ki7mt lotw
+qso-auth creds set ki7mt lotw
 ```
 
 ```
@@ -71,7 +71,7 @@ Password: ********
 ### QRZ (Callsign Lookup)
 
 ```bash
-adif-mcp creds set ki7mt qrz
+qso-auth creds set ki7mt qrz
 ```
 
 ```
@@ -83,7 +83,7 @@ Password: ********
 ### QRZ (Logbook API)
 
 ```bash
-adif-mcp creds set ki7mt qrz_logbook
+qso-auth creds set ki7mt qrz_logbook
 ```
 
 ```
@@ -95,7 +95,7 @@ API Key: ********
 ### HamQTH
 
 ```bash
-adif-mcp creds set ki7mt hamqth
+qso-auth creds set ki7mt hamqth
 ```
 
 ```
@@ -111,7 +111,7 @@ Password: ********
 Run the doctor command to check all credentials at once:
 
 ```bash
-adif-mcp creds doctor
+qso-auth creds doctor
 ```
 
 ```
@@ -129,7 +129,7 @@ Summary: stored=5, missing=0
 To check a single persona:
 
 ```bash
-adif-mcp creds doctor --persona ki7mt
+qso-auth creds doctor --persona ki7mt
 ```
 
 ---
@@ -140,30 +140,30 @@ adif-mcp creds doctor --persona ki7mt
 
 | Command | Description |
 |---------|-------------|
-| `adif-mcp persona add --name NAME --callsign CALL --start YYYY-MM-DD` | Create a persona |
-| `adif-mcp persona list` | List all personas |
-| `adif-mcp persona list --verbose` | List with callsign and date range |
-| `adif-mcp persona show NAME` | Show persona details |
-| `adif-mcp persona set-active NAME` | Set the active persona |
-| `adif-mcp persona remove NAME` | Delete a persona |
+| `qso-auth persona add --name NAME --callsign CALL --start YYYY-MM-DD` | Create a persona |
+| `qso-auth persona list` | List all personas |
+| `qso-auth persona list --verbose` | List with callsign and date range |
+| `qso-auth persona show NAME` | Show persona details |
+| `qso-auth persona set-active NAME` | Set the active persona |
+| `qso-auth persona remove NAME` | Delete a persona |
 
 ### Credential Commands
 
 | Command | Description |
 |---------|-------------|
-| `adif-mcp creds set PERSONA PROVIDER` | Store credentials (interactive prompt) |
-| `adif-mcp creds get PERSONA PROVIDER` | Show credentials (redacted) |
-| `adif-mcp creds get PERSONA PROVIDER --raw` | Show credentials (unmasked) |
-| `adif-mcp creds delete PERSONA PROVIDER` | Remove credentials from keyring |
-| `adif-mcp creds doctor` | Check all personas for missing credentials |
+| `qso-auth creds set PERSONA PROVIDER` | Store credentials (interactive prompt) |
+| `qso-auth creds get PERSONA PROVIDER` | Show credentials (redacted) |
+| `qso-auth creds get PERSONA PROVIDER --raw` | Show credentials (unmasked) |
+| `qso-auth creds delete PERSONA PROVIDER` | Remove credentials from keyring |
+| `qso-auth creds doctor` | Check all personas for missing credentials |
 
 ### Provider Commands
 
 | Command | Description |
 |---------|-------------|
-| `adif-mcp provider list` | List supported providers |
-| `adif-mcp provider enable PERSONA PROVIDER` | Enable a provider for a persona |
-| `adif-mcp provider disable PERSONA PROVIDER` | Disable a provider for a persona |
+| `qso-auth provider list` | List supported providers |
+| `qso-auth provider enable PERSONA PROVIDER` | Enable a provider for a persona |
+| `qso-auth provider disable PERSONA PROVIDER` | Disable a provider for a persona |
 
 ---
 
@@ -173,16 +173,16 @@ If you have multiple callsigns (contest calls, special events, club stations), c
 
 ```bash
 # Primary callsign
-adif-mcp persona add --name ki7mt --callsign KI7MT --start 2020-01-01
-adif-mcp creds set ki7mt eqsl
-adif-mcp creds set ki7mt qrz
+qso-auth persona add --name ki7mt --callsign KI7MT --start 2020-01-01
+qso-auth creds set ki7mt eqsl
+qso-auth creds set ki7mt qrz
 
 # Contest callsign (with end date)
-adif-mcp persona add --name k7mt --callsign K7MT --start 2024-06-01 --end 2024-06-30
-adif-mcp creds set k7mt eqsl
+qso-auth persona add --name k7mt --callsign K7MT --start 2024-06-01 --end 2024-06-30
+qso-auth creds set k7mt eqsl
 
 # Set your primary as active
-adif-mcp persona set-active ki7mt
+qso-auth persona set-active ki7mt
 ```
 
 ---
@@ -201,10 +201,10 @@ This uses an encrypted file-based keyring instead of GNOME Keyring or KWallet.
 
 ### "No credentials found" errors
 
-Run `adif-mcp creds doctor` to see which providers are missing credentials. The fix is always:
+Run `qso-auth creds doctor` to see which providers are missing credentials. The fix is always:
 
 ```bash
-adif-mcp creds set PERSONA PROVIDER
+qso-auth creds set PERSONA PROVIDER
 ```
 
 ### Wrong username or password
@@ -212,8 +212,8 @@ adif-mcp creds set PERSONA PROVIDER
 Delete and re-set the credentials:
 
 ```bash
-adif-mcp creds delete ki7mt eqsl
-adif-mcp creds set ki7mt eqsl
+qso-auth creds delete ki7mt eqsl
+qso-auth creds set ki7mt eqsl
 ```
 
 ### Where are credentials stored?

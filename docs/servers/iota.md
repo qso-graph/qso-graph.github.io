@@ -102,7 +102,7 @@ Data is downloaded once on first use and cached in memory for 24 hours.
 
 ## No Credential Setup Needed
 
-IOTA data is completely public. Just install and start using it — no `adif-mcp` dependency, no persona setup.
+IOTA data is completely public. Just install and start using it — no credential setup needed.
 
 ---
 

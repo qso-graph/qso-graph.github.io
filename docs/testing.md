@@ -8,21 +8,22 @@
 
 | Package | Version | Security Tests | CI Gate | Audit |
 |---------|---------|:--------------:|:-------:|:-----:|
-| [adif-mcp](servers/adif-mcp.md) | v0.7.0 | 6 | Yes | PASS |
-| [eqsl-mcp](servers/eqsl.md) | v0.1.1 | 6 | Yes | PASS |
-| [qrz-mcp](servers/qrz.md) | v0.1.1 | 6 | Yes | PASS |
-| [lotw-mcp](servers/lotw.md) | v0.1.1 | 6 | Yes | PASS |
-| [hamqth-mcp](servers/hamqth.md) | v0.1.1 | 6 | Yes | PASS |
-| [pota-mcp](servers/pota.md) | v0.1.0 | 6 | Yes | PASS |
-| [sota-mcp](servers/sota.md) | v0.1.0 | 6 | Yes | PASS |
-| [solar-mcp](servers/solar.md) | v0.1.0 | 6 | Yes | PASS |
-| [wspr-mcp](servers/wspr.md) | v0.1.0 | 6 | Yes | PASS |
+| [qso-graph-auth](servers/qso-graph-auth.md) | v0.1.0 | 6 | Yes | PASS |
+| [adif-mcp](servers/adif-mcp.md) | v1.0.0 | 6 | Yes | PASS |
+| [eqsl-mcp](servers/eqsl.md) | v0.3.0 | 6 | Yes | PASS |
+| [qrz-mcp](servers/qrz.md) | v0.3.0 | 6 | Yes | PASS |
+| [lotw-mcp](servers/lotw.md) | v0.3.0 | 6 | Yes | PASS |
+| [hamqth-mcp](servers/hamqth.md) | v0.3.0 | 6 | Yes | PASS |
+| [pota-mcp](servers/pota.md) | v0.1.1 | 6 | Yes | PASS |
+| [sota-mcp](servers/sota.md) | v0.1.4 | 6 | Yes | PASS |
+| [solar-mcp](servers/solar.md) | v0.2.0 | 6 | Yes | PASS |
+| [wspr-mcp](servers/wspr.md) | v0.2.0 | 6 | Yes | PASS |
 | [iota-mcp](servers/iota.md) | v0.1.0 | 6 | Yes | PASS |
-| **Total** | — | **60** | **10/10** | **10/10 PASS** |
+| **Total** | — | **66** | **11/11** | **11/11 PASS** |
 
 ---
 
-## Security Test Suite (All 10 Packages)
+## Security Test Suite (All 11 Packages)
 
 Every package includes `test_security.py` with 6 source-code audit tests. These are not runtime tests — they scan all Python source files for forbidden patterns:
 
@@ -61,7 +62,7 @@ If the security gate fails, the publish job is **blocked**. No exceptions.
 
 ---
 
-## adif-mcp Validation (v0.7.0)
+## adif-mcp Validation (v1.0.0)
 
 adif-mcp is the foundation package. Beyond the standard 6 security tests, it carries a comprehensive validation test suite against the ADIF 3.1.6 specification:
 
@@ -115,7 +116,7 @@ The gold standard for ADIF validation. The [official test file](https://adif.org
 
 ### Enumeration Coverage
 
-adif-mcp v0.7.0 validates all 25 ADIF 3.1.6 enumerations across 43 enum-typed fields:
+adif-mcp v1.0.0 validates all 26 ADIF 3.1.6 enumerations across 43 enum-typed fields:
 
 | Enumeration | Records | Import-Only | Fields Using It |
 |-------------|--------:|:-----------:|-----------------|
@@ -167,7 +168,7 @@ cd eqsl-mcp  # or any server
 ### All servers at once
 
 ```bash
-for pkg in eqsl-mcp qrz-mcp lotw-mcp hamqth-mcp pota-mcp sota-mcp solar-mcp wspr-mcp; do
+for pkg in qso-graph-auth eqsl-mcp qrz-mcp lotw-mcp hamqth-mcp pota-mcp sota-mcp iota-mcp solar-mcp wspr-mcp; do
   echo "=== $pkg ==="
   cd /path/to/$pkg && .venv/bin/python -m pytest tests/test_security.py -v
 done

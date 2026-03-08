@@ -18,6 +18,7 @@ pip install eqsl-mcp
 | `eqsl_verify` | No | Check if a specific QSO exists in eQSL |
 | `eqsl_ag_check` | No | Check Authenticity Guaranteed status |
 | `eqsl_last_upload` | No | Check when a persona last uploaded |
+| `eqsl_download` | Yes | Download eQSL log data in ADIF format |
 
 ---
 
@@ -29,7 +30,7 @@ Download incoming eQSLs (confirmations others have sent you).
 
 | Parameter | Type | Required | Description |
 |-----------|------|:--------:|-------------|
-| `persona` | str | Yes | Persona name configured in adif-mcp |
+| `persona` | str | Yes | Persona name configured in qso-graph-auth |
 | `since` | str | No | Only records since this date (YYYY-MM-DD). Default: last 30 days |
 | `confirmed_only` | bool | No | Only confirmed-back records. Default: false |
 | `unconfirmed_only` | bool | No | Only unconfirmed records. Default: false |
@@ -63,15 +64,15 @@ Check when a persona last uploaded QSOs to eQSL.
 
 | Parameter | Type | Required | Description |
 |-----------|------|:--------:|-------------|
-| `persona` | str | Yes | Persona name configured in adif-mcp |
+| `persona` | str | Yes | Persona name configured in qso-graph-auth |
 
 ---
 
 ## Credential Setup
 
 ```bash
-pip install adif-mcp
-adif-mcp creds set --persona ki7mt --provider eqsl --password YOUR_EQSL_PASSWORD
+pip install qso-graph-auth
+qso-auth creds set ki7mt eqsl
 ```
 
 ---

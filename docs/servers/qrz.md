@@ -18,6 +18,7 @@ pip install qrz-mcp
 | `qrz_dxcc` | XML session | Resolve a DXCC entity from callsign or code |
 | `qrz_logbook_status` | API key | Get logbook statistics |
 | `qrz_logbook_fetch` | API key | Query QSOs from a logbook |
+| `qrz_download` | API key | Download QRZ logbook data in ADIF format |
 
 ---
 
@@ -29,7 +30,7 @@ Look up a callsign on QRZ.com. Fields returned depend on subscription tier — f
 
 | Parameter | Type | Required | Description |
 |-----------|------|:--------:|-------------|
-| `persona` | str | Yes | Persona name configured in adif-mcp |
+| `persona` | str | Yes | Persona name configured in qso-graph-auth |
 | `callsign` | str | Yes | Callsign to look up (e.g., W1AW) |
 
 ### qrz_dxcc
@@ -38,7 +39,7 @@ Resolve a DXCC entity from a callsign or numeric entity code.
 
 | Parameter | Type | Required | Description |
 |-----------|------|:--------:|-------------|
-| `persona` | str | Yes | Persona name configured in adif-mcp |
+| `persona` | str | Yes | Persona name configured in qso-graph-auth |
 | `query` | str | Yes | Callsign (e.g., VP8PJ) or DXCC code (e.g., 291) |
 
 Returns DXCC entity details: name, continent, CQ/ITU zones, coordinates.
@@ -49,7 +50,7 @@ Get QRZ logbook statistics.
 
 | Parameter | Type | Required | Description |
 |-----------|------|:--------:|-------------|
-| `persona` | str | Yes | Persona name configured in adif-mcp |
+| `persona` | str | Yes | Persona name configured in qso-graph-auth |
 
 Returns QSO count, confirmed count, DXCC entities, US states, date range.
 
@@ -59,7 +60,7 @@ Query QSOs from a QRZ logbook with optional filters. Transparently paginates to 
 
 | Parameter | Type | Required | Description |
 |-----------|------|:--------:|-------------|
-| `persona` | str | Yes | Persona name configured in adif-mcp |
+| `persona` | str | Yes | Persona name configured in qso-graph-auth |
 | `band` | str | No | Filter by band (e.g., "20m") |
 | `mode` | str | No | Filter by mode (e.g., "FT8") |
 | `callsign` | str | No | Filter by contacted station |
@@ -76,13 +77,13 @@ Query QSOs from a QRZ logbook with optional filters. Transparently paginates to 
 QRZ uses **dual authentication** — the XML API and Logbook API have separate credentials:
 
 ```bash
-pip install adif-mcp
+pip install qso-graph-auth
 
 # XML API (callsign lookup + DXCC) — uses your QRZ login
-adif-mcp creds set --persona ki7mt --provider qrz --password YOUR_QRZ_PASSWORD
+qso-auth creds set ki7mt qrz
 
 # Logbook API — uses a separate API key from qrz.com/page/xml_data.html
-adif-mcp creds set --persona ki7mt --provider qrz --api-key YOUR_QRZ_API_KEY
+qso-auth creds set ki7mt qrz_logbook
 ```
 
 ---

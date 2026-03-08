@@ -1,6 +1,6 @@
 # Architecture
 
-**How QSO-Graph servers work together — one foundation, nine packages, zero cloud dependencies.**
+**How QSO-Graph servers work together — two foundation packages, nine MCP servers, zero cloud dependencies.**
 
 ---
 
@@ -22,14 +22,17 @@ graph TD
         solar["solar-mcp"]
         wspr["wspr-mcp"]
 
-        subgraph Foundation["adif-mcp (foundation)"]
+        subgraph Auth["qso-graph-auth"]
             persona["PersonaManager → OS Keyring"]
-            spec["ADIF 3.1.6 Spec (186 fields, 25 enums)"]
+        end
+
+        subgraph ADIF["adif-mcp"]
+            spec["ADIF 3.1.6 Spec (186 fields, 26 enums)"]
             valid["Validation Engine"]
             geo["Geospatial (distance, heading)"]
         end
 
-        eqsl & qrz & lotw & hamqth --> Foundation
+        eqsl & qrz & lotw & hamqth --> Auth
     end
 
     Servers -->|"HTTPS only"| Services
@@ -41,13 +44,13 @@ graph TD
 
 ---
 
-## Foundation: adif-mcp
+## Foundation: qso-graph-auth + adif-mcp
 
-adif-mcp provides three capabilities that all other servers depend on:
+Two foundation packages provide the shared capabilities that other servers depend on.
 
-### 1. Persona Management
+### qso-graph-auth — Credential Management
 
-Named identities with credentials stored in the OS keyring. One persona serves all services:
+Named identities (personas) with credentials stored in the OS keyring. One persona serves all services:
 
 ```
 Persona: "ki7mt"
@@ -57,25 +60,31 @@ Persona: "ki7mt"
   └── hamqth  → password in OS keyring
 ```
 
-When a server needs credentials, it calls `adif-mcp` which reads them from the keyring at runtime. Credentials never exist in config files, environment variables, or MCP protocol messages.
+When a server needs credentials, it calls `qso-graph-auth` which reads them from the keyring at runtime. Credentials never exist in config files, environment variables, or MCP protocol messages.
 
-### 2. ADIF 3.1.6 Specification
+```bash
+pip install qso-graph-auth
+qso-auth persona add --name ki7mt --callsign KI7MT --start 2020-01-01
+qso-auth creds set ki7mt eqsl
+```
+
+### adif-mcp — ADIF 3.1.6 Spec Engine
 
 The complete ADIF 3.1.6 spec bundled as JSON:
 
 - **186 fields** with data types, valid ranges, and descriptions
-- **25 enumerations** with 4,427 records (Mode, Band, DXCC, Contest_ID, etc.)
+- **26 enumerations** with 4,427+ records (Mode, Band, DXCC, Country, Contest_ID, etc.)
 - **28 data types** (Number, String, Date, GridSquare, etc.)
 
-All servers share this spec for consistent parsing and validation.
+Plus validation, parsing, and geospatial tools. See [adif-mcp](servers/adif-mcp.md) for the full 8-tool reference.
 
-### 3. Validation Engine
+### Validation Engine
 
 Record validation against the full spec:
 
 - Field name recognition (186 fields)
 - Data type checking (Number, Date, etc.)
-- Enum membership checking (43 enum-typed fields across 25 enumerations)
+- Enum membership checking (43 enum-typed fields across 26 enumerations)
 - Compound format parsing (CreditList, multi-medium)
 - Conditional validation (Submode depends on Mode)
 - Import-only detection (warn, don't reject historical data)
@@ -96,7 +105,7 @@ Input Validation ──── Regex on all user strings
 Rate Limiter ──────── Per-service throttle (prevents account bans)
   │
   ▼
-Credential Lookup ─── OS keyring via adif-mcp (authenticated servers only)
+Credential Lookup ─── OS keyring via qso-graph-auth (authenticated servers only)
   │
   ▼
 API Call ──────────── HTTPS only, response parsed
@@ -140,9 +149,9 @@ Each server implements rate limiting appropriate for its service:
 Credentials take one path and never deviate:
 
 ```
-User ──── adif-mcp creds set ──── OS Keyring (encrypted)
+User ──── qso-auth creds set ──── OS Keyring (encrypted)
                                        │
-MCP Server ──── adif-mcp read ─────────┘
+MCP Server ──── qso-graph-auth read ───┘
     │                                (in-process, never serialized)
     ▼
 HTTPS Request ──── credential in Authorization header
@@ -169,9 +178,9 @@ pip install eqsl-mcp    # just eqsl-mcp + its dependencies
 pip install pota-mcp     # just pota-mcp, no auth needed
 ```
 
-Servers don't depend on each other. You can install one or all nine.
+Servers don't depend on each other. You can install one or all ten.
 
-Authenticated servers depend on `adif-mcp` for credential management. Public servers (POTA, SOTA, Solar, WSPR) have no dependency on adif-mcp.
+Authenticated servers depend on `qso-graph-auth` for credential management. Public servers (POTA, SOTA, IOTA, Solar, WSPR) have no dependency on qso-graph-auth.
 
 ---
 

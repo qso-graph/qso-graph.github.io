@@ -27,7 +27,8 @@ QSO-Graph grew out of the IONIS project's need to integrate with ham radio servi
 - **[IONIS](https://ionis-ai.com/)** — Ionospheric Neural Inference System. Physics-constrained neural network for HF propagation prediction, trained on 14 billion amateur radio observations.
 - **[ionis-mcp](https://pypi.org/project/ionis-mcp/)** — MCP server for propagation analytics using IONIS datasets (175M+ signatures from WSPR, RBN, contests, and PSK Reporter).
 - **[ionis-jupyter](https://pypi.org/project/ionis-jupyter/)** — Jupyter notebooks for propagation research.
-- **[adif-mcp](https://pypi.org/project/adif-mcp/)** — Foundation library for ADIF parsing and credential management. Used by all authenticated QSO-Graph servers.
+- **[qso-graph-auth](https://pypi.org/project/qso-graph-auth/)** — OS keyring credential management for all authenticated QSO-Graph servers.
+- **[adif-mcp](https://pypi.org/project/adif-mcp/)** — ADIF 3.1.6 spec engine — validation, parsing, enumerations, geospatial.
 
 ---
 

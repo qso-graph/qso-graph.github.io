@@ -1,6 +1,6 @@
 # sota-mcp
 
-**Summits on the Air integration — spots, alerts, summit info, nearby search, and activator stats.**
+**Summits on the Air integration — spots, alerts, summit info, and nearby search.**
 
 ```bash
 pip install sota-mcp
@@ -12,7 +12,7 @@ pip install sota-mcp
 
 ## Tools
 
-All 5 tools are **public** — no credentials needed.
+All 4 tools are **public** — no credentials needed.
 
 | Tool | Description |
 |------|-------------|
@@ -20,7 +20,6 @@ All 5 tools are **public** — no credentials needed.
 | `sota_alerts` | Upcoming activation alerts |
 | `sota_summit_info` | Detailed summit information |
 | `sota_summits_near` | Find summits near a location (geospatial) |
-| `sota_activator_stats` | Activator profile and statistics |
 
 ---
 
@@ -71,16 +70,6 @@ Find SOTA summits near a geographic location. Unique geospatial search capabilit
 | `limit` | int | No | Maximum results. Default: 20 |
 
 Returns list of nearby summits sorted by distance with code, name, altitude, points, and activation count.
-
-### sota_activator_stats
-
-Get SOTA activator profile and statistics.
-
-| Parameter | Type | Required | Description |
-|-----------|------|:--------:|-------------|
-| `callsign` | str | Yes | Callsign to look up (e.g., KI7MT, G4YSS) |
-
-Returns total activations, unique summits, QSO count, points, and recent activation history.
 
 ---
 

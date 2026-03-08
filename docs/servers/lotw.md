@@ -18,6 +18,7 @@ pip install lotw-mcp
 | `lotw_qsos` | Yes | Query all uploaded QSOs |
 | `lotw_dxcc_credits` | Yes | Query DXCC award credits |
 | `lotw_user_activity` | No | Check if a callsign uses LoTW |
+| `lotw_download` | Yes | Download LoTW log data in ADIF format |
 
 ---
 
@@ -29,7 +30,7 @@ Query confirmed QSL records from LoTW.
 
 | Parameter | Type | Required | Description |
 |-----------|------|:--------:|-------------|
-| `persona` | str | Yes | Persona name configured in adif-mcp |
+| `persona` | str | Yes | Persona name configured in qso-graph-auth |
 | `since` | str | No | QSLs received since this date (YYYY-MM-DD). Default: last 30 days |
 | `band` | str | No | Filter by band (e.g., "20M") |
 | `mode` | str | No | Filter by mode (e.g., "FT8") |
@@ -43,7 +44,7 @@ Query all uploaded QSOs from LoTW (confirmed and unconfirmed).
 
 | Parameter | Type | Required | Description |
 |-----------|------|:--------:|-------------|
-| `persona` | str | Yes | Persona name configured in adif-mcp |
+| `persona` | str | Yes | Persona name configured in qso-graph-auth |
 | `since` | str | No | QSOs uploaded since this date (YYYY-MM-DD). Default: last 30 days |
 | `band` | str | No | Filter by band (e.g., "20M") |
 | `mode` | str | No | Filter by mode (e.g., "FT8") |
@@ -56,7 +57,7 @@ Query DXCC award credits from LoTW confirmations.
 
 | Parameter | Type | Required | Description |
 |-----------|------|:--------:|-------------|
-| `persona` | str | Yes | Persona name configured in adif-mcp |
+| `persona` | str | Yes | Persona name configured in qso-graph-auth |
 | `entity` | int | No | Filter by DXCC entity code |
 
 Returns total credits and list of credited QSOs with award details.
@@ -74,8 +75,8 @@ Check if a callsign uses LoTW and when they last uploaded. Uses a locally cached
 ## Credential Setup
 
 ```bash
-pip install adif-mcp
-adif-mcp creds set --persona ki7mt --provider lotw --password YOUR_LOTW_PASSWORD
+pip install qso-graph-auth
+qso-auth creds set ki7mt lotw
 ```
 
 ---
