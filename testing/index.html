@@ -1,0 +1,2474 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Open-source MCP servers connecting AI assistants to amateur radio services. ADIF validation, eQSL, QRZ, LoTW, HamQTH, POTA, SOTA, IOTA, space weather, and WSPR analytics. Secure by design.">
+      
+      
+        <meta name="author" content="Greg Beam, KI7MT">
+      
+      
+        <link rel="canonical" href="https://qso-graph.io/testing/">
+      
+      
+        <link rel="prev" href="../architecture/">
+      
+      
+        <link rel="next" href="../security/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
+    
+    
+      
+        <title>Testing - QSO-Graph — MCP Servers for Amateur Radio</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="qso-graph — MCP Servers for Ham Radio" />
+<meta property="og:title" content="Testing — qso-graph" />
+<meta property="og:description" content="Open-source MCP servers connecting AI assistants to amateur radio services. ADIF validation, eQSL, QRZ, LoTW, HamQTH, POTA, SOTA, IOTA, space weather, and WSPR analytics. Secure by design." />
+<meta property="og:url" content="https://qso-graph.io/testing/" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Testing — qso-graph" />
+<meta name="twitter:description" content="Open-source MCP servers connecting AI assistants to amateur radio services. ADIF validation, eQSL, QRZ, LoTW, HamQTH, POTA, SOTA, IOTA, space weather, and WSPR analytics. Secure by design." />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "qso-graph",
+  "description": "Open-source MCP servers connecting AI assistants to ham radio services. 44 tools across 9 packages for QSO logging, awards tracking, DXpeditions, parks on the air, summits, space weather, and WSPR beacon analytics.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Linux, macOS, Windows",
+  "author": {
+    "@type": "Person",
+    "name": "Greg Beam",
+    "callSign": "KI7MT",
+    "url": "https://github.com/KI7MT"
+  },
+  "sourceOrganization": {
+    "@type": "Organization",
+    "name": "qso-graph",
+    "url": "https://github.com/qso-graph"
+  },
+  "url": "https://qso-graph.io/",
+  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "isAccessibleForFree": true,
+  "programmingLanguage": ["Python"]
+}
+</script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#testing-validation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="QSO-Graph — MCP Servers for Amateur Radio" class="md-header__button md-logo" aria-label="QSO-Graph — MCP Servers for Amateur Radio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            QSO-Graph — MCP Servers for Amateur Radio
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Testing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/qso-graph/qso-graph.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../getting-started/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../credentials/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Credential Setup
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../servers/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Servers
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../architecture/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architecture
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Testing
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://qso-graph-demo.vercel.app/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Demo
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../security/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Security
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../about/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  About
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="QSO-Graph — MCP Servers for Amateur Radio" class="md-nav__button md-logo" aria-label="QSO-Graph — MCP Servers for Amateur Radio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    QSO-Graph — MCP Servers for Amateur Radio
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/qso-graph/qso-graph.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../credentials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credential Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../servers/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Servers
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Servers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../servers/qso-graph-auth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    qso-graph-auth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../servers/adif-mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    adif-mcp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logbook Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Logbook Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../servers/eqsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    eQSL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../servers/qrz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QRZ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../servers/lotw/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LoTW
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../servers/hamqth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HamQTH
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Public Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Public Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../servers/pota/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    POTA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../servers/sota/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOTA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../servers/iota/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IOTA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../servers/solar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solar Weather
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../servers/wspr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WSPR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fleet-test-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fleet Test Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-test-suite-all-11-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Test Suite (All 11 Packages)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ci-security-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI Security Gate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adif-mcp-validation-v100" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        adif-mcp Validation (v1.0.0)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="adif-mcp Validation (v1.0.0)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-matrix-4848-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Matrix — 48/48 PASS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#official-adif-316-test-corpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Official ADIF 3.1.6 Test Corpus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ki7mt-forensic-hard-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KI7MT Forensic Hard Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enumeration-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enumeration Coverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation Logic
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adif-mcp-full-suite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        adif-mcp (full suite)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#any-server-security-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Any server (security tests)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#all-servers-at-once" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        All servers at once
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audit-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit Process
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://qso-graph-demo.vercel.app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../about/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/attributions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attributions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fleet-test-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fleet Test Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-test-suite-all-11-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Test Suite (All 11 Packages)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ci-security-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI Security Gate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adif-mcp-validation-v100" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        adif-mcp Validation (v1.0.0)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="adif-mcp Validation (v1.0.0)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-matrix-4848-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Matrix — 48/48 PASS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#official-adif-316-test-corpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Official ADIF 3.1.6 Test Corpus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ki7mt-forensic-hard-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KI7MT Forensic Hard Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enumeration-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enumeration Coverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation Logic
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adif-mcp-full-suite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        adif-mcp (full suite)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#any-server-security-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Any server (security tests)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#all-servers-at-once" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        All servers at once
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audit-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit Process
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="testing-validation">Testing &amp; Validation<a class="headerlink" href="#testing-validation" title="Permanent link">&para;</a></h1>
+<p><strong>Every QSO-Graph package ships with automated security tests and must pass an independent security audit before PyPI publication.</strong></p>
+<hr />
+<h2 id="fleet-test-summary">Fleet Test Summary<a class="headerlink" href="#fleet-test-summary" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Version</th>
+<th style="text-align: center;">Security Tests</th>
+<th style="text-align: center;">CI Gate</th>
+<th style="text-align: center;">Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../servers/qso-graph-auth/">qso-graph-auth</a></td>
+<td>v0.1.0</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">PASS</td>
+</tr>
+<tr>
+<td><a href="../servers/adif-mcp/">adif-mcp</a></td>
+<td>v1.0.0</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">PASS</td>
+</tr>
+<tr>
+<td><a href="../servers/eqsl/">eqsl-mcp</a></td>
+<td>v0.3.0</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">PASS</td>
+</tr>
+<tr>
+<td><a href="../servers/qrz/">qrz-mcp</a></td>
+<td>v0.3.0</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">PASS</td>
+</tr>
+<tr>
+<td><a href="../servers/lotw/">lotw-mcp</a></td>
+<td>v0.3.0</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">PASS</td>
+</tr>
+<tr>
+<td><a href="../servers/hamqth/">hamqth-mcp</a></td>
+<td>v0.3.0</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">PASS</td>
+</tr>
+<tr>
+<td><a href="../servers/pota/">pota-mcp</a></td>
+<td>v0.1.1</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">PASS</td>
+</tr>
+<tr>
+<td><a href="../servers/sota/">sota-mcp</a></td>
+<td>v0.1.4</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">PASS</td>
+</tr>
+<tr>
+<td><a href="../servers/solar/">solar-mcp</a></td>
+<td>v0.2.0</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">PASS</td>
+</tr>
+<tr>
+<td><a href="../servers/wspr/">wspr-mcp</a></td>
+<td>v0.2.0</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">PASS</td>
+</tr>
+<tr>
+<td><a href="../servers/iota/">iota-mcp</a></td>
+<td>v0.1.0</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">PASS</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td>—</td>
+<td style="text-align: center;"><strong>66</strong></td>
+<td style="text-align: center;"><strong>11/11</strong></td>
+<td style="text-align: center;"><strong>11/11 PASS</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="security-test-suite-all-11-packages">Security Test Suite (All 11 Packages)<a class="headerlink" href="#security-test-suite-all-11-packages" title="Permanent link">&para;</a></h2>
+<p>Every package includes <code>test_security.py</code> with 6 source-code audit tests. These are not runtime tests — they scan all Python source files for forbidden patterns:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Test</th>
+<th>What It Catches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>test_no_print_credentials</code></td>
+<td><code>print()</code> calls containing password/secret/api_key/token</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>test_no_logging_credentials</code></td>
+<td><code>logging.*()</code> calls containing credential keywords</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>test_no_subprocess</code></td>
+<td>Any use of <code>subprocess</code> or <code>shell=True</code> (command injection)</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>test_all_urls_https</code></td>
+<td>Hardcoded <code>http://</code> URLs (except localhost)</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>test_error_messages_safe</code></td>
+<td>Exception messages that could expose credentials</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>test_no_eval_exec</code></td>
+<td>Any use of <code>eval()</code> or <code>exec()</code> (code injection)</td>
+</tr>
+</tbody>
+</table>
+<p>These tests run in CI on every push and must pass before any PyPI publish.</p>
+<hr />
+<h2 id="ci-security-gate">CI Security Gate<a class="headerlink" href="#ci-security-gate" title="Permanent link">&para;</a></h2>
+<p>Every package's GitHub Actions publish workflow includes a mandatory security job:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">jobs</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">security</span><span class="p">:</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Security gate</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Security tests (pytest test_security.py)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Static analysis (grep for forbidden patterns)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">publish</span><span class="p">:</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">security</span><span class="w">    </span><span class="c1"># blocked until security passes</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build and publish to PyPI</span>
+</code></pre></div>
+<p>If the security gate fails, the publish job is <strong>blocked</strong>. No exceptions.</p>
+<hr />
+<h2 id="adif-mcp-validation-v100">adif-mcp Validation (v1.0.0)<a class="headerlink" href="#adif-mcp-validation-v100" title="Permanent link">&para;</a></h2>
+<p>adif-mcp is the foundation package. Beyond the standard 6 security tests, it carries a comprehensive validation test suite against the ADIF 3.1.6 specification:</p>
+<h3 id="test-matrix-4848-pass">Test Matrix — 48/48 PASS<a class="headerlink" href="#test-matrix-4848-pass" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>ID Prefix</th>
+<th style="text-align: center;">Tests</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enumeration Listing</td>
+<td>ADIF-ENL</td>
+<td style="text-align: center;">3</td>
+<td>3/3 PASS</td>
+</tr>
+<tr>
+<td>Enumeration Search</td>
+<td>ADIF-ENS</td>
+<td style="text-align: center;">6</td>
+<td>6/6 PASS</td>
+</tr>
+<tr>
+<td>Enum Validation — Simple</td>
+<td>ADIF-EVS</td>
+<td style="text-align: center;">6</td>
+<td>6/6 PASS</td>
+</tr>
+<tr>
+<td>Enum Validation — Compound</td>
+<td>ADIF-EVC</td>
+<td style="text-align: center;">3</td>
+<td>3/3 PASS</td>
+</tr>
+<tr>
+<td>Enum Validation — Conditional</td>
+<td>ADIF-EVX</td>
+<td style="text-align: center;">2</td>
+<td>2/2 PASS</td>
+</tr>
+<tr>
+<td>Enum Validation — Regression</td>
+<td>ADIF-EVR</td>
+<td style="text-align: center;">1</td>
+<td>1/1 PASS</td>
+</tr>
+<tr>
+<td>Official ADIF 3.1.6 Test Corpus</td>
+<td>ADIF-TCR</td>
+<td style="text-align: center;">2</td>
+<td>2/2 PASS</td>
+</tr>
+<tr>
+<td>Enum JSON Parity</td>
+<td>ADIF-TCR</td>
+<td style="text-align: center;">1</td>
+<td>1/1 PASS</td>
+</tr>
+<tr>
+<td>Security Audit</td>
+<td>—</td>
+<td style="text-align: center;">6</td>
+<td>6/6 PASS</td>
+</tr>
+<tr>
+<td>KI7MT Forensic Hard Tests</td>
+<td>KI7MT-FRN</td>
+<td style="text-align: center;">12</td>
+<td>12/12 PASS</td>
+</tr>
+<tr>
+<td>Empty Value Handling</td>
+<td>ADIF-EVS</td>
+<td style="text-align: center;">2</td>
+<td>2/2 PASS</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td>—</td>
+<td style="text-align: center;"><strong>48</strong></td>
+<td><strong>48/48 PASS</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="official-adif-316-test-corpus">Official ADIF 3.1.6 Test Corpus<a class="headerlink" href="#official-adif-316-test-corpus" title="Permanent link">&para;</a></h3>
+<p>The gold standard for ADIF validation. The <a href="https://adif.org.uk/316/resources">official test file</a> from G3ZOD's <code>CreateADIFTestFiles</code> contains <strong>6,191 QSO records</strong> exercising every enumeration value in the specification.</p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th style="text-align: right;">Records</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zero false errors on all official records</td>
+<td style="text-align: right;">6,191</td>
+<td><strong>PASS — 0 errors</strong></td>
+</tr>
+<tr>
+<td>All warnings are correct behavior</td>
+<td style="text-align: right;">6,191</td>
+<td><strong>PASS — 39 warnings</strong> (23 user-defined fields + 16 import-only values)</td>
+</tr>
+<tr>
+<td>Enum JSON files match official exports</td>
+<td style="text-align: right;">25 files</td>
+<td><strong>PASS — all identical</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rule:</strong> If our validator rejects an official ADIF test record, our validator is wrong.</p>
+<h3 id="ki7mt-forensic-hard-tests">KI7MT Forensic Hard Tests<a class="headerlink" href="#ki7mt-forensic-hard-tests" title="Permanent link">&para;</a></h3>
+<p>12 tests derived from forensic analysis of <strong>110,761 real QSO records</strong> across three logger dialects (eQSL, QRZ, LoTW). Every test has a documented real-world source — no arbitrary tests.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Test</th>
+<th>Source</th>
+<th>Why It Matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FRN-001</td>
+<td>Bread-and-butter FT8 QSO (9 enum fields)</td>
+<td>QRZ — 15,000+ FT8 QSOs</td>
+<td>FT8 is 88.7% of PSK Reporter spots. If this fails, everything fails.</td>
+</tr>
+<tr>
+<td>FRN-002</td>
+<td>MODE=FT4 correctly errors</td>
+<td>QRZ — 2 of 49,233 records</td>
+<td>FT4 must be MODE=MFSK + SUBMODE=FT4 per spec policy</td>
+</tr>
+<tr>
+<td>FRN-003</td>
+<td>Multi-field contest QSO (8+ enums)</td>
+<td>QRZ — CQ WW DX CW logs</td>
+<td>Contest logs have highest enum density</td>
+</tr>
+<tr>
+<td>FRN-004</td>
+<td>LoTW uppercase band (15M)</td>
+<td>LoTW — 37,651 records</td>
+<td>LoTW exports uppercase; case-insensitive matching required</td>
+</tr>
+<tr>
+<td>FRN-005</td>
+<td>QSL_VIA=M import-only warning</td>
+<td>QRZ — pre-internet QSOs</td>
+<td>Deprecated "manager" value must warn, not reject</td>
+</tr>
+<tr>
+<td>FRN-006</td>
+<td>Six QSL status fields in one record</td>
+<td>QRZ — modern multi-service logs</td>
+<td>QSL_RCVD + QSL_SENT + EQSL + LOTW — no cross-interference</td>
+</tr>
+<tr>
+<td>FRN-007</td>
+<td>Deleted DXCC entity (Aldabra)</td>
+<td>DXCC enum — 62 deleted entities</td>
+<td>Geopolitical mergers are valid historical data</td>
+</tr>
+<tr>
+<td>FRN-008</td>
+<td>PROP_MODE=SAT (satellite QSO)</td>
+<td>QRZ — ISS/satellite contacts</td>
+<td>Propagation_Mode enum rarely tested but critical</td>
+</tr>
+<tr>
+<td>FRN-009</td>
+<td>Credit:CARD&amp;LOTW (&amp; separator)</td>
+<td>LoTW DXCC credits</td>
+<td>Multi-medium compound format parsing</td>
+</tr>
+<tr>
+<td>FRN-010</td>
+<td>Freeform CONTEST_ID errors</td>
+<td>eQSL — 470 invalid of 23,877</td>
+<td>"CQWW 2021" is not a valid Contest_ID</td>
+</tr>
+<tr>
+<td>FRN-011</td>
+<td>SUBMODE without MODE field</td>
+<td>eQSL — incomplete records</td>
+<td>Graceful handling of missing parent field</td>
+</tr>
+<tr>
+<td>FRN-012</td>
+<td>EQSL_AG=Y (Authenticity Guaranteed)</td>
+<td>eQSL — AG status for DXCC</td>
+<td>3-value enum critical for DXCC credit eligibility</td>
+</tr>
+</tbody>
+</table>
+<h3 id="enumeration-coverage">Enumeration Coverage<a class="headerlink" href="#enumeration-coverage" title="Permanent link">&para;</a></h3>
+<p>adif-mcp v1.0.0 validates all 26 ADIF 3.1.6 enumerations across 43 enum-typed fields:</p>
+<table>
+<thead>
+<tr>
+<th>Enumeration</th>
+<th style="text-align: right;">Records</th>
+<th style="text-align: center;">Import-Only</th>
+<th>Fields Using It</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mode</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: center;">42</td>
+<td>MODE</td>
+</tr>
+<tr>
+<td>Submode</td>
+<td style="text-align: right;">108</td>
+<td style="text-align: center;">0</td>
+<td>SUBMODE (conditional on MODE)</td>
+</tr>
+<tr>
+<td>Band</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: center;">0</td>
+<td>BAND, BAND_RX</td>
+</tr>
+<tr>
+<td>DXCC Entity Code</td>
+<td style="text-align: right;">395</td>
+<td style="text-align: center;">0</td>
+<td>DXCC, MY_DXCC</td>
+</tr>
+<tr>
+<td>Contest_ID</td>
+<td style="text-align: right;">431</td>
+<td style="text-align: center;">0</td>
+<td>CONTEST_ID</td>
+</tr>
+<tr>
+<td>Continent</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: center;">0</td>
+<td>CONT, MY_CONT</td>
+</tr>
+<tr>
+<td>Credit</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: center;">0</td>
+<td>CREDIT_SUBMITTED, CREDIT_GRANTED</td>
+</tr>
+<tr>
+<td>ARRL Section</td>
+<td style="text-align: right;">84</td>
+<td style="text-align: center;">0</td>
+<td>ARRL_SECT, MY_ARRL_SECT</td>
+</tr>
+<tr>
+<td>Propagation Mode</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: center;">0</td>
+<td>PROP_MODE</td>
+</tr>
+<tr>
+<td>QSL_Rcvd</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: center;">0</td>
+<td>QSL_RCVD, EQSL_QSL_RCVD, LOTW_QSL_RCVD</td>
+</tr>
+<tr>
+<td>QSL_Sent</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: center;">0</td>
+<td>QSL_SENT, EQSL_QSL_SENT, LOTW_QSL_SENT</td>
+</tr>
+<tr>
+<td>QSL_Via</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: center;">2</td>
+<td>QSL_SENT_VIA, QSL_RCVD_VIA</td>
+</tr>
+<tr>
+<td>QSL Medium</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: center;">0</td>
+<td>Used in CreditList format</td>
+</tr>
+<tr>
+<td>QSO_Complete</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: center;">0</td>
+<td>QSO_COMPLETE</td>
+</tr>
+<tr>
+<td>EQSL_AG</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: center;">0</td>
+<td>APP_EQSL_AG</td>
+</tr>
+<tr>
+<td>+ 10 more</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: center;">—</td>
+<td>See ADIF 3.1.6 spec</td>
+</tr>
+</tbody>
+</table>
+<h3 id="validation-logic">Validation Logic<a class="headerlink" href="#validation-logic" title="Permanent link">&para;</a></h3>
+<p>Enum validation handles several complex ADIF patterns:</p>
+<ul>
+<li><strong>Simple membership</strong>: Uppercase-normalized lookup (e.g., <code>cw</code> → <code>CW</code> → valid Mode)</li>
+<li><strong>Compound CreditList</strong>: <code>CREDIT_SUBMITTED=DXCC:CARD&amp;LOTW</code> — split on comma, validate credit name against Credit enum, validate each medium against QSL_Medium enum</li>
+<li><strong>Conditional Submode</strong>: <code>SUBMODE=USB</code> checks membership in Submode enum, then warns if parent mode (SSB) doesn't match the record's MODE field</li>
+<li><strong>Import-only detection</strong>: Deprecated values produce warnings, not errors — historical QSO data is preserved</li>
+<li><strong>Empty value rejection</strong>: Empty or whitespace-only values for enum fields produce errors</li>
+</ul>
+<hr />
+<h2 id="running-tests">Running Tests<a class="headerlink" href="#running-tests" title="Permanent link">&para;</a></h2>
+<h3 id="adif-mcp-full-suite">adif-mcp (full suite)<a class="headerlink" href="#adif-mcp-full-suite" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>adif-mcp
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>.venv/bin/python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>test/<span class="w"> </span>-v
+</code></pre></div>
+<h3 id="any-server-security-tests">Any server (security tests)<a class="headerlink" href="#any-server-security-tests" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>eqsl-mcp<span class="w">  </span><span class="c1"># or any server</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>.venv/bin/python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>tests/test_security.py<span class="w"> </span>-v
+</code></pre></div>
+<h3 id="all-servers-at-once">All servers at once<a class="headerlink" href="#all-servers-at-once" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">for</span><span class="w"> </span>pkg<span class="w"> </span><span class="k">in</span><span class="w"> </span>qso-graph-auth<span class="w"> </span>eqsl-mcp<span class="w"> </span>qrz-mcp<span class="w"> </span>lotw-mcp<span class="w"> </span>hamqth-mcp<span class="w"> </span>pota-mcp<span class="w"> </span>sota-mcp<span class="w"> </span>iota-mcp<span class="w"> </span>solar-mcp<span class="w"> </span>wspr-mcp<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== </span><span class="nv">$pkg</span><span class="s2"> ===&quot;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nb">cd</span><span class="w"> </span>/path/to/<span class="nv">$pkg</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>.venv/bin/python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>tests/test_security.py<span class="w"> </span>-v
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">done</span>
+</code></pre></div>
+<hr />
+<h2 id="audit-process">Audit Process<a class="headerlink" href="#audit-process" title="Permanent link">&para;</a></h2>
+<p>The QSO-Graph release process requires three rounds of review before any PyPI publication:</p>
+<ol>
+<li><strong>Writer</strong> — writes code and runs all tests locally</li>
+<li><strong>1st Audit/Reviewer</strong> — independent functional review, pulls code, runs tests on separate machine</li>
+<li><strong>2nd Audit/Reviewer</strong> — failure analysis and security audit, reviews all source files for credential leaks, injection surfaces, and error message safety</li>
+</ol>
+<p>All three must pass before the tag is created.</p>
+<hr />
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ADIF 3.1.6 Specification</td>
+<td><a href="https://adif.org/316/ADIF_316.htm">adif.org/316</a></td>
+</tr>
+<tr>
+<td>Official Test Corpus (G3ZOD)</td>
+<td><a href="https://adif.org.uk/316/resources">adif.org.uk/316/resources</a></td>
+</tr>
+<tr>
+<td>CreateADIFTestFiles</td>
+<td><a href="https://github.com/g3zod/CreateADIFTestFiles">github.com/g3zod/CreateADIFTestFiles</a></td>
+</tr>
+<tr>
+<td>K1MU ADIF Validator</td>
+<td><a href="https://www.rickmurphy.net/adifvalidator.html">rickmurphy.net/adifvalidator.html</a></td>
+</tr>
+<tr>
+<td>adif-multitool (flwyd)</td>
+<td><a href="https://github.com/flwyd/adif-multitool">github.com/flwyd/adif-multitool</a></td>
+</tr>
+<tr>
+<td>MCP Security Best Practices</td>
+<td><a href="https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices">modelcontextprotocol.io</a></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/qso-graph" target="_blank" rel="noopener" title="QSO-Graph on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://pypi.org/search/?q=qso-graph" target="_blank" rel="noopener" title="QSO-Graph packages on PyPI" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
