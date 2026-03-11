@@ -6,7 +6,7 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 
 ---
 
-## 11 Packages
+## 12 Packages
 
 ### Foundation
 
@@ -34,6 +34,12 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 | [solar-mcp](servers/solar.md) | 6 | SFI, Kp, solar wind, X-ray, band outlook |
 | [wspr-mcp](servers/wspr.md) | 8 | Beacon spots, band activity, top beacons/spotters, propagation, SNR trends |
 
+### Infrastructure
+
+| Package | What It Does |
+|---------|--------------|
+| [qsp-mcp](servers/qsp-mcp.md) | QSP — relay MCP tools to any local LLM (llama.cpp, Ollama, vLLM, SGLang) |
+
 ---
 
 ## Quick Install
@@ -47,6 +53,9 @@ pip install eqsl-mcp qrz-mcp lotw-mcp hamqth-mcp
 
 # Public services (no credentials needed)
 pip install pota-mcp sota-mcp iota-mcp solar-mcp wspr-mcp
+
+# Tool relay — use all MCP tools with a local LLM (no cloud needed)
+pip install qsp-mcp
 ```
 
 See [Getting Started](getting-started.md) for MCP client configuration.

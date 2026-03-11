@@ -79,6 +79,8 @@ nav:
       - IOTA: servers/iota.md
       - Solar Weather: servers/solar.md
       - WSPR: servers/wspr.md
+    - Infrastructure:
+      - QSP (Tool Relay): servers/qsp-mcp.md
   - Architecture: architecture.md
   - Testing: testing.md
   - Demo: https://qso-graph-demo.vercel.app/

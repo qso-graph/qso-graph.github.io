@@ -1,6 +1,6 @@
 # Server Overview
 
-QSO-Graph provides 11 MCP packages covering amateur radio logging, confirmations, and propagation services.
+QSO-Graph provides 12 MCP packages covering amateur radio logging, confirmations, propagation services, and local LLM integration.
 
 ---
 
@@ -31,6 +31,12 @@ QSO-Graph provides 11 MCP packages covering amateur radio logging, confirmations
 | [iota-mcp](iota.md) | 6 | Islands on the Air | None (public) |
 | [solar-mcp](solar.md) | 6 | NOAA SWPC | None (public) |
 | [wspr-mcp](wspr.md) | 8 | wspr.live (ClickHouse) | None (public) |
+
+### Infrastructure
+
+| Package | Purpose | Auth Pattern |
+|---------|---------|-------------|
+| [qsp-mcp](qsp-mcp.md) | QSP — relay MCP tools to any local LLM endpoint | None (local) |
 
 ---
 
