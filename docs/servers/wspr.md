@@ -22,7 +22,7 @@ All 8 tools are **public** — no credentials needed.
 | `wspr_band_activity` | Per-band activity — spots, stations, distances, SNR |
 | `wspr_top_beacons` | Top transmitters ranked by spot count or distance |
 | `wspr_top_spotters` | Top receivers ranked by spot count or distance |
-| `wspr_propagation` | Propagation between two locations (callsign or grid) |
+| `wspr_propagation` | Propagation between two locations — proxy grid fallback for sparse endpoints |
 | `wspr_grid_activity` | All WSPR activity in/out of a Maidenhead grid square |
 | `wspr_longest_paths` | Longest distance paths in a time window |
 | `wspr_snr_trend` | Hourly SNR trend for a specific path over time |
@@ -79,6 +79,8 @@ Top WSPR receivers ranked by spot count or maximum distance.
 ### wspr_propagation
 
 Propagation between two locations. Accepts callsigns, grid squares, or a mix. Searches both directions automatically.
+
+**Proxy grid fallback**: When an exact 4-char grid pair returns no results (e.g., DN13↔JD15 — no WSPR beacons on Bouvet), automatically widens to 2-char Maidenhead fields (DN↔JD) and retries. Proxy results are flagged with `proxy: true`.
 
 | Parameter | Type | Required | Description |
 |-----------|------|:--------:|-------------|

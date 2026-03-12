@@ -12,7 +12,7 @@ pip install pota-mcp
 
 ## Tools
 
-All 6 tools are **public** — no credentials needed.
+All 7 tools are **public** — no credentials needed.
 
 | Tool | Description |
 |------|-------------|
@@ -22,6 +22,7 @@ All 6 tools are **public** — no credentials needed.
 | `pota_user_stats` | Activator and hunter statistics |
 | `pota_scheduled` | Upcoming scheduled activations |
 | `pota_location_parks` | List all parks in a state/province/country |
+| `pota_nearby_parks` | Find parks near a point — great for 2-fer planning |
 
 ---
 
@@ -85,6 +86,20 @@ List all POTA parks in a state, province, or country.
 | `location` | str | Yes | Location code (e.g., "US-ID" for Idaho, "CA-ON" for Ontario, "G" for England) |
 
 Returns list of parks with reference, name, coordinates, grid, type, and activation/contact counts.
+
+### pota_nearby_parks
+
+Find POTA parks near a geographic point. Useful for 2-fer activation planning.
+
+| Parameter | Type | Required | Description |
+|-----------|------|:--------:|-------------|
+| `location` | str | Yes | Location code to scope the search (e.g., "US-ID") |
+| `latitude` | float | Yes | Center point latitude (e.g., 43.617) |
+| `longitude` | float | Yes | Center point longitude (e.g., -115.993) |
+| `radius_km` | float | No | Search radius in km. Default: 50, max: 500 |
+| `limit` | int | No | Maximum parks to return. Default: 25, max: 100 |
+
+Returns parks within radius, sorted by distance, with `distance_km` field added to each park.
 
 ---
 
