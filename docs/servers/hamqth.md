@@ -1,6 +1,6 @@
 # hamqth-mcp
 
-**HamQTH.com integration — free callsign lookup, DXCC resolution, biography, and activity.**
+**HamQTH.com integration — callsign lookup, DX cluster spots, Reverse Beacon Network, DXCC resolution, and more.**
 
 ```bash
 pip install hamqth-mcp
@@ -18,9 +18,9 @@ pip install hamqth-mcp
 | `hamqth_dxcc` | No | Resolve DXCC entity from callsign or code |
 | `hamqth_bio` | Yes | Fetch operator biography |
 | `hamqth_activity` | Yes | Recent DX cluster, RBN, and logbook activity |
-| `hamqth_dx_spots` | No | Recent DX cluster spots |
-| `hamqth_rbn` | No | Reverse Beacon Network spot data |
-| `hamqth_verify_qso` | No | Verify a QSO against HamQTH logs |
+| `hamqth_dx_spots` | No | Live DX cluster spots — filter by band and/or callsign |
+| `hamqth_rbn` | No | Reverse Beacon Network decodes — filter by band, mode, continent, callsign |
+| `hamqth_verify_qso` | No | Verify a QSO via HamQTH SAVP protocol |
 
 ---
 
@@ -66,6 +66,44 @@ Get recent DX cluster, RBN, and logbook activity for a callsign.
 | `callsign` | str | Yes | Callsign to check |
 
 Returns list of recent activity items (spots, RBN decodes, logbook entries).
+
+### hamqth_dx_spots
+
+Live DX cluster spots from HamQTH. Public endpoint — no authentication required. Spots update every ~15 seconds.
+
+| Parameter | Type | Required | Description |
+|-----------|------|:--------:|-------------|
+| `limit` | int | No | Number of spots to return (default 60, max 200) |
+| `band` | str | No | ADIF band filter (e.g., "20M", "40M") |
+| `call` | str | No | Callsign filter — matches spotted call or spotter (e.g., "3Y0K") |
+
+When `call` is provided, automatically fetches the maximum 200 spots and filters client-side. Case-insensitive substring match.
+
+### hamqth_rbn
+
+Reverse Beacon Network decodes from HamQTH. Public endpoint — no authentication required.
+
+| Parameter | Type | Required | Description |
+|-----------|------|:--------:|-------------|
+| `band` | str | No | ADIF band numbers, comma-separated (e.g., "20,40") |
+| `mode` | str | No | Filter by mode (CW, RTTY, PSK31, PSK63) |
+| `cont` | str | No | Spotted station's continent (e.g., "EU", "NA") |
+| `fromcont` | str | No | Receiver/skimmer continent (e.g., "EU", "NA") |
+| `age` | int | No | Maximum age in seconds |
+| `call` | str | No | Callsign filter — matches spotted station (e.g., "3Y0K") |
+
+Returns decodes with call, freq, mode, age, and listener dB values (which skimmers heard the station and at what SNR).
+
+### hamqth_verify_qso
+
+Verify a QSO via the HamQTH SAVP protocol. Public endpoint — no authentication required.
+
+| Parameter | Type | Required | Description |
+|-----------|------|:--------:|-------------|
+| `mycall` | str | Yes | Your callsign (e.g., "KI7MT") |
+| `hiscall` | str | Yes | Other station's callsign (e.g., "OK2CQR") |
+| `date` | str | Yes | QSO date in YYYYMMDD format (e.g., "20260305") |
+| `band` | str | Yes | Band (e.g., "20M", "40M") |
 
 ---
 
