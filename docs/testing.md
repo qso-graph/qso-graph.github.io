@@ -1,70 +1,137 @@
 # Testing & Validation
 
-**Every QSO-Graph package ships with automated security tests and must pass an independent security audit before PyPI publication.**
+**Every QSO-Graph server is tested across four independent layers before release.** Each layer catches different failure modes. All four must pass before a fleet-wide release.
+
+| Layer | Name | What It Catches | Blocking? |
+|-------|------|-----------------|-----------|
+| **L1** | Security Audit | Credential leaks, injection, unsafe patterns | Hard stop |
+| **L2** | Unit Tests (Mock Mode) | Tool logic, parameter handling, return shapes | Hard stop |
+| **L3** | Integration Tests (Live) | API connectivity, auth flows, data correctness | Pre-release gate |
+| **L4** | Fleet Composition | Tool name collisions, schema conflicts, cross-server consistency | Fleet releases |
 
 ---
 
-## Fleet Test Summary
+## Fleet Overview
 
-| Package | Version | Security Tests | CI Gate | Audit |
-|---------|---------|:--------------:|:-------:|:-----:|
-| [qso-graph-auth](servers/qso-graph-auth.md) | v0.1.0 | 6 | Yes | PASS |
-| [adif-mcp](servers/adif-mcp.md) | v1.0.0 | 6 | Yes | PASS |
-| [eqsl-mcp](servers/eqsl.md) | v0.3.0 | 6 | Yes | PASS |
-| [qrz-mcp](servers/qrz.md) | v0.3.0 | 6 | Yes | PASS |
-| [lotw-mcp](servers/lotw.md) | v0.3.0 | 6 | Yes | PASS |
-| [hamqth-mcp](servers/hamqth.md) | v0.3.0 | 6 | Yes | PASS |
-| [pota-mcp](servers/pota.md) | v0.1.1 | 6 | Yes | PASS |
-| [sota-mcp](servers/sota.md) | v0.1.4 | 6 | Yes | PASS |
-| [solar-mcp](servers/solar.md) | v0.2.0 | 6 | Yes | PASS |
-| [wspr-mcp](servers/wspr.md) | v0.2.0 | 6 | Yes | PASS |
-| [iota-mcp](servers/iota.md) | v0.1.0 | 6 | Yes | PASS |
-| **Total** | — | **66** | **11/11** | **11/11 PASS** |
+**12 servers, 82 tools, 4 test layers.**
+
+| Package | Version | Tools | L1 Security | L2 Unit | L3 Live | L4 Fleet |
+|---------|---------|:-----:|:-----------:|:-------:|:-------:|:--------:|
+| [adif-mcp](servers/adif-mcp.md) | 1.0.0 | 8 | 6 PASS | 48 PASS | CI/CD | PASS |
+| [eqsl-mcp](servers/eqsl.md) | 0.3.0 | 5 | 6 PASS | 45 PASS | Auth | PASS |
+| [qrz-mcp](servers/qrz.md) | 0.3.0 | 5 | 6 PASS | 38 PASS | Auth | PASS |
+| [lotw-mcp](servers/lotw.md) | 0.3.0 | 5 | 6 PASS | 38 PASS | Auth | PASS |
+| [hamqth-mcp](servers/hamqth.md) | 0.3.0 | 7 | 6 PASS | 39 PASS | 10 PASS | PASS |
+| [pota-mcp](servers/pota.md) | 0.1.1 | 7 | 6 PASS | 45 PASS | 15 PASS | PASS |
+| [sota-mcp](servers/sota.md) | 0.1.4 | 4 | 6 PASS | 33 PASS | 10 PASS | PASS |
+| [solar-mcp](servers/solar.md) | 0.2.0 | 6 | 6 PASS | 43 PASS | 15 PASS | PASS |
+| [wspr-mcp](servers/wspr.md) | 0.2.0 | 8 | 6 PASS | 40 PASS | 12 PASS | PASS |
+| [iota-mcp](servers/iota.md) | 0.1.0 | 6 | 6 PASS | 46 PASS | 12 PASS | PASS |
+| [n1mm-mcp](servers/n1mm-mcp.md) | 0.1.4 | 8 | 6 PASS | 59 PASS | Local | PASS |
+| [ionis-mcp](https://github.com/qso-graph/ionis-mcp) | 1.2.6 | 11 | 6 PASS | — | Local | PASS |
+| **Total** | — | **82** | **72** | **474+** | **74** | **20** |
+
+!!! note "L3 Live column notes"
+    - **Auth** — requires OS keyring credentials (eQSL, QRZ, LoTW accounts)
+    - **Local** — requires local infrastructure (N1MM Logger+, SQLite datasets)
+    - **CI/CD** — tested in GitHub Actions pipeline
 
 ---
 
-## Security Test Suite (All 11 Packages)
+## L1: Security Audit
 
-Every package includes `test_security.py` with 6 source-code audit tests. These are not runtime tests — they scan all Python source files for forbidden patterns:
+Every package includes `test_security.py` with 6 source-code audit tests. These scan all Python source files for forbidden patterns — they are not runtime tests.
 
 | # | Test | What It Catches |
 |---|------|-----------------|
-| 1 | `test_no_print_credentials` | `print()` calls containing password/secret/api_key/token |
-| 2 | `test_no_logging_credentials` | `logging.*()` calls containing credential keywords |
-| 3 | `test_no_subprocess` | Any use of `subprocess` or `shell=True` (command injection) |
-| 4 | `test_all_urls_https` | Hardcoded `http://` URLs (except localhost) |
-| 5 | `test_error_messages_safe` | Exception messages that could expose credentials |
-| 6 | `test_no_eval_exec` | Any use of `eval()` or `exec()` (code injection) |
+| S1 | `test_no_print_credentials` | `print()` calls containing password, secret, api_key, or token |
+| S2 | `test_no_logging_credentials` | `logging.*()` calls containing credential keywords |
+| S3 | `test_no_subprocess` | Any use of `subprocess` or `shell=True` (command injection) |
+| S4 | `test_all_urls_https` | Hardcoded `http://` URLs (except localhost) |
+| S5 | `test_error_messages_safe` | Exception messages that could expose credentials |
+| S6 | `test_no_eval_exec` | Any use of `eval()` or `exec()` (code injection) |
 
-These tests run in CI on every push and must pass before any PyPI publish.
+These tests run in CI on every push and must pass before any PyPI publish. If the security gate fails, the publish job is **blocked**. No exceptions.
 
 ---
 
-## CI Security Gate
+## L2: Unit Tests (Mock Mode)
 
-Every package's GitHub Actions publish workflow includes a mandatory security job:
+Each server supports a mock mode (`{SERVER}_MCP_MOCK=1`) that replaces HTTP calls with embedded test fixtures. L2 tests verify tool logic, parameter handling, return shapes, parser correctness, and helper functions without making any API calls.
 
-```yaml
-jobs:
-  security:
-    name: Security gate
-    steps:
-      - Security tests (pytest test_security.py)
-      - Static analysis (grep for forbidden patterns)
+| Category | What's Tested | Example |
+|----------|---------------|---------|
+| **Parser/Helper Functions** | ADIF parsing, frequency conversion, date normalization, grid validation | `parse_adif()`, `freq_to_band()`, `to_yyyymmddhhmm()` |
+| **Tool Return Shapes** | Every tool returns expected fields, types, and structures | `eqsl_inbox()` returns `total`, `records`, `by_band` |
+| **Parameter Handling** | Filters, defaults, edge cases, invalid input | Band filter, callsign uppercase, empty string handling |
+| **Caching** | TTL expiry, cache hits, overwrites | `_cache_set()` / `_cache_get()` with timed expiry |
+| **Data Models** | Dataclass immutability, field defaults, type conversions | `FetchResult(records=[])` is frozen |
 
-  publish:
-    needs: security    # blocked until security passes
-    steps:
-      - Build and publish to PyPI
+```bash
+# Run L2 tests for any server (no network needed)
+cd solar-mcp
+pytest tests/test_tools.py -v
 ```
 
-If the security gate fails, the publish job is **blocked**. No exceptions.
+---
+
+## L3: Live Integration Tests
+
+L3 tests hit real APIs with known-good reference values. They verify that external services are responding correctly and that our client code handles real-world responses.
+
+Tests are gated behind a `--live` flag and skipped by default. This keeps CI fast and avoids hammering volunteer-run services.
+
+| Server | Tests | APIs Hit | Reference Values |
+|--------|:-----:|----------|------------------|
+| solar-mcp | 15 | NOAA SWPC | SFI 50-400, Kp 0-9, flare class A-X, 10 HF bands |
+| pota-mcp | 15 | POTA API | US-0001 (Acadia NP), K4SWL, US-ME parks |
+| sota-mcp | 10 | SOTA API | W7I/CU-001 (Borah Peak, Idaho) |
+| wspr-mcp | 12 | wspr.live ClickHouse | DN13→JN48 path, JO62 grid, 20m band activity |
+| iota-mcp | 12 | iota-world.org | OC-001 (Australia), 1000+ groups in programme |
+| hamqth-mcp | 10 | HamQTH (public) | W1AW DXCC=291, DX cluster spots, RBN decodes |
+
+```bash
+# Run L3 live tests (requires network)
+cd solar-mcp
+pytest tests/test_live.py --live -v
+```
+
+!!! warning "Rate Limiting"
+    WSPR and HamQTH L3 tests include a 1-second pause between requests to respect volunteer-run services. Tests take longer but avoid API bans.
+
+---
+
+## L4: Fleet Composition Tests
+
+L4 tests verify that all 12 servers work correctly when loaded together. They import every server's MCP object, enumerate all tools, and check for cross-server conflicts.
+
+| Category | Tests | What's Verified |
+|----------|:-----:|-----------------|
+| **F1: Tool Name Uniqueness** | 5 | No unexpected name collisions, snake_case convention, server namespacing, tool counts |
+| **F2: Schema Validity** | 7 | Non-empty descriptions, typed properties, required fields exist, description length bounds |
+| **F3: Fleet Inventory** | 5 | All 12 servers loaded, expected tools present, no empty servers |
+| **F4: Cross-Server Consistency** | 3 | Band parameter types, callsign naming, limit parameter types |
+
+### Known Findings
+
+| Finding | Status | Detail |
+|---------|--------|--------|
+| `solar_conditions` name collision | Documented | Exists in both solar-mcp (live NOAA) and ionis-mcp (historical SQLite). MCP clients disambiguate by server prefix. |
+| Null defaults from `Optional` params | Tracked | FastMCP generates `{"default": null}` from Python `Optional[str] = None`. Valid JSON Schema but may affect some local LLM tool parsers. |
+| Band parameter type split | By design | qso-graph servers use string band names (`"20M"`), ionis-mcp uses integer ADIF band IDs (`107`). |
+
+```bash
+# Run L4 fleet tests (all 12 servers must be installed)
+cd ionis-devel
+EQSL_MCP_MOCK=1 HAMQTH_MCP_MOCK=1 LOTW_MCP_MOCK=1 QRZ_MCP_MOCK=1 \
+  pytest tests/test_fleet.py -v
+```
 
 ---
 
 ## adif-mcp Validation (v1.0.0)
 
-adif-mcp is the foundation package. Beyond the standard 6 security tests, it carries a comprehensive validation test suite against the ADIF 3.1.6 specification:
+adif-mcp is the foundation package. Beyond the standard security and unit tests, it carries a comprehensive validation suite against the ADIF 3.1.6 specification:
 
 ### Test Matrix — 48/48 PASS
 
@@ -114,64 +181,47 @@ The gold standard for ADIF validation. The [official test file](https://adif.org
 | FRN-011 | SUBMODE without MODE field | eQSL — incomplete records | Graceful handling of missing parent field |
 | FRN-012 | EQSL_AG=Y (Authenticity Guaranteed) | eQSL — AG status for DXCC | 3-value enum critical for DXCC credit eligibility |
 
-### Enumeration Coverage
-
-adif-mcp v1.0.0 validates all 26 ADIF 3.1.6 enumerations across 43 enum-typed fields:
-
-| Enumeration | Records | Import-Only | Fields Using It |
-|-------------|--------:|:-----------:|-----------------|
-| Mode | 90 | 42 | MODE |
-| Submode | 108 | 0 | SUBMODE (conditional on MODE) |
-| Band | 33 | 0 | BAND, BAND_RX |
-| DXCC Entity Code | 395 | 0 | DXCC, MY_DXCC |
-| Contest_ID | 431 | 0 | CONTEST_ID |
-| Continent | 6 | 0 | CONT, MY_CONT |
-| Credit | 25 | 0 | CREDIT_SUBMITTED, CREDIT_GRANTED |
-| ARRL Section | 84 | 0 | ARRL_SECT, MY_ARRL_SECT |
-| Propagation Mode | 19 | 0 | PROP_MODE |
-| QSL_Rcvd | 5 | 0 | QSL_RCVD, EQSL_QSL_RCVD, LOTW_QSL_RCVD |
-| QSL_Sent | 4 | 0 | QSL_SENT, EQSL_QSL_SENT, LOTW_QSL_SENT |
-| QSL_Via | 5 | 2 | QSL_SENT_VIA, QSL_RCVD_VIA |
-| QSL Medium | 4 | 0 | Used in CreditList format |
-| QSO_Complete | 6 | 0 | QSO_COMPLETE |
-| EQSL_AG | 3 | 0 | APP_EQSL_AG |
-| + 10 more | — | — | See ADIF 3.1.6 spec |
-
-### Validation Logic
-
-Enum validation handles several complex ADIF patterns:
-
-- **Simple membership**: Uppercase-normalized lookup (e.g., `cw` → `CW` → valid Mode)
-- **Compound CreditList**: `CREDIT_SUBMITTED=DXCC:CARD&LOTW` — split on comma, validate credit name against Credit enum, validate each medium against QSL_Medium enum
-- **Conditional Submode**: `SUBMODE=USB` checks membership in Submode enum, then warns if parent mode (SSB) doesn't match the record's MODE field
-- **Import-only detection**: Deprecated values produce warnings, not errors — historical QSO data is preserved
-- **Empty value rejection**: Empty or whitespace-only values for enum fields produce errors
-
 ---
 
 ## Running Tests
 
-### adif-mcp (full suite)
+### Single server — security only
 
 ```bash
-cd adif-mcp
-.venv/bin/python -m pytest test/ -v
+cd eqsl-mcp
+pytest tests/test_security.py -v
 ```
 
-### Any server (security tests)
+### Single server — full mock suite
 
 ```bash
-cd eqsl-mcp  # or any server
-.venv/bin/python -m pytest tests/test_security.py -v
+cd solar-mcp
+pytest tests/ -v
 ```
 
-### All servers at once
+### Single server — including live API tests
 
 ```bash
-for pkg in qso-graph-auth eqsl-mcp qrz-mcp lotw-mcp hamqth-mcp pota-mcp sota-mcp iota-mcp solar-mcp wspr-mcp; do
-  echo "=== $pkg ==="
-  cd /path/to/$pkg && .venv/bin/python -m pytest tests/test_security.py -v
+cd solar-mcp
+pytest tests/ -v --live
+```
+
+### All servers — security sweep
+
+```bash
+for repo in adif-mcp eqsl-mcp qrz-mcp lotw-mcp hamqth-mcp pota-mcp \
+            sota-mcp solar-mcp wspr-mcp iota-mcp n1mm-mcp ionis-mcp; do
+    echo "=== $repo ==="
+    (cd $repo && pytest tests/test_security.py -v) 2>&1
 done
+```
+
+### Fleet composition tests
+
+```bash
+cd ionis-devel
+EQSL_MCP_MOCK=1 HAMQTH_MCP_MOCK=1 LOTW_MCP_MOCK=1 QRZ_MCP_MOCK=1 \
+  pytest tests/test_fleet.py -v
 ```
 
 ---
@@ -198,3 +248,4 @@ All three must pass before the tag is created.
 | K1MU ADIF Validator | [rickmurphy.net/adifvalidator.html](https://www.rickmurphy.net/adifvalidator.html) |
 | adif-multitool (flwyd) | [github.com/flwyd/adif-multitool](https://github.com/flwyd/adif-multitool) |
 | MCP Security Best Practices | [modelcontextprotocol.io](https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices) |
+| QSO-Graph Test Framework (internal) | [ionis-devel/planning/QSO-GRAPH-TEST-FRAMEWORK.md](https://github.com/IONIS-AI/ionis-devel) |
