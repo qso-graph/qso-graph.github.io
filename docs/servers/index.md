@@ -37,6 +37,7 @@ QSO-Graph provides 12 MCP packages covering amateur radio logging, confirmations
 | Package | Purpose | Auth Pattern |
 |---------|---------|-------------|
 | [qsp-mcp](qsp-mcp.md) | QSP — relay MCP tools to any local LLM endpoint | None (local) |
+| [llm-stack](llm-stack.md) | Docker Compose — Open WebUI + llama.cpp + MCP tools in a browser | None (local) |
 
 ---
 

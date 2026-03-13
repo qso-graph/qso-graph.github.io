@@ -83,6 +83,7 @@ nav:
       - N1MM Logger+: servers/n1mm-mcp.md
     - Infrastructure:
       - QSP (Tool Relay): servers/qsp-mcp.md
+      - LLM Stack: servers/llm-stack.md
   - Architecture: architecture.md
   - Testing: testing.md
   - Demo: https://qso-graph-demo.vercel.app/

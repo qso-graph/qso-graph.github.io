@@ -6,7 +6,7 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 
 ---
 
-## 12 Packages
+## 13 Packages
 
 ### Foundation
 
@@ -39,6 +39,7 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 | Package | What It Does |
 |---------|--------------|
 | [qsp-mcp](servers/qsp-mcp.md) | QSP — relay MCP tools to any local LLM (llama.cpp, Ollama, vLLM, SGLang) |
+| [llm-stack](servers/llm-stack.md) | Docker Compose — Open WebUI + llama.cpp + MCP tools in a browser |
 
 ---
 
