@@ -17,18 +17,18 @@
 
 | Package | Version | Tools | L1 Security | L2 Unit | L3 Live | L4 Fleet |
 |---------|---------|:-----:|:-----------:|:-------:|:-------:|:--------:|
-| [adif-mcp](servers/adif-mcp.md) | 1.0.0 | 8 | 6 PASS | 48 PASS | CI/CD | PASS |
-| [eqsl-mcp](servers/eqsl.md) | 0.3.0 | 5 | 6 PASS | 45 PASS | Auth | PASS |
-| [qrz-mcp](servers/qrz.md) | 0.3.0 | 5 | 6 PASS | 38 PASS | Auth | PASS |
-| [lotw-mcp](servers/lotw.md) | 0.3.0 | 5 | 6 PASS | 38 PASS | Auth | PASS |
-| [hamqth-mcp](servers/hamqth.md) | 0.3.0 | 7 | 6 PASS | 39 PASS | 10 PASS | PASS |
-| [pota-mcp](servers/pota.md) | 0.1.1 | 7 | 6 PASS | 45 PASS | 15 PASS | PASS |
+| [adif-mcp](servers/adif-mcp.md) | 1.0.1 | 8 | 6 PASS | 48 PASS | CI/CD | PASS |
+| [eqsl-mcp](servers/eqsl.md) | 0.3.1 | 5 | 6 PASS | 45 PASS | Auth | PASS |
+| [qrz-mcp](servers/qrz.md) | 0.3.1 | 5 | 6 PASS | 38 PASS | Auth | PASS |
+| [lotw-mcp](servers/lotw.md) | 0.3.1 | 5 | 6 PASS | 38 PASS | Auth | PASS |
+| [hamqth-mcp](servers/hamqth.md) | 0.4.0 | 7 | 6 PASS | 39 PASS | 10 PASS | PASS |
+| [pota-mcp](servers/pota.md) | 0.2.0 | 7 | 6 PASS | 45 PASS | 15 PASS | PASS |
 | [sota-mcp](servers/sota.md) | 0.1.4 | 4 | 6 PASS | 33 PASS | 10 PASS | PASS |
 | [solar-mcp](servers/solar.md) | 0.2.0 | 6 | 6 PASS | 43 PASS | 15 PASS | PASS |
-| [wspr-mcp](servers/wspr.md) | 0.2.0 | 8 | 6 PASS | 40 PASS | 12 PASS | PASS |
+| [wspr-mcp](servers/wspr.md) | 0.3.0 | 8 | 6 PASS | 40 PASS | 12 PASS | PASS |
 | [iota-mcp](servers/iota.md) | 0.1.0 | 6 | 6 PASS | 46 PASS | 12 PASS | PASS |
 | [n1mm-mcp](servers/n1mm-mcp.md) | 0.1.4 | 8 | 6 PASS | 59 PASS | Local | PASS |
-| [ionis-mcp](https://github.com/qso-graph/ionis-mcp) | 1.2.6 | 11 | 6 PASS | — | Local | PASS |
+| [ionis-mcp](https://github.com/qso-graph/ionis-mcp) | 1.2.8 | 11 | 6 PASS | — | Local | PASS |
 | **Total** | — | **82** | **72** | **474+** | **74** | **20** |
 
 !!! note "L3 Live column notes"
@@ -116,7 +116,7 @@ L4 tests verify that all 12 servers work correctly when loaded together. They im
 
 | Finding | Status | Detail |
 |---------|--------|--------|
-| `solar_conditions` name collision | Documented | Exists in both solar-mcp (live NOAA) and ionis-mcp (historical SQLite). MCP clients disambiguate by server prefix. |
+| `solar_conditions` name collision | **Resolved** | ionis-mcp v1.2.8 renamed to `solar_history`. No more collision. |
 | Null defaults from `Optional` params | Tracked | FastMCP generates `{"default": null}` from Python `Optional[str] = None`. Valid JSON Schema but may affect some local LLM tool parsers. |
 | Band parameter type split | By design | qso-graph servers use string band names (`"20M"`), ionis-mcp uses integer ADIF band IDs (`107`). |
 

@@ -1,6 +1,6 @@
 # Server Overview
 
-QSO-Graph provides 12 MCP packages covering amateur radio logging, confirmations, propagation services, and local LLM integration.
+QSO-Graph provides 14 packages (12 MCP servers + auth foundation + LLM relay) covering amateur radio logging, confirmations, propagation services, and local LLM integration.
 
 ---
 
@@ -26,7 +26,7 @@ QSO-Graph provides 12 MCP packages covering amateur radio logging, confirmations
 
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
-| [pota-mcp](pota.md) | 6 | Parks on the Air | None (public) |
+| [pota-mcp](pota.md) | 7 | Parks on the Air | None (public) |
 | [sota-mcp](sota.md) | 4 | Summits on the Air | None (public) |
 | [iota-mcp](iota.md) | 6 | Islands on the Air | None (public) |
 | [solar-mcp](solar.md) | 6 | NOAA SWPC | None (public) |

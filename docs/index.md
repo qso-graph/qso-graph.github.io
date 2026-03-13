@@ -6,7 +6,7 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 
 ---
 
-## 13 Packages
+## 14 Packages
 
 ### Foundation
 
@@ -28,7 +28,7 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 
 | Package | Tools | What It Does |
 |---------|:-----:|--------------|
-| [pota-mcp](servers/pota.md) | 6 | Live spots, park info, stats, schedules |
+| [pota-mcp](servers/pota.md) | 7 | Live spots, park info, stats, schedules, nearby parks |
 | [sota-mcp](servers/sota.md) | 4 | Spots, alerts, summit info, nearby search |
 | [iota-mcp](servers/iota.md) | 6 | Group lookup, island search, DXCC mapping, nearby |
 | [solar-mcp](servers/solar.md) | 6 | SFI, Kp, solar wind, X-ray, band outlook |
