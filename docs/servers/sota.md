@@ -12,7 +12,7 @@ pip install sota-mcp
 
 ## Tools
 
-All 4 tools are **public** — no credentials needed.
+All 5 tools are **public** — no credentials needed.
 
 | Tool | Description |
 |------|-------------|
@@ -20,6 +20,7 @@ All 4 tools are **public** — no credentials needed.
 | `sota_alerts` | Upcoming activation alerts |
 | `sota_summit_info` | Detailed summit information |
 | `sota_summits_near` | Find summits near a location (geospatial) |
+| `get_version_info` | Service version + SOTA api2 contract revision (fleet identity attestation) |
 
 ---
 

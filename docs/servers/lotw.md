@@ -19,6 +19,7 @@ pip install lotw-mcp
 | `lotw_dxcc_credits` | Yes | Query DXCC award credits |
 | `lotw_user_activity` | No | Check if a callsign uses LoTW |
 | `lotw_download` | Yes | Download LoTW log data in ADIF format |
+| `get_version_info` | No | Service version + LoTW ADIF/CSV export schema revision (fleet identity attestation) |
 
 ---
 

@@ -12,7 +12,7 @@ pip install pota-mcp
 
 ## Tools
 
-All 7 tools are **public** — no credentials needed.
+All 8 tools are **public** — no credentials needed.
 
 | Tool | Description |
 |------|-------------|
@@ -23,6 +23,7 @@ All 7 tools are **public** — no credentials needed.
 | `pota_scheduled` | Upcoming scheduled activations |
 | `pota_location_parks` | List all parks in a state/province/country |
 | `pota_nearby_parks` | Find parks near a point — great for 2-fer planning |
+| `get_version_info` | Service version + POTA API contract revision (fleet identity attestation) |
 
 ---
 

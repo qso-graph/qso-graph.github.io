@@ -19,6 +19,7 @@ pip install eqsl-mcp
 | `eqsl_ag_check` | No | Check Authenticity Guaranteed status |
 | `eqsl_last_upload` | No | Check when a persona last uploaded |
 | `eqsl_download` | Yes | Download eQSL log data in ADIF format |
+| `get_version_info` | No | Service version + eQSL.cc endpoint contract revision (fleet identity attestation) |
 
 ---
 

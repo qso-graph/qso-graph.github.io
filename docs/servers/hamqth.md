@@ -21,6 +21,7 @@ pip install hamqth-mcp
 | `hamqth_dx_spots` | No | Live DX cluster spots — filter by band and/or callsign |
 | `hamqth_rbn` | No | Reverse Beacon Network decodes — filter by band, mode, continent, callsign |
 | `hamqth_verify_qso` | No | Verify a QSO via HamQTH SAVP protocol |
+| `get_version_info` | No | Service version + HamQTH API contract revision (fleet identity attestation) |
 
 ---
 

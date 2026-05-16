@@ -12,7 +12,7 @@ pip install iota-mcp
 
 ## Tools
 
-All 6 tools are **public** — no credentials needed.
+All 7 tools are **public** — no credentials needed.
 
 | Tool | Description |
 |------|-------------|
@@ -22,6 +22,7 @@ All 6 tools are **public** — no credentials needed.
 | `iota_dxcc` | Bidirectional DXCC-to-IOTA mapping |
 | `iota_stats` | Programme summary statistics |
 | `iota_nearby` | Find IOTA groups nearest to a location |
+| `get_version_info` | Service version + IOTA programme data revision (fleet identity attestation) |
 
 ---
 

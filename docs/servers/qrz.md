@@ -19,6 +19,7 @@ pip install qrz-mcp
 | `qrz_logbook_status` | API key | Get logbook statistics |
 | `qrz_logbook_fetch` | API key | Query QSOs from a logbook |
 | `qrz_download` | API key | Download QRZ logbook data in ADIF format |
+| `get_version_info` | None | Service version + QRZ.com API contract revision (fleet identity attestation) |
 
 ---
 

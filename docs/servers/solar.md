@@ -12,7 +12,7 @@ pip install solar-mcp
 
 ## Tools
 
-All 6 tools are **public** — no credentials needed. Data comes from NOAA Space Weather Prediction Center.
+All 7 tools are **public** — no credentials needed. Data comes from NOAA Space Weather Prediction Center.
 
 | Tool | Description |
 |------|-------------|
@@ -22,6 +22,7 @@ All 6 tools are **public** — no credentials needed. Data comes from NOAA Space
 | `solar_wind` | Real-time DSCOVR L1 solar wind data |
 | `solar_xray` | GOES X-ray flux and flare classification |
 | `solar_band_outlook` | Per-band HF propagation assessment |
+| `get_version_info` | Service version + NOAA SWPC endpoint contract revision (fleet identity attestation) |
 
 ---
 

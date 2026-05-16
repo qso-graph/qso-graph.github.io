@@ -12,7 +12,7 @@ pip install n1mm-mcp
 
 ## Tools
 
-All 8 tools are **public** — no credentials needed. N1MM Logger+ broadcasts contest state over UDP on your local network.
+All 9 tools are **public** — no credentials needed. N1MM Logger+ broadcasts contest state over UDP on your local network.
 
 | Tool | Description |
 |------|-------------|
@@ -24,6 +24,7 @@ All 8 tools are **public** — no credentials needed. N1MM Logger+ broadcasts co
 | `n1mm_multipliers` | Mult grid, needs, value analysis |
 | `n1mm_clock` | Contest timing, off-time, pacing |
 | `n1mm_diagnostics` | Server health, parse errors, memory |
+| `get_version_info` | Service version + N1MM UDP contract revision (fleet identity attestation) |
 
 ---
 

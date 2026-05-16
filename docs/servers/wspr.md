@@ -14,7 +14,7 @@ pip install wspr-mcp
 
 ## Tools
 
-All 8 tools are **public** — no credentials needed.
+All 9 tools are **public** — no credentials needed.
 
 | Tool | Description |
 |------|-------------|
@@ -26,6 +26,7 @@ All 8 tools are **public** — no credentials needed.
 | `wspr_grid_activity` | All WSPR activity in/out of a Maidenhead grid square |
 | `wspr_longest_paths` | Longest distance paths in a time window |
 | `wspr_snr_trend` | Hourly SNR trend for a specific path over time |
+| `get_version_info` | Service version + wspr.live schema revision (fleet identity attestation) |
 
 ---
 
