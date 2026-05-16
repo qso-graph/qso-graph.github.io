@@ -11,7 +11,7 @@ QSO-Graph provides 14 packages (12 MCP servers + auth foundation + LLM relay) co
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
 | [qso-graph-auth](qso-graph-auth.md) | — | OS keyring credentials | None (local) |
-| [adif-mcp](adif-mcp.md) | 8 | ADIF 3.1.6 spec | None (local) |
+| [adif-mcp](adif-mcp.md) | 8 | ADIF 3.1.7 spec | None (local) |
 
 ### Logbook Services
 

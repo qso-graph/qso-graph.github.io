@@ -13,7 +13,7 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 | Package | Tools | What It Does |
 |---------|:-----:|--------------|
 | [qso-graph-auth](servers/qso-graph-auth.md) | — | OS keyring credential management, persona CRUD, provider management |
-| [adif-mcp](servers/adif-mcp.md) | 8 | ADIF 3.1.6 spec engine, validation, parsing, geospatial |
+| [adif-mcp](servers/adif-mcp.md) | 8 | ADIF 3.1.7 spec engine, validation, parsing, geospatial |
 
 ### Logbook Services (Authenticated)
 
@@ -117,6 +117,6 @@ Dashboard, physics lab, DXCC progress, path analyzer, and log viewer — all pow
 - **Demo**: [qso-graph-demo.vercel.app](https://qso-graph-demo.vercel.app/)
 - **GitHub**: [github.com/qso-graph](https://github.com/qso-graph)
 - **PyPI**: [eqsl-mcp](https://pypi.org/project/eqsl-mcp/) · [qrz-mcp](https://pypi.org/project/qrz-mcp/) · [lotw-mcp](https://pypi.org/project/lotw-mcp/)
-- **Foundation**: [qso-graph-auth](servers/qso-graph-auth.md) — credential management ([PyPI](https://pypi.org/project/qso-graph-auth/)) · [adif-mcp](servers/adif-mcp.md) — ADIF 3.1.6 spec engine ([PyPI](https://pypi.org/project/adif-mcp/))
-- **Testing**: [60/60 PASS](testing.md) — security audit + ADIF 3.1.6 official test corpus + forensic validation
+- **Foundation**: [qso-graph-auth](servers/qso-graph-auth.md) — credential management ([PyPI](https://pypi.org/project/qso-graph-auth/)) · [adif-mcp](servers/adif-mcp.md) — ADIF 3.1.7 spec engine ([PyPI](https://pypi.org/project/adif-mcp/))
+- **Testing**: [108/108 PASS](testing.md) — security audit + ADIF 3.1.7 official test corpus + forensic validation
 - **Related**: [IONIS](https://ionis-ai.com/) — HF propagation prediction from 14B amateur radio observations
