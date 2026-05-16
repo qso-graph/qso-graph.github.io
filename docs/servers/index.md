@@ -17,20 +17,20 @@ QSO-Graph provides 14 packages (12 MCP servers + auth foundation + LLM relay) co
 
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
-| [eqsl-mcp](eqsl.md) | 5 | eQSL.cc | Persona (session) |
-| [qrz-mcp](qrz.md) | 5 | QRZ.com | Persona (XML) + API key (Logbook) |
-| [lotw-mcp](lotw.md) | 5 | LoTW (ARRL) | Persona (HTTPS) |
-| [hamqth-mcp](hamqth.md) | 7 | HamQTH.com | Persona (XML session) |
+| [eqsl-mcp](eqsl.md) | 6 | eQSL.cc | Persona (session) |
+| [qrz-mcp](qrz.md) | 6 | QRZ.com | Persona (XML) + API key (Logbook) |
+| [lotw-mcp](lotw.md) | 6 | LoTW (ARRL) | Persona (HTTPS) |
+| [hamqth-mcp](hamqth.md) | 8 | HamQTH.com | Persona (XML session) |
 
 ### Public Services
 
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
-| [pota-mcp](pota.md) | 7 | Parks on the Air | None (public) |
-| [sota-mcp](sota.md) | 4 | Summits on the Air | None (public) |
-| [iota-mcp](iota.md) | 6 | Islands on the Air | None (public) |
-| [solar-mcp](solar.md) | 6 | NOAA SWPC | None (public) |
-| [wspr-mcp](wspr.md) | 8 | wspr.live (ClickHouse) | None (public) |
+| [pota-mcp](pota.md) | 8 | Parks on the Air | None (public) |
+| [sota-mcp](sota.md) | 5 | Summits on the Air | None (public) |
+| [iota-mcp](iota.md) | 7 | Islands on the Air | None (public) |
+| [solar-mcp](solar.md) | 7 | NOAA SWPC | None (public) |
+| [wspr-mcp](wspr.md) | 9 | wspr.live (ClickHouse) | None (public) |
 
 ### Infrastructure
 

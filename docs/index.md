@@ -19,20 +19,20 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 
 | Package | Tools | Auth | What It Does |
 |---------|:-----:|------|--------------|
-| [eqsl-mcp](servers/eqsl.md) | 5 | Persona | eQSL inbox, QSO verification, AG status, download |
-| [qrz-mcp](servers/qrz.md) | 5 | Persona + API key | Callsign lookup, DXCC, logbook access, download |
-| [lotw-mcp](servers/lotw.md) | 5 | Persona | LoTW confirmations, QSOs, DXCC credits, download |
-| [hamqth-mcp](servers/hamqth.md) | 7 | Persona | Callsign lookup, DXCC, bio, activity, DX spots, RBN, QSO verify |
+| [eqsl-mcp](servers/eqsl.md) | 6 | Persona | eQSL inbox, QSO verification, AG status, download, version info |
+| [qrz-mcp](servers/qrz.md) | 6 | Persona + API key | Callsign lookup, DXCC, logbook access, download, version info |
+| [lotw-mcp](servers/lotw.md) | 6 | Persona | LoTW confirmations, QSOs, DXCC credits, download, version info |
+| [hamqth-mcp](servers/hamqth.md) | 8 | Persona | Callsign lookup, DXCC, bio, activity, DX spots, RBN, QSO verify, version info |
 
 ### Public Services (No Auth Required)
 
 | Package | Tools | What It Does |
 |---------|:-----:|--------------|
-| [pota-mcp](servers/pota.md) | 7 | Live spots, park info, stats, schedules, nearby parks |
-| [sota-mcp](servers/sota.md) | 4 | Spots, alerts, summit info, nearby search |
-| [iota-mcp](servers/iota.md) | 6 | Group lookup, island search, DXCC mapping, nearby |
-| [solar-mcp](servers/solar.md) | 6 | SFI, Kp, solar wind, X-ray, band outlook |
-| [wspr-mcp](servers/wspr.md) | 8 | Beacon spots, band activity, top beacons/spotters, propagation, SNR trends |
+| [pota-mcp](servers/pota.md) | 8 | Live spots, park info, stats, schedules, nearby parks, version info |
+| [sota-mcp](servers/sota.md) | 5 | Spots, alerts, summit info, nearby search, version info |
+| [iota-mcp](servers/iota.md) | 7 | Group lookup, island search, DXCC mapping, nearby, version info |
+| [solar-mcp](servers/solar.md) | 7 | SFI, Kp, solar wind, X-ray, band outlook, version info |
+| [wspr-mcp](servers/wspr.md) | 9 | Beacon spots, band activity, top beacons/spotters, propagation, SNR trends, version info |
 
 ### Infrastructure
 
