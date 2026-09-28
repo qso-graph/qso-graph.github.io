@@ -7,7 +7,8 @@ render_macros: true
 **Parks on the Air integration — live spots, park info, stats, schedules, and park search.**
 
 ```bash
-pip install pota-mcp
+uvx pota-mcp            # run it; nothing to install
+pip install pota-mcp    # or install it into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/pota-mcp) · [PyPI](https://pypi.org/project/pota-mcp/)

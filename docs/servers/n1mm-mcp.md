@@ -7,7 +7,8 @@ render_macros: true
 **N1MM Logger+ integration — live contest state via UDP broadcast.**
 
 ```bash
-pip install n1mm-mcp
+uvx n1mm-mcp            # run it; nothing to install
+pip install n1mm-mcp    # or install it into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/n1mm-mcp) · [PyPI](https://pypi.org/project/n1mm-mcp/)

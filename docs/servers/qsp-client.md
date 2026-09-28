@@ -5,12 +5,13 @@
 Named after the Q-signal **QSP** ("Will you relay?"), qsp-client relays tool calls between a local LLM and MCP servers. Any model with function calling capability gains access to the full qso-graph tool ecosystem — zero cloud dependency.
 
 ```bash
-pip install qsp-client
+uv tool install qsp-client   # the qsp-client command, on your PATH
+pip install qsp-client       # or into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/qsp-client) · [PyPI](https://pypi.org/project/qsp-client/)
 
-Formerly **qsp-mcp**, renamed because it's an MCP client, not a server. `pip install -U qsp-mcp` moves you over, and existing configs and the `qsp-mcp` command keep working.
+Formerly **qsp-mcp**, renamed because it's an MCP client, not a server. Install the new name (`pip uninstall qsp-mcp`, then `uv tool install qsp-client`); existing configs and the `qsp-mcp` command keep working.
 
 ---
 
@@ -64,13 +65,16 @@ The config format is **Claude Desktop compatible** — copy your existing `mcpSe
 {
   "mcpServers": {
     "solar": {
-      "command": "solar-mcp"
+      "command": "uvx",
+      "args": ["solar-mcp"]
     },
     "pota": {
-      "command": "pota-mcp"
+      "command": "uvx",
+      "args": ["pota-mcp"]
     },
     "wspr": {
-      "command": "wspr-mcp"
+      "command": "uvx",
+      "args": ["wspr-mcp"]
     }
   },
   "bridge": {

@@ -62,22 +62,22 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 
 ## Quick Install
 
+With [uv](https://docs.astral.sh/uv/), there's nothing to install per server: your MCP client runs
+each one with `uvx`, always the current release.
+
 ```bash
-# Foundation (credential management + ADIF validation)
-pip install qso-graph-auth adif-mcp
+# Install uv once (Linux / macOS; see Getting Started for Windows)
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Logbook services (authenticated)
-pip install eqsl-mcp qrz-mcp lotw-mcp hamqth-mcp
+# Try any server
+uvx pota-mcp
 
-# Public services (no credentials needed)
-pip install pota-mcp sota-mcp iota-mcp solar-mcp wspr-mcp
-
-# Propagation analytics and radio logging
-pip install ionis-mcp n1mm-mcp netlogger-mcp
-
-# Tool relay — use all MCP tools with a local LLM (no cloud needed)
-pip install qsp-client
+# Command-line tools: credentials, and the local-LLM relay
+uv tool install qso-graph-auth
+uv tool install qsp-client
 ```
+
+Prefer pip? Every package is also a standalone `pip install`.
 
 See [Getting Started](getting-started.md) for MCP client configuration.
 

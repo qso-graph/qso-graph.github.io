@@ -3,7 +3,8 @@
 **HamQTH.com integration — callsign lookup, DX cluster spots, Reverse Beacon Network, DXCC resolution, and more.**
 
 ```bash
-pip install hamqth-mcp
+uvx hamqth-mcp            # run it; nothing to install
+pip install hamqth-mcp    # or install it into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/hamqth-mcp) · [PyPI](https://pypi.org/project/hamqth-mcp/)
@@ -113,7 +114,7 @@ Verify a QSO via the HamQTH SAVP protocol. Public endpoint — no authentication
 HamQTH is **free** — no paid subscription needed. Just create an account at [hamqth.com](https://www.hamqth.com/):
 
 ```bash
-pip install qso-graph-auth
+uv tool install qso-graph-auth
 qso-auth creds set ki7mt hamqth
 ```
 

@@ -3,7 +3,8 @@
 **eQSL.cc integration — inbox, verification, AG status, and upload tracking.**
 
 ```bash
-pip install eqsl-mcp
+uvx eqsl-mcp            # run it; nothing to install
+pip install eqsl-mcp    # or install it into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/eqsl-mcp) · [PyPI](https://pypi.org/project/eqsl-mcp/)
@@ -72,7 +73,7 @@ Check when a persona last uploaded QSOs to eQSL.
 ## Credential Setup
 
 ```bash
-pip install qso-graph-auth
+uv tool install qso-graph-auth
 qso-auth creds set ki7mt eqsl
 ```
 

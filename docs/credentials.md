@@ -10,7 +10,7 @@ QSO-Graph uses two layers for credential management: a **persona index** (non-se
 
 ```bash
 # 1. Install the foundation package
-pip install qso-graph-auth
+uv tool install qso-graph-auth
 
 # 2. Create a persona (your callsign identity)
 qso-auth persona add --name ki7mt --callsign KI7MT --start 2020-01-01
@@ -191,11 +191,21 @@ qso-auth persona set-active ki7mt
 
 ### Keyring backend not found (headless Linux)
 
-On servers or headless Linux systems without a desktop keyring, install the alternative backend:
+On servers or headless Linux systems without a desktop keyring, add the alternative backend. With
+uv, it has to be in both places that read the keyring: the `qso-auth` tool, and each server.
 
 ```bash
-pip install keyrings.alt
+uv tool install qso-graph-auth --with keyrings.alt
 ```
+
+and in the server's client config:
+
+```json
+"command": "uvx",
+"args": ["--with", "keyrings.alt", "eqsl-mcp"]
+```
+
+With pip, one `pip install keyrings.alt` in the same environment covers both.
 
 This uses an encrypted file-based keyring instead of GNOME Keyring or KWallet.
 

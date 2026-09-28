@@ -2,24 +2,18 @@
 
 ## Install
 
-Every QSO-Graph package is a standalone `pip install`:
+We recommend [uv](https://docs.astral.sh/uv/). With it there's nothing to install per server: your
+MCP client runs each one with `uvx`, always the current release (see the configs below). Install uv
+once:
 
 ```bash
-# Authenticated servers (require credential setup)
-pip install eqsl-mcp
-pip install qrz-mcp
-pip install lotw-mcp
-pip install hamqth-mcp
-
-# Public servers (no credentials needed — just install and go)
-pip install pota-mcp
-pip install sota-mcp
-pip install iota-mcp
-pip install solar-mcp
-pip install wspr-mcp
+curl -LsSf https://astral.sh/uv/install.sh | sh                      # Linux / macOS
+powershell -c "irm https://astral.sh/uv/install.ps1 | iex"          # Windows
 ```
 
-All packages require **Python 3.10+**.
+Prefer pip? Every server is also a standalone `pip install`, e.g. `pip install pota-mcp`.
+
+All packages require **Python 3.10+** (uv fetches one if you need it).
 
 ---
 
@@ -28,7 +22,7 @@ All packages require **Python 3.10+**.
 Servers that access your accounts use [qso-graph-auth](https://pypi.org/project/qso-graph-auth/) to store credentials securely in your OS keyring.
 
 ```bash
-pip install qso-graph-auth
+uv tool install qso-graph-auth
 
 # Create a persona (your callsign identity)
 qso-auth persona add --name ki7mt --callsign KI7MT --start 2020-01-01
@@ -52,6 +46,8 @@ See the [Credential Setup Guide](credentials.md) for full details, per-server ex
 
 ## MCP Client Configuration
 
+Each config runs the server with `uvx`. Installed with pip instead? Use `"command": "<server>"` (for example `"command": "pota-mcp"`) with no `args`.
+
 ### Claude Desktop
 
 Add servers to `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) or `%APPDATA%\Claude\claude_desktop_config.json` (Windows):
@@ -60,31 +56,40 @@ Add servers to `~/Library/Application Support/Claude/claude_desktop_config.json`
 {
   "mcpServers": {
     "eqsl": {
-      "command": "eqsl-mcp"
+      "command": "uvx",
+      "args": ["eqsl-mcp"]
     },
     "qrz": {
-      "command": "qrz-mcp"
+      "command": "uvx",
+      "args": ["qrz-mcp"]
     },
     "lotw": {
-      "command": "lotw-mcp"
+      "command": "uvx",
+      "args": ["lotw-mcp"]
     },
     "hamqth": {
-      "command": "hamqth-mcp"
+      "command": "uvx",
+      "args": ["hamqth-mcp"]
     },
     "pota": {
-      "command": "pota-mcp"
+      "command": "uvx",
+      "args": ["pota-mcp"]
     },
     "sota": {
-      "command": "sota-mcp"
+      "command": "uvx",
+      "args": ["sota-mcp"]
     },
     "iota": {
-      "command": "iota-mcp"
+      "command": "uvx",
+      "args": ["iota-mcp"]
     },
     "solar": {
-      "command": "solar-mcp"
+      "command": "uvx",
+      "args": ["solar-mcp"]
     },
     "wspr": {
-      "command": "wspr-mcp"
+      "command": "uvx",
+      "args": ["wspr-mcp"]
     }
   }
 }
@@ -98,10 +103,12 @@ Add to `~/.claude/settings.json`:
 {
   "mcpServers": {
     "eqsl": {
-      "command": "eqsl-mcp"
+      "command": "uvx",
+      "args": ["eqsl-mcp"]
     },
     "pota": {
-      "command": "pota-mcp"
+      "command": "uvx",
+      "args": ["pota-mcp"]
     }
   }
 }
@@ -115,7 +122,8 @@ Add to `~/.chatgpt/config.json`:
 {
   "mcpServers": {
     "eqsl": {
-      "command": "eqsl-mcp"
+      "command": "uvx",
+      "args": ["eqsl-mcp"]
     }
   }
 }
@@ -129,7 +137,8 @@ Add to `.cursor/mcp.json` in your project:
 {
   "mcpServers": {
     "eqsl": {
-      "command": "eqsl-mcp"
+      "command": "uvx",
+      "args": ["eqsl-mcp"]
     }
   }
 }
@@ -143,7 +152,8 @@ Add to `.vscode/mcp.json` in your workspace:
 {
   "servers": {
     "eqsl": {
-      "command": "eqsl-mcp"
+      "command": "uvx",
+      "args": ["eqsl-mcp"]
     }
   }
 }
@@ -157,7 +167,8 @@ Add to `~/.gemini/settings.json`:
 {
   "mcpServers": {
     "eqsl": {
-      "command": "eqsl-mcp"
+      "command": "uvx",
+      "args": ["eqsl-mcp"]
     }
   }
 }
