@@ -7,7 +7,8 @@ render_macros: true
 **NetLogger integration — nets on the air, live check-ins and who's up, and past nets.**
 
 ```bash
-pip install netlogger-mcp
+uvx netlogger-mcp            # run it; nothing to install
+pip install netlogger-mcp    # or install it into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/netlogger-mcp) · [PyPI](https://pypi.org/project/netlogger-mcp/)

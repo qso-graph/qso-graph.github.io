@@ -65,7 +65,7 @@ QSO-Graph provides {{ server_count() }} MCP servers ({{ tool_total() }} tools), 
 eQSL, QRZ, LoTW, and HamQTH use **qso-graph-auth personas** — named identities with credentials stored in your OS keyring:
 
 ```bash
-pip install qso-graph-auth
+uv tool install qso-graph-auth
 qso-auth creds set ki7mt eqsl
 ```
 

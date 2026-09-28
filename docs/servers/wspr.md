@@ -9,7 +9,8 @@ render_macros: true
 Data from [wspr.live](https://wspr.live/) (~2.7 billion spots, 2008-present).
 
 ```bash
-pip install wspr-mcp
+uvx wspr-mcp            # run it; nothing to install
+pip install wspr-mcp    # or install it into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/wspr-mcp) · [PyPI](https://pypi.org/project/wspr-mcp/)

@@ -3,7 +3,7 @@
 **Foundation package — OS keyring credential management, persona CRUD, and provider management.**
 
 ```bash
-pip install qso-graph-auth
+uv tool install qso-graph-auth
 ```
 
 [GitHub](https://github.com/qso-graph/qso-graph-auth) · [PyPI](https://pypi.org/project/qso-graph-auth/)
@@ -28,7 +28,7 @@ All authenticated MCP servers (`eqsl-mcp`, `qrz-mcp`, `lotw-mcp`, `hamqth-mcp`) 
 
 ```bash
 # Install
-pip install qso-graph-auth
+uv tool install qso-graph-auth
 
 # Create a persona (your callsign identity)
 qso-auth persona add --name ki7mt --callsign KI7MT --start 2020-01-01

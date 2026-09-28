@@ -66,7 +66,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 
 # Install in editable mode with dev dependencies
-pip install -e ".[dev]"
+uv sync --group dev
 
 # Run tests
 pytest

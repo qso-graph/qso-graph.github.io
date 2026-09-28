@@ -63,7 +63,7 @@ Persona: "ki7mt"
 When a server needs credentials, it calls `qso-graph-auth` which reads them from the keyring at runtime. Credentials never exist in config files, environment variables, or MCP protocol messages.
 
 ```bash
-pip install qso-graph-auth
+uv tool install qso-graph-auth
 qso-auth persona add --name ki7mt --callsign KI7MT --start 2020-01-01
 qso-auth creds set ki7mt eqsl
 ```
@@ -171,11 +171,11 @@ MCP Tool Result ──── data only, no credentials
 
 ## Package Independence
 
-Each server is a standalone `pip install`:
+Each server is its own package. Run it with `uvx`, or `pip install` it:
 
 ```bash
-pip install eqsl-mcp    # just eqsl-mcp + its dependencies
-pip install pota-mcp     # just pota-mcp, no auth needed
+uvx eqsl-mcp            # just eqsl-mcp + its dependencies
+uvx pota-mcp            # just pota-mcp, no auth needed
 ```
 
 Servers don't depend on each other. You can install one or all ten.
@@ -192,13 +192,16 @@ All servers work with any MCP client. Example for Claude Desktop:
 {
   "mcpServers": {
     "adif": {
-      "command": "adif-mcp"
+      "command": "uvx",
+      "args": ["adif-mcp"]
     },
     "eqsl": {
-      "command": "eqsl-mcp"
+      "command": "uvx",
+      "args": ["eqsl-mcp"]
     },
     "pota": {
-      "command": "pota-mcp"
+      "command": "uvx",
+      "args": ["pota-mcp"]
     }
   }
 }
@@ -209,8 +212,8 @@ For Claude Code, add to `~/.claude/settings.json`:
 ```json
 {
   "mcpServers": {
-    "adif": { "command": "adif-mcp", "args": [] },
-    "eqsl": { "command": "eqsl-mcp", "args": [] }
+    "adif": { "command": "uvx", "args": ["adif-mcp"] },
+    "eqsl": { "command": "uvx", "args": ["eqsl-mcp"] }
   }
 }
 ```
@@ -235,4 +238,4 @@ adif-mcp's validation engine catches data defects at the source. A busted QSO is
 
 ### Pip Install and Go
 
-Every server is one `pip install` away. No Docker, no containers, no config files (except MCP client config). Credentials go in the OS keyring, not YAML files.
+Every server is one `uvx` away. No Docker, no containers, no config files (except MCP client config). Credentials go in the OS keyring, not YAML files.

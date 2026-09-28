@@ -3,7 +3,8 @@
 **QRZ.com integration — callsign lookup, DXCC resolution, and logbook access.**
 
 ```bash
-pip install qrz-mcp
+uvx qrz-mcp            # run it; nothing to install
+pip install qrz-mcp    # or install it into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/qrz-mcp) · [PyPI](https://pypi.org/project/qrz-mcp/)
@@ -78,7 +79,7 @@ Query QSOs from a QRZ logbook with optional filters. Transparently paginates to 
 QRZ uses **dual authentication** — the XML API and Logbook API have separate credentials:
 
 ```bash
-pip install qso-graph-auth
+uv tool install qso-graph-auth
 
 # XML API (callsign lookup + DXCC) — uses your QRZ login
 qso-auth creds set ki7mt qrz

@@ -7,7 +7,8 @@ render_macros: true
 **Space weather integration — real-time solar conditions, forecasts, alerts, solar wind, X-ray flux, and HF band outlook.**
 
 ```bash
-pip install solar-mcp
+uvx solar-mcp            # run it; nothing to install
+pip install solar-mcp    # or install it into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/solar-mcp) · [PyPI](https://pypi.org/project/solar-mcp/)

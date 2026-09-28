@@ -3,7 +3,8 @@
 **Logbook of The World integration — confirmations, QSOs, DXCC credits, and user activity.**
 
 ```bash
-pip install lotw-mcp
+uvx lotw-mcp            # run it; nothing to install
+pip install lotw-mcp    # or install it into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/lotw-mcp) · [PyPI](https://pypi.org/project/lotw-mcp/)
@@ -76,7 +77,7 @@ Check if a callsign uses LoTW and when they last uploaded. Uses a locally cached
 ## Credential Setup
 
 ```bash
-pip install qso-graph-auth
+uv tool install qso-graph-auth
 qso-auth creds set ki7mt lotw
 ```
 
