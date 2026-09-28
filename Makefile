@@ -12,8 +12,9 @@ help:  ## Show this help
 install:  ## Install Python dependencies
 	$(PYTHON) -m pip install -r requirements.txt
 
-data:  ## Collect every server's released version and tools (data/servers.json)
+data:  ## Collect every server's released version and tools, and fetch install.sh
 	$(PYTHON) scripts/collect_servers.py
+	curl -fsSL https://raw.githubusercontent.com/qso-graph/qso-graph-config/main/install.sh -o docs/install.sh
 
 build:  ## Build the static site into site/
 	$(MKDOCS) build
