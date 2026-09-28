@@ -1,26 +1,28 @@
-# qsp-mcp
+# qsp-client
 
 **QSP — relay MCP tools to any OpenAI-compatible local LLM endpoint.**
 
-Named after the Q-signal **QSP** ("Will you relay?"), qsp-mcp relays tool calls between a local LLM and MCP servers. Any model with function calling capability gains access to the full qso-graph tool ecosystem — zero cloud dependency.
+Named after the Q-signal **QSP** ("Will you relay?"), qsp-client relays tool calls between a local LLM and MCP servers. Any model with function calling capability gains access to the full qso-graph tool ecosystem — zero cloud dependency.
 
 ```bash
-pip install qsp-mcp
+pip install qsp-client
 ```
 
-[GitHub](https://github.com/qso-graph/qsp-mcp) · [PyPI](https://pypi.org/project/qsp-mcp/)
+[GitHub](https://github.com/qso-graph/qsp-client) · [PyPI](https://pypi.org/project/qsp-client/)
+
+Formerly **qsp-mcp**, renamed because it's an MCP client, not a server. `pip install -U qsp-mcp` moves you over, and existing configs and the `qsp-mcp` command keep working.
 
 ---
 
 ## What It Does
 
-qsp-mcp is **not** an MCP server — it's an MCP **client** that bridges the gap between local LLM inference and MCP tools. It connects to your configured MCP servers, translates their tool definitions into OpenAI `tools` format, and manages the conversation loop with your local model.
+qsp-client is **not** an MCP server — it's an MCP **client** that bridges the gap between local LLM inference and MCP tools. It connects to your configured MCP servers, translates their tool definitions into OpenAI `tools` format, and manages the conversation loop with your local model.
 
 ```
-You ──> qsp-mcp ──> Local LLM (llama.cpp, Ollama, vLLM, SGLang)
+You ──> qsp-client ──> Local LLM (llama.cpp, Ollama, vLLM, SGLang)
                         │
                         ▼ function call
-                    qsp-mcp
+                    qsp-client
                         │
               ┌─────────┼─────────┐
               ▼         ▼         ▼
@@ -37,26 +39,26 @@ You ──> qsp-mcp ──> Local LLM (llama.cpp, Ollama, vLLM, SGLang)
 ### Interactive Mode
 
 ```bash
-qsp-mcp --config ~/.config/qsp-mcp/config.json
+qsp-client --config ~/.config/qsp-client/config.json
 ```
 
 ### Single Query
 
 ```bash
-qsp-mcp --query "What bands are open from DN13 to JN48 right now?"
+qsp-client --query "What bands are open from DN13 to JN48 right now?"
 ```
 
 ### Direct Endpoint
 
 ```bash
-qsp-mcp --endpoint http://localhost:8000/v1/chat/completions --api-key sk-xxx
+qsp-client --endpoint http://localhost:8000/v1/chat/completions --api-key sk-xxx
 ```
 
 ---
 
 ## Configuration
 
-The config format is **Claude Desktop compatible** — copy your existing `mcpServers` block directly. The `bridge` section is qsp-mcp specific.
+The config format is **Claude Desktop compatible** — copy your existing `mcpServers` block directly. The `bridge` section is qsp-client specific.
 
 ```json
 {
@@ -101,7 +103,7 @@ The config format is **Claude Desktop compatible** — copy your existing `mcpSe
 }
 ```
 
-Default config location: `~/.config/qsp-mcp/config.json`
+Default config location: `~/.config/qsp-client/config.json`
 
 ---
 
@@ -140,7 +142,7 @@ Profiles limit which servers and tools are available per session, reducing conte
 | `propagation` | ionis, solar, wspr | Propagation analysis — conditions, forecasts |
 | `full` | All servers | Everything available |
 
-Select a profile: `qsp-mcp --profile contest`
+Select a profile: `qsp-client --profile contest`
 
 ---
 
@@ -160,7 +162,7 @@ Any endpoint implementing the OpenAI chat completions API with function calling:
 ## Security
 
 - **Write protection**: Write-capable tools are disabled by default. Use `--enable-writes` to opt in per session.
-- **Credential isolation**: Credentials stay inside MCP servers (OS keyring). qsp-mcp never sees or handles credentials for external services.
+- **Credential isolation**: Credentials stay inside MCP servers (OS keyring). qsp-client never sees or handles credentials for external services.
 - **No subprocess**: No shell execution, no eval, no command injection surface.
 - **Audit log**: Every tool call is logged with timestamp, tool name, and result status.
 
@@ -168,13 +170,13 @@ Any endpoint implementing the OpenAI chat completions API with function calling:
 
 ## Design Principles
 
-qsp-mcp is a **strict, stateless pipe**:
+qsp-client is a **strict, stateless pipe**:
 
 - No caching, no shared state, no health polling
 - All state lives in MCP servers
 - All inference optimization lives in the inference server (prefix caching, KV-cache)
-- MCP servers handle their own degradation — qsp-mcp passes results blindly
-- Multiple qsp-mcp instances can point at a single inference server
+- MCP servers handle their own degradation — qsp-client passes results blindly
+- Multiple qsp-client instances can point at a single inference server
 
 ---
 

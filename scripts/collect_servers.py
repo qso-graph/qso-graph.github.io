@@ -33,8 +33,8 @@ OUT = Path(__file__).resolve().parent.parent / "data" / "servers.json"
 UA = "qso-graph-site (+https://github.com/qso-graph/qso-graph.github.io)"
 
 # Packages that are MCP clients, not servers, so have no tools to list.
-# qsp-mcp relays a local LLM's tool calls to the qso-graph servers.
-CLIENTS = {"qsp-mcp"}
+# qsp-client (formerly qsp-mcp) relays a local LLM's tool calls to the qso-graph servers.
+CLIENTS = {"qsp-client", "qsp-mcp"}
 
 # ionis-mcp won't start without its dataset folder, even just to list its
 # tools; an empty folder is enough for that.
@@ -86,9 +86,15 @@ asyncio.run(main())
 '''
 
 
+class NotReleased(Exception):
+    """In the org with a server.json, but not on PyPI yet (e.g. between a rename's merge and its release)."""
+
+
 def collect(server: dict, workdir: Path) -> dict:
     package = server["package"]
     pypi = get_json(f"https://pypi.org/pypi/{package}/json")
+    if pypi is None:
+        raise NotReleased(package)
     version = pypi["info"]["version"]
     env_dir = workdir / package
     venv.EnvBuilder(with_pip=True, clear=True).create(env_dir)
@@ -124,6 +130,8 @@ def main() -> int:
                 data[s["package"]] = collect(s, Path(tmp))
                 d = data[s["package"]]
                 print(f"{d['version']}, " + (f"{len(d['tools'])} tools" if d["kind"] == "server" else "client"), flush=True)
+            except NotReleased:
+                print("not on PyPI yet; skipped (a page that names it still fails the build)", flush=True)
             except Exception as e:
                 print(f"FAILED ({e})", flush=True)
                 failed.append(s["package"])

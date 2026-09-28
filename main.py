@@ -47,7 +47,7 @@ def _macros(servers: dict) -> dict:
         return ", ".join(f"`{t}`" for t in server(package)["tools"])
 
     def server_count() -> int:
-        """MCP servers (not clients such as qsp-mcp)."""
+        """MCP servers (not clients such as qsp-client)."""
         return sum(1 for s in servers.values() if s["kind"] == "server")
 
     def tool_total() -> int:

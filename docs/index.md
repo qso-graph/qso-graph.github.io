@@ -55,7 +55,7 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 
 | Package | What It Does |
 |---------|--------------|
-| [qsp-mcp](servers/qsp-mcp.md) | QSP — relay MCP tools to any local LLM (llama.cpp, Ollama, vLLM, SGLang) |
+| [qsp-client](servers/qsp-client.md) | QSP — relay MCP tools to any local LLM (llama.cpp, Ollama, vLLM, SGLang) |
 | [llm-stack](servers/llm-stack.md) | Docker Compose — Open WebUI + llama.cpp + MCP tools in a browser |
 
 ---
@@ -76,7 +76,7 @@ pip install pota-mcp sota-mcp iota-mcp solar-mcp wspr-mcp
 pip install ionis-mcp n1mm-mcp netlogger-mcp
 
 # Tool relay — use all MCP tools with a local LLM (no cloud needed)
-pip install qsp-mcp
+pip install qsp-client
 ```
 
 See [Getting Started](getting-started.md) for MCP client configuration.
