@@ -34,6 +34,7 @@ render_macros: true
 | [n1mm-mcp](servers/n1mm-mcp.md) | {{ version("n1mm-mcp") }} | {{ tools("n1mm-mcp") }} | {{ ci_badge("n1mm-mcp") }} |
 | [ionis-mcp](https://github.com/qso-graph/ionis-mcp) | {{ version("ionis-mcp") }} | {{ tools("ionis-mcp") }} | {{ ci_badge("ionis-mcp") }} |
 | [netlogger-mcp](https://github.com/qso-graph/netlogger-mcp) | {{ version("netlogger-mcp") }} | {{ tools("netlogger-mcp") }} | {{ ci_badge("netlogger-mcp") }} |
+| [omiss-mcp](servers/omiss-mcp.md) | {{ version("omiss-mcp") }} | {{ tools("omiss-mcp") }} | {{ ci_badge("omiss-mcp") }} |
 
 ---
 

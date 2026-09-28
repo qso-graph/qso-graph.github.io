@@ -35,6 +35,7 @@ QSO-Graph provides {{ server_count() }} MCP servers ({{ tool_total() }} tools), 
 | [iota-mcp](iota.md) | {{ tools("iota-mcp") }} | Islands on the Air | None (public) |
 | [solar-mcp](solar.md) | {{ tools("solar-mcp") }} | NOAA SWPC | None (public) |
 | [wspr-mcp](wspr.md) | {{ tools("wspr-mcp") }} | wspr.live (ClickHouse) | None (public) |
+| [omiss-mcp](omiss-mcp.md) | {{ tools("omiss-mcp") }} | OMISS (omiss.net) | None (public) |
 
 ### Propagation Analytics
 
@@ -73,7 +74,7 @@ Every tool call includes a `persona` parameter so the server knows which credent
 
 ### Public (No Auth)
 
-POTA, SOTA, IOTA, Solar, and WSPR servers access public APIs — no credentials needed. Just install and go.
+POTA, SOTA, IOTA, Solar, WSPR and OMISS servers access public data — no credentials needed. Just install and go.
 
 ---
 
@@ -120,3 +121,4 @@ Each server implements rate limiting appropriate for its service:
 | iota-mcp | 200ms | — | — |
 | solar-mcp | 200ms | — | — |
 | wspr-mcp | 3000ms | 20/min | Circuit breaker (60-300s) |
+| omiss-mcp | 2000ms | 30/min, shared by every copy | 429/503 back-off (60-3600s) |
