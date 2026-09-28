@@ -1,12 +1,27 @@
 name: Deploy MkDocs to GitHub Pages
 
+# Versions and tool counts on the site are collected from the released
+# packages at build time (scripts/collect_servers.py), never typed. The daily
+# build picks up a new release within a day. A pull request builds without
+# deploying, so a broken page fails before it merges.
+
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: "30 7 * * *"  # daily 07:30 UTC
+  workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -21,5 +36,14 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Build and deploy
+      - name: Collect every server's released version and tools
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/collect_servers.py
+
+      - name: Build (strict)
+        run: mkdocs build --strict
+
+      - name: Deploy
+        if: github.event_name != 'pull_request'
         run: mkdocs gh-deploy --force

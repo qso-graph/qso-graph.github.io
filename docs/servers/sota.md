@@ -1,3 +1,7 @@
+---
+render_macros: true
+---
+
 # sota-mcp
 
 **Summits on the Air integration — spots, alerts, summit info, and nearby search.**
@@ -12,7 +16,7 @@ pip install sota-mcp
 
 ## Tools
 
-All 5 tools are **public** — no credentials needed.
+All {{ tools("sota-mcp") }} tools are **public** — no credentials needed.
 
 | Tool | Description |
 |------|-------------|

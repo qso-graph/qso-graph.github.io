@@ -1,3 +1,7 @@
+---
+render_macros: true
+---
+
 # pota-mcp
 
 **Parks on the Air integration — live spots, park info, stats, schedules, and park search.**
@@ -12,7 +16,7 @@ pip install pota-mcp
 
 ## Tools
 
-All 8 tools are **public** — no credentials needed.
+All {{ tools("pota-mcp") }} tools are **public** — no credentials needed.
 
 | Tool | Description |
 |------|-------------|

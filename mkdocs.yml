@@ -49,6 +49,12 @@ markdown_extensions:
 
 plugins:
   - search
+  # Versions and tool counts come from data/servers.json (scripts/collect_servers.py).
+  # Only pages with `render_macros: true` in their front matter are rendered.
+  - macros:
+      render_by_default: false
+      on_undefined: strict
+      on_error_fail: true
 
 extra:
   social:
@@ -81,6 +87,7 @@ nav:
       - WSPR: servers/wspr.md
     - Radio Logging:
       - N1MM Logger+: servers/n1mm-mcp.md
+      - NetLogger: servers/netlogger-mcp.md
     - Infrastructure:
       - QSP (Tool Relay): servers/qsp-mcp.md
       - LLM Stack: servers/llm-stack.md

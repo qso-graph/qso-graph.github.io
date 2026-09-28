@@ -1,3 +1,7 @@
+---
+render_macros: true
+---
+
 # n1mm-mcp
 
 **N1MM Logger+ integration — live contest state via UDP broadcast.**
@@ -12,7 +16,7 @@ pip install n1mm-mcp
 
 ## Tools
 
-All 9 tools are **public** — no credentials needed. N1MM Logger+ broadcasts contest state over UDP on your local network.
+All {{ tools("n1mm-mcp") }} tools are **public** — no credentials needed. N1MM Logger+ broadcasts contest state over UDP on your local network.
 
 | Tool | Description |
 |------|-------------|

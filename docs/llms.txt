@@ -1,32 +1,42 @@
 # qso-graph — MCP Servers for Amateur Radio
 
-> Open-source Model Context Protocol servers connecting AI assistants to amateur radio services. 11 packages, secure by design.
+> Open-source Model Context Protocol servers connecting AI assistants to amateur radio services. {{ server_count() }} MCP servers, {{ tool_total() }} tools, secure by design.
 
 ## Foundation
 
 - [qso-graph-auth](https://qso-graph.io/servers/qso-graph-auth/): OS keyring credential management, persona CRUD, provider management. Foundation for all authenticated servers.
-- [adif-mcp](https://qso-graph.io/servers/adif-mcp/): ADIF 3.1.6 spec engine, validation, parsing, enumerations, geospatial. 8 tools.
+- [adif-mcp](https://qso-graph.io/servers/adif-mcp/): ADIF 3.1.7 spec engine, validation, parsing, enumerations, geospatial. {{ tools("adif-mcp") }} tools.
 
 ## Logbook Services (Authenticated)
 
-- [eqsl-mcp](https://qso-graph.io/servers/eqsl/): eQSL.cc — inbox download, QSO verification, AG status, last upload, download. 5 tools.
-- [qrz-mcp](https://qso-graph.io/servers/qrz/): QRZ.com — callsign lookup, DXCC resolution, logbook access, download. 5 tools.
-- [lotw-mcp](https://qso-graph.io/servers/lotw/): LoTW (ARRL) — confirmations, QSOs, DXCC credits, user activity, download. 5 tools.
-- [hamqth-mcp](https://qso-graph.io/servers/hamqth/): HamQTH — callsign lookup, DXCC, bio, activity, DX spots, RBN, QSO verify. 7 tools.
+- [eqsl-mcp](https://qso-graph.io/servers/eqsl/): eQSL.cc — inbox download, QSO verification, AG status, last upload, download. {{ tools("eqsl-mcp") }} tools.
+- [qrz-mcp](https://qso-graph.io/servers/qrz/): QRZ.com — callsign lookup, DXCC resolution, logbook access, download. {{ tools("qrz-mcp") }} tools.
+- [lotw-mcp](https://qso-graph.io/servers/lotw/): LoTW (ARRL) — confirmations, QSOs, DXCC credits, user activity, download. {{ tools("lotw-mcp") }} tools.
+- [hamqth-mcp](https://qso-graph.io/servers/hamqth/): HamQTH — callsign lookup, DXCC, bio, activity, DX spots, RBN, QSO verify. {{ tools("hamqth-mcp") }} tools.
 
 ## Public Services (No Auth Required)
 
-- [pota-mcp](https://qso-graph.io/servers/pota/): Parks on the Air — live spots, park info, stats, schedules, location search. 6 tools.
-- [sota-mcp](https://qso-graph.io/servers/sota/): Summits on the Air — spots, alerts, summit info, nearby search. 4 tools.
-- [solar-mcp](https://qso-graph.io/servers/solar/): NOAA SWPC — SFI, Kp, solar wind, X-ray flux, band outlook, alerts. 6 tools.
-- [iota-mcp](https://qso-graph.io/servers/iota/): Islands on the Air — group lookup, island search, DXCC mapping, nearby groups, programme stats. 6 tools.
-- [wspr-mcp](https://qso-graph.io/servers/wspr/): wspr.live ClickHouse — beacon spots, band activity, top beacons, top spotters, propagation, grid activity, longest paths, SNR trends. 8 tools.
+- [pota-mcp](https://qso-graph.io/servers/pota/): Parks on the Air — live spots, park info, stats, schedules, location search. {{ tools("pota-mcp") }} tools.
+- [sota-mcp](https://qso-graph.io/servers/sota/): Summits on the Air — spots, alerts, summit info, nearby search. {{ tools("sota-mcp") }} tools.
+- [solar-mcp](https://qso-graph.io/servers/solar/): NOAA SWPC — SFI, Kp, solar wind, X-ray flux, band outlook, alerts. {{ tools("solar-mcp") }} tools.
+- [iota-mcp](https://qso-graph.io/servers/iota/): Islands on the Air — group lookup, island search, DXCC mapping, nearby groups, programme stats. {{ tools("iota-mcp") }} tools.
+- [ionis-mcp](https://github.com/qso-graph/ionis-mcp): IONIS-AI HF propagation analytics over published signature datasets. {{ tools("ionis-mcp") }} tools.
+- [wspr-mcp](https://qso-graph.io/servers/wspr/): wspr.live ClickHouse — beacon spots, band activity, top beacons, top spotters, propagation, grid activity, longest paths, SNR trends. {{ tools("wspr-mcp") }} tools.
+
+## Radio Logging
+
+- [n1mm-mcp](https://qso-graph.io/servers/n1mm-mcp/): N1MM Logger+ live contest state over UDP broadcast. {{ tools("n1mm-mcp") }} tools.
+- [netlogger-mcp](https://qso-graph.io/servers/netlogger-mcp/): NetLogger nets on the air, live check-ins and who's up, past nets. {{ tools("netlogger-mcp") }} tools.
+
+## Infrastructure
+
+- [qsp-mcp](https://qso-graph.io/servers/qsp-mcp/): QSP relay — MCP tools for any OpenAI-compatible local LLM.
 
 ## Documentation
 
 - [Getting Started](https://qso-graph.io/getting-started/): Installation, credential setup, MCP client configuration for Claude Desktop, Claude Code, ChatGPT, Cursor, VS Code, and Gemini CLI.
 - [Architecture](https://qso-graph.io/architecture/): System design — foundation layer, credential flow, rate limiting, read-only security model.
-- [Testing & Validation](https://qso-graph.io/testing/): 66 security tests across 11 packages, ADIF 3.1.6 official test corpus validation, forensic tests from real operator data.
+- [Testing & Validation](https://qso-graph.io/testing/): four test layers per server, ADIF 3.1.7 official test corpus validation, forensic tests from real operator data.
 - [Security](https://qso-graph.io/security/): 10 non-negotiable security guarantees, credential architecture, forbidden patterns, release process, incident response.
 
 ## Key Facts

@@ -1,3 +1,7 @@
+---
+render_macros: true
+---
+
 # Testing & Validation
 
 **Every QSO-Graph server is tested across four independent layers before release.** Each layer catches different failure modes. All four must pass before a fleet-wide release.
@@ -13,28 +17,23 @@
 
 ## Fleet Overview
 
-**12 servers, 82 tools, 4 test layers.**
+**{{ server_count() }} servers, {{ tool_total() }} tools, 4 test layers.** Versions and tool counts are the released packages', collected when the site is built; the CI badge is each repo's live status.
 
-| Package | Version | Tools | L1 Security | L2 Unit | L3 Live | L4 Fleet |
-|---------|---------|:-----:|:-----------:|:-------:|:-------:|:--------:|
-| [adif-mcp](servers/adif-mcp.md) | 1.0.1 | 8 | 6 PASS | 48 PASS | CI/CD | PASS |
-| [eqsl-mcp](servers/eqsl.md) | 0.3.1 | 5 | 6 PASS | 45 PASS | Auth | PASS |
-| [qrz-mcp](servers/qrz.md) | 0.3.1 | 5 | 6 PASS | 38 PASS | Auth | PASS |
-| [lotw-mcp](servers/lotw.md) | 0.3.1 | 5 | 6 PASS | 38 PASS | Auth | PASS |
-| [hamqth-mcp](servers/hamqth.md) | 0.4.0 | 7 | 6 PASS | 39 PASS | 10 PASS | PASS |
-| [pota-mcp](servers/pota.md) | 0.2.0 | 7 | 6 PASS | 45 PASS | 15 PASS | PASS |
-| [sota-mcp](servers/sota.md) | 0.1.4 | 4 | 6 PASS | 33 PASS | 10 PASS | PASS |
-| [solar-mcp](servers/solar.md) | 0.2.0 | 6 | 6 PASS | 43 PASS | 15 PASS | PASS |
-| [wspr-mcp](servers/wspr.md) | 0.3.0 | 8 | 6 PASS | 40 PASS | 12 PASS | PASS |
-| [iota-mcp](servers/iota.md) | 0.1.0 | 6 | 6 PASS | 46 PASS | 12 PASS | PASS |
-| [n1mm-mcp](servers/n1mm-mcp.md) | 0.1.4 | 8 | 6 PASS | 59 PASS | Local | PASS |
-| [ionis-mcp](https://github.com/qso-graph/ionis-mcp) | 1.2.8 | 11 | 6 PASS | — | Local | PASS |
-| **Total** | — | **82** | **72** | **474+** | **74** | **20** |
-
-!!! note "L3 Live column notes"
-    - **Auth** — requires OS keyring credentials (eQSL, QRZ, LoTW accounts)
-    - **Local** — requires local infrastructure (N1MM Logger+, SQLite datasets)
-    - **CI/CD** — tested in GitHub Actions pipeline
+| Package | Version | Tools | CI |
+|---------|---------|:-----:|:--:|
+| [adif-mcp](servers/adif-mcp.md) | {{ version("adif-mcp") }} | {{ tools("adif-mcp") }} | {{ ci_badge("adif-mcp") }} |
+| [eqsl-mcp](servers/eqsl.md) | {{ version("eqsl-mcp") }} | {{ tools("eqsl-mcp") }} | {{ ci_badge("eqsl-mcp") }} |
+| [qrz-mcp](servers/qrz.md) | {{ version("qrz-mcp") }} | {{ tools("qrz-mcp") }} | {{ ci_badge("qrz-mcp") }} |
+| [lotw-mcp](servers/lotw.md) | {{ version("lotw-mcp") }} | {{ tools("lotw-mcp") }} | {{ ci_badge("lotw-mcp") }} |
+| [hamqth-mcp](servers/hamqth.md) | {{ version("hamqth-mcp") }} | {{ tools("hamqth-mcp") }} | {{ ci_badge("hamqth-mcp") }} |
+| [pota-mcp](servers/pota.md) | {{ version("pota-mcp") }} | {{ tools("pota-mcp") }} | {{ ci_badge("pota-mcp") }} |
+| [sota-mcp](servers/sota.md) | {{ version("sota-mcp") }} | {{ tools("sota-mcp") }} | {{ ci_badge("sota-mcp") }} |
+| [solar-mcp](servers/solar.md) | {{ version("solar-mcp") }} | {{ tools("solar-mcp") }} | {{ ci_badge("solar-mcp") }} |
+| [wspr-mcp](servers/wspr.md) | {{ version("wspr-mcp") }} | {{ tools("wspr-mcp") }} | {{ ci_badge("wspr-mcp") }} |
+| [iota-mcp](servers/iota.md) | {{ version("iota-mcp") }} | {{ tools("iota-mcp") }} | {{ ci_badge("iota-mcp") }} |
+| [n1mm-mcp](servers/n1mm-mcp.md) | {{ version("n1mm-mcp") }} | {{ tools("n1mm-mcp") }} | {{ ci_badge("n1mm-mcp") }} |
+| [ionis-mcp](https://github.com/qso-graph/ionis-mcp) | {{ version("ionis-mcp") }} | {{ tools("ionis-mcp") }} | {{ ci_badge("ionis-mcp") }} |
+| [netlogger-mcp](https://github.com/qso-graph/netlogger-mcp) | {{ version("netlogger-mcp") }} | {{ tools("netlogger-mcp") }} | {{ ci_badge("netlogger-mcp") }} |
 
 ---
 

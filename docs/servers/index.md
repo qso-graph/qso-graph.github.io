@@ -1,6 +1,10 @@
+---
+render_macros: true
+---
+
 # Server Overview
 
-QSO-Graph provides 14 packages (12 MCP servers + auth foundation + LLM relay) covering amateur radio logging, confirmations, propagation services, and local LLM integration.
+QSO-Graph provides {{ server_count() }} MCP servers ({{ tool_total() }} tools), plus the qso-graph-auth credential foundation, the qsp-mcp relay and the llm-stack, covering amateur radio logging, confirmations, propagation services, and local LLM integration.
 
 ---
 
@@ -11,26 +15,39 @@ QSO-Graph provides 14 packages (12 MCP servers + auth foundation + LLM relay) co
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
 | [qso-graph-auth](qso-graph-auth.md) | — | OS keyring credentials | None (local) |
-| [adif-mcp](adif-mcp.md) | 8 | ADIF 3.1.7 spec | None (local) |
+| [adif-mcp](adif-mcp.md) | {{ tools("adif-mcp") }} | ADIF 3.1.7 spec | None (local) |
 
 ### Logbook Services
 
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
-| [eqsl-mcp](eqsl.md) | 6 | eQSL.cc | Persona (session) |
-| [qrz-mcp](qrz.md) | 6 | QRZ.com | Persona (XML) + API key (Logbook) |
-| [lotw-mcp](lotw.md) | 6 | LoTW (ARRL) | Persona (HTTPS) |
-| [hamqth-mcp](hamqth.md) | 8 | HamQTH.com | Persona (XML session) |
+| [eqsl-mcp](eqsl.md) | {{ tools("eqsl-mcp") }} | eQSL.cc | Persona (session) |
+| [qrz-mcp](qrz.md) | {{ tools("qrz-mcp") }} | QRZ.com | Persona (XML) + API key (Logbook) |
+| [lotw-mcp](lotw.md) | {{ tools("lotw-mcp") }} | LoTW (ARRL) | Persona (HTTPS) |
+| [hamqth-mcp](hamqth.md) | {{ tools("hamqth-mcp") }} | HamQTH.com | Persona (XML session) |
 
 ### Public Services
 
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
-| [pota-mcp](pota.md) | 8 | Parks on the Air | None (public) |
-| [sota-mcp](sota.md) | 5 | Summits on the Air | None (public) |
-| [iota-mcp](iota.md) | 7 | Islands on the Air | None (public) |
-| [solar-mcp](solar.md) | 7 | NOAA SWPC | None (public) |
-| [wspr-mcp](wspr.md) | 9 | wspr.live (ClickHouse) | None (public) |
+| [pota-mcp](pota.md) | {{ tools("pota-mcp") }} | Parks on the Air | None (public) |
+| [sota-mcp](sota.md) | {{ tools("sota-mcp") }} | Summits on the Air | None (public) |
+| [iota-mcp](iota.md) | {{ tools("iota-mcp") }} | Islands on the Air | None (public) |
+| [solar-mcp](solar.md) | {{ tools("solar-mcp") }} | NOAA SWPC | None (public) |
+| [wspr-mcp](wspr.md) | {{ tools("wspr-mcp") }} | wspr.live (ClickHouse) | None (public) |
+
+### Propagation Analytics
+
+| Package | Tools | Service | Auth Pattern |
+|---------|:-----:|---------|-------------|
+| [ionis-mcp](https://github.com/qso-graph/ionis-mcp) | {{ tools("ionis-mcp") }} | IONIS-AI signature datasets | None (local) |
+
+### Radio Logging
+
+| Package | Tools | Service | Auth Pattern |
+|---------|:-----:|---------|-------------|
+| [n1mm-mcp](n1mm-mcp.md) | {{ tools("n1mm-mcp") }} | N1MM Logger+ (UDP broadcast) | None (local) |
+| [netlogger-mcp](netlogger-mcp.md) | {{ tools("netlogger-mcp") }} | NetLogger | Callsign (public API) |
 
 ### Infrastructure
 
