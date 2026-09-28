@@ -3,7 +3,7 @@ PYTHON  ?= python3
 MKDOCS  ?= mkdocs
 PORT    ?= 8080
 
-.PHONY: help install build serve clean distclean
+.PHONY: help install data build serve clean distclean
 
 help:  ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
@@ -11,6 +11,9 @@ help:  ## Show this help
 
 install:  ## Install Python dependencies
 	$(PYTHON) -m pip install -r requirements.txt
+
+data:  ## Collect every server's released version and tools (data/servers.json)
+	$(PYTHON) scripts/collect_servers.py
 
 build:  ## Build the static site into site/
 	$(MKDOCS) build

@@ -1,3 +1,7 @@
+---
+render_macros: true
+---
+
 # iota-mcp
 
 **Islands on the Air integration — group lookup, island search, DXCC mapping, nearby groups, programme statistics.**
@@ -12,7 +16,7 @@ pip install iota-mcp
 
 ## Tools
 
-All 7 tools are **public** — no credentials needed.
+All {{ tools("iota-mcp") }} tools are **public** — no credentials needed.
 
 | Tool | Description |
 |------|-------------|

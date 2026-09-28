@@ -1,3 +1,7 @@
+---
+render_macros: true
+---
+
 # QSO-Graph
 
 **MCP servers connecting AI assistants to ham radio services.**
@@ -6,33 +10,46 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 
 ---
 
-## 14 Packages
+## Packages
 
 ### Foundation
 
 | Package | Tools | What It Does |
 |---------|:-----:|--------------|
 | [qso-graph-auth](servers/qso-graph-auth.md) | — | OS keyring credential management, persona CRUD, provider management |
-| [adif-mcp](servers/adif-mcp.md) | 8 | ADIF 3.1.7 spec engine, validation, parsing, geospatial |
+| [adif-mcp](servers/adif-mcp.md) | {{ tools("adif-mcp") }} | ADIF 3.1.7 spec engine, validation, parsing, geospatial |
 
 ### Logbook Services (Authenticated)
 
 | Package | Tools | Auth | What It Does |
 |---------|:-----:|------|--------------|
-| [eqsl-mcp](servers/eqsl.md) | 6 | Persona | eQSL inbox, QSO verification, AG status, download, version info |
-| [qrz-mcp](servers/qrz.md) | 6 | Persona + API key | Callsign lookup, DXCC, logbook access, download, version info |
-| [lotw-mcp](servers/lotw.md) | 6 | Persona | LoTW confirmations, QSOs, DXCC credits, download, version info |
-| [hamqth-mcp](servers/hamqth.md) | 8 | Persona | Callsign lookup, DXCC, bio, activity, DX spots, RBN, QSO verify, version info |
+| [eqsl-mcp](servers/eqsl.md) | {{ tools("eqsl-mcp") }} | Persona | eQSL inbox, QSO verification, AG status, download, version info |
+| [qrz-mcp](servers/qrz.md) | {{ tools("qrz-mcp") }} | Persona + API key | Callsign lookup, DXCC, logbook access, download, version info |
+| [lotw-mcp](servers/lotw.md) | {{ tools("lotw-mcp") }} | Persona | LoTW confirmations, QSOs, DXCC credits, download, version info |
+| [hamqth-mcp](servers/hamqth.md) | {{ tools("hamqth-mcp") }} | Persona | Callsign lookup, DXCC, bio, activity, DX spots, RBN, QSO verify, version info |
 
 ### Public Services (No Auth Required)
 
 | Package | Tools | What It Does |
 |---------|:-----:|--------------|
-| [pota-mcp](servers/pota.md) | 8 | Live spots, park info, stats, schedules, nearby parks, version info |
-| [sota-mcp](servers/sota.md) | 5 | Spots, alerts, summit info, nearby search, version info |
-| [iota-mcp](servers/iota.md) | 7 | Group lookup, island search, DXCC mapping, nearby, version info |
-| [solar-mcp](servers/solar.md) | 7 | SFI, Kp, solar wind, X-ray, band outlook, version info |
-| [wspr-mcp](servers/wspr.md) | 9 | Beacon spots, band activity, top beacons/spotters, propagation, SNR trends, version info |
+| [pota-mcp](servers/pota.md) | {{ tools("pota-mcp") }} | Live spots, park info, stats, schedules, nearby parks, version info |
+| [sota-mcp](servers/sota.md) | {{ tools("sota-mcp") }} | Spots, alerts, summit info, nearby search, version info |
+| [iota-mcp](servers/iota.md) | {{ tools("iota-mcp") }} | Group lookup, island search, DXCC mapping, nearby, version info |
+| [solar-mcp](servers/solar.md) | {{ tools("solar-mcp") }} | SFI, Kp, solar wind, X-ray, band outlook, version info |
+| [wspr-mcp](servers/wspr.md) | {{ tools("wspr-mcp") }} | Beacon spots, band activity, top beacons/spotters, propagation, SNR trends, version info |
+
+### Propagation Analytics
+
+| Package | Tools | What It Does |
+|---------|:-----:|--------------|
+| [ionis-mcp](https://github.com/qso-graph/ionis-mcp) | {{ tools("ionis-mcp") }} | IONIS-AI HF propagation analytics over published signature datasets |
+
+### Radio Logging
+
+| Package | Tools | What It Does |
+|---------|:-----:|--------------|
+| [n1mm-mcp](servers/n1mm-mcp.md) | {{ tools("n1mm-mcp") }} | N1MM Logger+ live contest state over UDP broadcast |
+| [netlogger-mcp](servers/netlogger-mcp.md) | {{ tools("netlogger-mcp") }} | NetLogger nets on the air, live check-ins and who's up, past nets |
 
 ### Infrastructure
 
@@ -54,6 +71,9 @@ pip install eqsl-mcp qrz-mcp lotw-mcp hamqth-mcp
 
 # Public services (no credentials needed)
 pip install pota-mcp sota-mcp iota-mcp solar-mcp wspr-mcp
+
+# Propagation analytics and radio logging
+pip install ionis-mcp n1mm-mcp netlogger-mcp
 
 # Tool relay — use all MCP tools with a local LLM (no cloud needed)
 pip install qsp-mcp

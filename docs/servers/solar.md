@@ -1,3 +1,7 @@
+---
+render_macros: true
+---
+
 # solar-mcp
 
 **Space weather integration — real-time solar conditions, forecasts, alerts, solar wind, X-ray flux, and HF band outlook.**
@@ -12,7 +16,7 @@ pip install solar-mcp
 
 ## Tools
 
-All 7 tools are **public** — no credentials needed. Data comes from NOAA Space Weather Prediction Center.
+All {{ tools("solar-mcp") }} tools are **public** — no credentials needed. Data comes from NOAA Space Weather Prediction Center.
 
 | Tool | Description |
 |------|-------------|

@@ -1,3 +1,7 @@
+---
+render_macros: true
+---
+
 # wspr-mcp
 
 **WSPR beacon analytics — live spots, band activity, top beacons, propagation paths, SNR trends, and more.**
@@ -14,7 +18,7 @@ pip install wspr-mcp
 
 ## Tools
 
-All 9 tools are **public** — no credentials needed.
+All {{ tools("wspr-mcp") }} tools are **public** — no credentials needed.
 
 | Tool | Description |
 |------|-------------|
