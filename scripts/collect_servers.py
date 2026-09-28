@@ -36,6 +36,10 @@ UA = "qso-graph-site (+https://github.com/qso-graph/qso-graph.github.io)"
 # qsp-mcp relays a local LLM's tool calls to the qso-graph servers.
 CLIENTS = {"qsp-mcp"}
 
+# ionis-mcp won't start without its dataset folder, even just to list its
+# tools; an empty folder is enough for that.
+NEEDS_DATA_DIR = {"ionis-mcp": "IONIS_DATA_DIR"}
+
 
 def get_json(url: str, token: bool = False):
     headers = {"User-Agent": UA, "Accept": "application/json"}
@@ -96,8 +100,15 @@ def collect(server: dict, workdir: Path) -> dict:
         return {**server, "version": version, "summary": pypi["info"]["summary"] or "", "kind": "client", "tools": []}
     env = dict(os.environ)
     env[package.upper().replace("-", "_") + "_MOCK"] = "1"
+    if package in NEEDS_DATA_DIR:
+        data_dir = workdir / f"{package}-data"
+        data_dir.mkdir(exist_ok=True)
+        env[NEEDS_DATA_DIR[package]] = str(data_dir)
     result = subprocess.run([str(python), "-c", LIST_TOOLS, str(bin_dir / package)],
-                            capture_output=True, text=True, env=env, timeout=180, check=True)
+                            capture_output=True, text=True, env=env, timeout=180)
+    if result.returncode != 0:
+        tail = " | ".join(line for line in result.stderr.strip().splitlines()[-5:] if line.strip())
+        raise RuntimeError(f"couldn't list its tools: {tail}")
     tools = json.loads(result.stdout.strip().splitlines()[-1])
     return {**server, "version": version, "summary": pypi["info"]["summary"] or "", "kind": "server", "tools": tools}
 
