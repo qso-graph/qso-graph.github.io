@@ -30,7 +30,7 @@
 
 ## Infrastructure
 
-- [qsp-mcp](https://qso-graph.io/servers/qsp-mcp/): QSP relay — MCP tools for any OpenAI-compatible local LLM.
+- [qsp-client](https://qso-graph.io/servers/qsp-client/): QSP relay (formerly qsp-mcp) — an MCP client that gives any OpenAI-compatible local LLM the qso-graph tools.
 
 ## Documentation
 

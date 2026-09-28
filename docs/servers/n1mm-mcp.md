@@ -100,7 +100,7 @@ n1mm-mcp (Python, any OS on same LAN)
     ├── State Engine (in-memory, partitioned by StationName)
     │   MCP protocol (stdio)
     ▼
-AI Assistant (Claude, qsp-mcp, etc.)
+AI Assistant (Claude, qsp-client, etc.)
 ```
 
 ---
