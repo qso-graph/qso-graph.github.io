@@ -37,6 +37,7 @@ Ask your AI assistant to look up a callsign, check your LoTW confirmations, find
 | [iota-mcp](servers/iota.md) | {{ tools("iota-mcp") }} | Group lookup, island search, DXCC mapping, nearby, version info |
 | [solar-mcp](servers/solar.md) | {{ tools("solar-mcp") }} | SFI, Kp, solar wind, X-ray, band outlook, version info |
 | [wspr-mcp](servers/wspr.md) | {{ tools("wspr-mcp") }} | Beacon spots, band activity, top beacons/spotters, propagation, SNR trends, version info |
+| [omiss-mcp](servers/omiss-mcp.md) | {{ tools("omiss-mcp") }} | OMISS net schedule, nets on the air, members, check-in history, Statehood, officers, awards, statistics |
 
 ### Propagation Analytics
 

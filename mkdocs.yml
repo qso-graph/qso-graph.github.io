@@ -88,6 +88,7 @@ nav:
       - IOTA: servers/iota.md
       - Solar Weather: servers/solar.md
       - WSPR: servers/wspr.md
+      - OMISS: servers/omiss-mcp.md
     - Radio Logging:
       - N1MM Logger+: servers/n1mm-mcp.md
       - NetLogger: servers/netlogger-mcp.md

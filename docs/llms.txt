@@ -22,6 +22,7 @@
 - [iota-mcp](https://qso-graph.io/servers/iota/): Islands on the Air — group lookup, island search, DXCC mapping, nearby groups, programme stats. {{ tools("iota-mcp") }} tools.
 - [ionis-mcp](https://github.com/qso-graph/ionis-mcp): IONIS-AI HF propagation analytics over published signature datasets. {{ tools("ionis-mcp") }} tools.
 - [wspr-mcp](https://qso-graph.io/servers/wspr/): wspr.live ClickHouse — beacon spots, band activity, top beacons, top spotters, propagation, grid activity, longest paths, SNR trends. {{ tools("wspr-mcp") }} tools.
+- [omiss-mcp](https://qso-graph.io/servers/omiss-mcp/): OMISS (Old Man International Sideband Society) — net schedule, nets on the air, member lookup, check-in history, Statehood schedule, officers, awards, net statistics. {{ tools("omiss-mcp") }} tools.
 
 ## Radio Logging
 

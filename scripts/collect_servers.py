@@ -3,7 +3,7 @@
 
 Nothing on the site about versions or tools is typed by hand. For every org
 repo with a server.json, this installs the package from PyPI into its own
-virtual environment, starts it the way an MCP client would (stdio), and asks
+virtual environment (with uv, which must be on PATH), starts it the way an MCP client would (stdio), and asks
 it for its tools. The result is data/servers.json, which the pages read through
 the macros in main.py.
 
@@ -25,11 +25,12 @@ import sys
 import tempfile
 import urllib.error
 import urllib.request
-import venv
 from pathlib import Path
 
 ORG = "qso-graph"
 OUT = Path(__file__).resolve().parent.parent / "data" / "servers.json"
+PYTHON = "3.12"  # each server's own environment, made by uv
+PYPI_INDEX = "https://pypi.org/simple"
 UA = "qso-graph-site (+https://github.com/qso-graph/qso-graph.github.io)"
 
 # Packages that are MCP clients, not servers, so have no tools to list.
@@ -97,11 +98,14 @@ def collect(server: dict, workdir: Path) -> dict:
         raise NotReleased(package)
     version = pypi["info"]["version"]
     env_dir = workdir / package
-    venv.EnvBuilder(with_pip=True, clear=True).create(env_dir)
     bin_dir = env_dir / ("Scripts" if os.name == "nt" else "bin")
     python = bin_dir / "python"
-    subprocess.run([str(python), "-m", "pip", "install", "--quiet", "--disable-pip-version-check",
-                    f"{package}=={version}", "fastmcp"], check=True)
+    # uv, as the qso-graph READMEs tell users to install; from PyPI only, since
+    # the site reports what PyPI serves (a local index setting must not change that).
+    uv_env = {k: v for k, v in os.environ.items() if not k.startswith(("UV_INDEX", "UV_EXTRA_INDEX", "UV_DEFAULT_INDEX"))}
+    subprocess.run(["uv", "venv", "--quiet", "--python", PYTHON, str(env_dir)], check=True, env=uv_env)
+    subprocess.run(["uv", "pip", "install", "--quiet", "--python", str(python), "--default-index", PYPI_INDEX,
+                    f"{package}=={version}", "fastmcp"], check=True, env=uv_env)
     if package in CLIENTS:
         return {**server, "version": version, "summary": pypi["info"]["summary"] or "", "kind": "client", "tools": []}
     env = dict(os.environ)
