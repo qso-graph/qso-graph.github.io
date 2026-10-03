@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""Collect every qso-graph MCP's released version and tools, for the site.
+"""Collect every qso-graph MCP's released version, tools and README, for the site.
 
-Nothing on the site about versions or tools is typed by hand. For every org
+Nothing on the site about versions or tools is typed by hand, and each server's
+page is its README (from the repo's main branch) plus a tool reference built
+from the released server's own tool schemas, so there is one copy to edit. For every org
 repo with a server.json, this installs the package from PyPI into its own
 virtual environment (with uv, which must be on PATH), starts it the way an MCP client would (stdio), and asks
 it for its tools. The result is data/servers.json, which the pages read through
@@ -55,6 +57,16 @@ def get_json(url: str, token: bool = False):
         raise
 
 
+def readme(repo: str) -> str:
+    """The README on the repo's main branch: the one copy of each server's documentation."""
+    headers = {"User-Agent": UA, "Accept": "application/vnd.github.raw"}
+    if os.getenv("GITHUB_TOKEN"):
+        headers["Authorization"] = f"Bearer {os.environ['GITHUB_TOKEN']}"
+    url = f"https://api.github.com/repos/{ORG}/{repo}/readme"
+    with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=60) as r:
+        return r.read().decode("utf-8")
+
+
 def mcp_servers() -> list[dict]:
     out, page = [], 1
     while True:
@@ -81,7 +93,10 @@ async def main():
     transport = StdioTransport(command=sys.argv[1], args=[], env=dict(os.environ))
     async with Client(transport, timeout=60) as c:
         tools = await c.list_tools()
-    print(json.dumps(sorted(t.name for t in tools)))
+    print(json.dumps(sorted(({"name": t.name, "description": t.description or "",
+                              "inputSchema": t.inputSchema,
+                              # the parameters in the order the code declares them (the JSON is key-sorted)
+                              "params": list((t.inputSchema or {}).get("properties", {}))} for t in tools), key=lambda t: t["name"])))
 
 asyncio.run(main())
 '''
@@ -107,7 +122,8 @@ def collect(server: dict, workdir: Path) -> dict:
     subprocess.run(["uv", "pip", "install", "--quiet", "--python", str(python), "--default-index", PYPI_INDEX,
                     f"{package}=={version}", "fastmcp"], check=True, env=uv_env)
     if package in CLIENTS:
-        return {**server, "version": version, "summary": pypi["info"]["summary"] or "", "kind": "client", "tools": []}
+        return {**server, "version": version, "summary": pypi["info"]["summary"] or "", "kind": "client", "tools": [],
+                "tool_details": [], "readme": readme(server["repo"])}
     env = dict(os.environ)
     env[package.upper().replace("-", "_") + "_MOCK"] = "1"
     if package in NEEDS_DATA_DIR:
@@ -119,8 +135,9 @@ def collect(server: dict, workdir: Path) -> dict:
     if result.returncode != 0:
         tail = " | ".join(line for line in result.stderr.strip().splitlines()[-5:] if line.strip())
         raise RuntimeError(f"couldn't list its tools: {tail}")
-    tools = json.loads(result.stdout.strip().splitlines()[-1])
-    return {**server, "version": version, "summary": pypi["info"]["summary"] or "", "kind": "server", "tools": tools}
+    details = json.loads(result.stdout.strip().splitlines()[-1])
+    return {**server, "version": version, "summary": pypi["info"]["summary"] or "", "kind": "server",
+            "tools": [t["name"] for t in details], "tool_details": details, "readme": readme(server["repo"])}
 
 
 def main() -> int:
