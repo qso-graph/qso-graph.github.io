@@ -2,7 +2,7 @@
 
 ## How It Works
 
-QSO-Graph uses two layers for credential management: a **persona index** (non-secret JSON file with your callsign and date range) and the **OS keyring** (where secrets are stored). A persona is your callsign identity; a provider is a service like eQSL or QRZ. Credentials are never stored in config files — only in your operating system's secure keyring.
+QSO Graph uses two layers for credential management: a **persona index** (non-secret JSON file with your callsign and date range) and the **OS keyring** (where secrets are stored). A persona is your callsign identity; a provider is a service like eQSL or QRZ. Credentials are never stored in config files — only in your operating system's secure keyring.
 
 ---
 
@@ -204,8 +204,6 @@ and in the server's client config:
 "command": "uvx",
 "args": ["--with", "keyrings.alt", "eqsl-mcp"]
 ```
-
-With pip, one `pip install keyrings.alt` in the same environment covers both.
 
 This uses an encrypted file-based keyring instead of GNOME Keyring or KWallet.
 

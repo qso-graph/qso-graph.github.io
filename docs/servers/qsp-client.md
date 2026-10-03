@@ -6,12 +6,11 @@ Named after the Q-signal **QSP** ("Will you relay?"), qsp-client relays tool cal
 
 ```bash
 uv tool install qsp-client   # the qsp-client command, on your PATH
-pip install qsp-client       # or into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/qsp-client) · [PyPI](https://pypi.org/project/qsp-client/)
 
-Formerly **qsp-mcp**, renamed because it's an MCP client, not a server. Install the new name (`pip uninstall qsp-mcp`, then `uv tool install qsp-client`); existing configs and the `qsp-mcp` command keep working.
+Formerly **qsp-mcp**, renamed because it's an MCP client, not a server. Install the new name (`uv tool uninstall qsp-mcp`, then `uv tool install qsp-client`); existing configs and the `qsp-mcp` command keep working.
 
 ---
 
@@ -30,7 +29,7 @@ You ──> qsp-client ──> Local LLM (llama.cpp, Ollama, vLLM, SGLang)
           solar-mcp  pota-mcp  ionis-mcp
               │         │         │
               ▼         ▼         ▼
-          NOAA SWPC   POTA API  IONIS datasets
+          NOAA SWPC   POTA API  IONIS-AI datasets
 ```
 
 ---

@@ -64,17 +64,19 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/qso-graph
-      name: QSO-Graph on GitHub
+      name: QSO Graph on GitHub
     - icon: fontawesome/brands/python
       link: https://pypi.org/search/?q=qso-graph
-      name: QSO-Graph packages on PyPI
+      name: QSO Graph packages on PyPI
 
 nav:
   - Home: index.md
-  - Getting Started: getting-started.md
-  - Credential Setup: credentials.md
-  - Servers:
+  - Products: products.md
+  - How It Works: how-it-works.md
+  - MCP Servers:
     - servers/index.md
+    - Getting Started: getting-started.md
+    - Credential Setup: credentials.md
     - Foundation:
       - qso-graph-auth: servers/qso-graph-auth.md
       - adif-mcp: servers/adif-mcp.md
@@ -96,10 +98,10 @@ nav:
     - Infrastructure:
       - QSP (Tool Relay): servers/qsp-client.md
       - LLM Stack: servers/llm-stack.md
-  - Architecture: architecture.md
-  - Testing: testing.md
+    - Architecture: architecture.md
+    - Testing: testing.md
+    - Security: security.md
   - Demo: https://qso-graph-demo.vercel.app/
-  - Security: security.md
   - About:
     - about/index.md
     - Attributions: about/attributions.md

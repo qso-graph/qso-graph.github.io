@@ -4,7 +4,6 @@
 
 ```bash
 uvx qrz-mcp            # run it; nothing to install
-pip install qrz-mcp    # or install it into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/qrz-mcp) · [PyPI](https://pypi.org/project/qrz-mcp/)

@@ -8,7 +8,6 @@ render_macros: true
 
 ```bash
 uvx solar-mcp            # run it; nothing to install
-pip install solar-mcp    # or install it into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/solar-mcp) · [PyPI](https://pypi.org/project/solar-mcp/)

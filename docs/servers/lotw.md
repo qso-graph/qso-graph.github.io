@@ -4,7 +4,6 @@
 
 ```bash
 uvx lotw-mcp            # run it; nothing to install
-pip install lotw-mcp    # or install it into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/lotw-mcp) · [PyPI](https://pypi.org/project/lotw-mcp/)

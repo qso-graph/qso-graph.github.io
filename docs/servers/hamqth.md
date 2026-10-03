@@ -4,7 +4,6 @@
 
 ```bash
 uvx hamqth-mcp            # run it; nothing to install
-pip install hamqth-mcp    # or install it into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/hamqth-mcp) · [PyPI](https://pypi.org/project/hamqth-mcp/)

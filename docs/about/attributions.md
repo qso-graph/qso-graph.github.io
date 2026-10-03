@@ -1,6 +1,6 @@
 # Attributions
 
-**QSO-Graph exists because of the services, data, and standards built by these organizations and individuals. We are grateful for their work.**
+**QSO Graph exists because of the services, data, and standards built by these organizations and individuals. We are grateful for their work.**
 
 ---
 
@@ -109,7 +109,7 @@ The original Weak Signal Propagation Reporter network. WSPR beacons transmit 2-m
 
 ## Datasets (ionis-mcp)
 
-### IONIS Propagation Datasets
+### IONIS-AI Propagation Datasets
 
 ionis-mcp wraps pre-computed propagation signature datasets distributed via SourceForge. These contain 175M+ signatures derived from WSPR, RBN, Contest, and PSK Reporter observations.
 
@@ -129,7 +129,7 @@ The protocol that makes all of this possible — connecting AI assistants to ext
 
 ### FastMCP
 
-The Python framework used by all QSO-Graph servers. Clean, typed MCP server development.
+The Python framework used by all QSO Graph servers. Clean, typed MCP server development.
 
 - **Creator**: Jeremiah Lowin
 - **Website**: [github.com/jlowin/fastmcp](https://github.com/jlowin/fastmcp)
@@ -138,7 +138,7 @@ The Python framework used by all QSO-Graph servers. Clean, typed MCP server deve
 
 ## Good Neighbour Policy
 
-QSO-Graph servers **wrap** external APIs — we don't replicate them. Every server implements rate limiting, response caching, and graceful degradation to be respectful consumers of these services. If a service goes down, we back off. We never retry in tight loops.
+QSO Graph servers **wrap** external APIs — we don't replicate them. Every server implements rate limiting, response caching, and graceful degradation to be respectful consumers of these services. If a service goes down, we back off. We never retry in tight loops.
 
 These services are run by volunteers, non-profits, and small organisations who serve the amateur radio community. We are guests in their house.
 
@@ -146,6 +146,6 @@ These services are run by volunteers, non-profits, and small organisations who s
 
 ## Thank You
 
-To every operator who uploads a QSO, every beacon that transmits, every skimmer that decodes, and every volunteer who keeps these services running — thank you. QSO-Graph is a thin layer on top of decades of community effort.
+To every operator who uploads a QSO, every beacon that transmits, every skimmer that decodes, and every volunteer who keeps these services running — thank you. QSO Graph is a thin layer on top of decades of community effort.
 
 73 de KI7MT

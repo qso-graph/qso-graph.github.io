@@ -2,7 +2,7 @@
 
 ## Install
 
-We recommend [uv](https://docs.astral.sh/uv/). With it there's nothing to install per server: your
+QSO Graph's Python tools install with [uv](https://docs.astral.sh/uv/). With it there's nothing to install per server: your
 MCP client runs each one with `uvx`, always the current release (see the configs below). Install uv
 once:
 
@@ -10,8 +10,6 @@ once:
 curl -LsSf https://astral.sh/uv/install.sh | sh                      # Linux / macOS
 powershell -c "irm https://astral.sh/uv/install.ps1 | iex"          # Windows
 ```
-
-Prefer pip? Every server is also a standalone `pip install`, e.g. `pip install pota-mcp`.
 
 All packages require **Python 3.10+** (uv fetches one if you need it).
 
@@ -46,7 +44,7 @@ See the [Credential Setup Guide](credentials.md) for full details, per-server ex
 
 ## MCP Client Configuration
 
-Each config runs the server with `uvx`. Installed with pip instead? Use `"command": "<server>"` (for example `"command": "pota-mcp"`) with no `args`.
+Each config runs the server with `uvx`.
 
 ### Claude Desktop
 

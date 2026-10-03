@@ -4,7 +4,6 @@
 
 ```bash
 uvx adif-mcp            # run it; nothing to install
-pip install adif-mcp    # or install it into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/adif-mcp) · [PyPI](https://pypi.org/project/adif-mcp/)
