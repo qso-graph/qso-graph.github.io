@@ -2,15 +2,31 @@
 render_macros: true
 ---
 
-# QSO-Graph
+# QSO Graph
 
-**MCP servers connecting AI assistants to ham radio services.**
+**Open amateur radio software, built to work together.**
 
-Ask your AI assistant to look up a callsign, check your LoTW confirmations, find POTA spots, or get a band-by-band propagation forecast — all through natural language.
+QSO Graph is a suite of open amateur radio tools: a net logger, a club service, propagation analytics, and the libraries and AI integrations behind them. They share one data model, publish their interfaces, and are built so that any of them can be used alone. Free software under the GPL, for individual operators and for clubs, small and large.
+
+## Today
+
+**MCP servers** connect AI assistants to the services hams use every day. Ask your assistant to look up a callsign, check your LoTW confirmations, find POTA spots, or get a band-by-band propagation forecast, all in plain language. They are listed [below](#mcp-servers), with [Getting Started](getting-started.md) and [Security](security.md).
+
+## Where we're heading
+
+| Product | What it is | Status |
+|:--------|:-----------|:-------|
+| **QSO Graph Logger** (QGLogger) | A contest logger for nets: native desktop (Qt 6 / C++), with releases signed by more than one person and updates checked before they install | In development |
+| **QSO Graph SDK** (QGSDK) | The build kit for QGLogger: one command to a pinned build environment, per platform | In development |
+| **qso-graph-adif** | The ADIF specification as a service: fields, enumerations and data types by version, validation and lookups, through an API and a web interface | Planned |
+| **qso-graph-core** | Club services for clubs that have none of their own: members, awards, net history | Planned |
+| **qso-graph-atlas** | HF propagation data and analysis | Planned |
+
+**[ADIF](https://adif.org/) is the anchor:** everything here follows the ADIF specification, and extensions only add to it. The pieces talk through published interfaces and shared reference data, not shared code, and each service is built so a club can run it on its own server.
 
 ---
 
-## Packages
+## MCP Servers
 
 ### Foundation
 

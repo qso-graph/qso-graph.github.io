@@ -1,6 +1,8 @@
-# qso-graph — MCP Servers for Amateur Radio
+# QSO Graph — Open amateur radio software, built to work together
 
-> Open-source Model Context Protocol servers connecting AI assistants to amateur radio services. {{ server_count() }} MCP servers, {{ tool_total() }} tools, secure by design.
+> QSO Graph is a suite of open amateur radio tools: a net logger, club services, propagation analytics, and the libraries and AI integrations behind them. They share one data model (ADIF-based), publish their interfaces, and can each be used alone. Available now: {{ server_count() }} open-source Model Context Protocol servers with {{ tool_total() }} tools, connecting AI assistants to amateur radio services, secure by design. In development: QSO Graph Logger (a contest logger for nets, Qt 6 / C++) and QSO Graph SDK. Planned: qso-graph-adif, qso-graph-core, qso-graph-atlas.
+
+## MCP servers
 
 ## Foundation
 
