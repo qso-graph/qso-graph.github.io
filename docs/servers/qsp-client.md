@@ -2,7 +2,7 @@
 
 **QSP — relay MCP tools to any OpenAI-compatible local LLM endpoint.**
 
-Named after the Q-signal **QSP** ("Will you relay?"), qsp-client relays tool calls between a local LLM and MCP servers. Any model with function calling capability gains access to the full qso-graph tool ecosystem — zero cloud dependency.
+Named after the Q-signal **QSP** ("Will you relay?"), qsp-client relays tool calls between a local LLM and MCP servers. Any model with function calling capability gains access to all the qso-graph MCP servers — zero cloud dependency.
 
 ```bash
 uv tool install qsp-client   # the qsp-client command, on your PATH

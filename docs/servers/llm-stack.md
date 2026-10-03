@@ -277,4 +277,4 @@ Validated on EPYC 7302P + RTX 5080 (16 GB VRAM), Rocky Linux 9.7:
 - [llama.cpp](https://github.com/ggml-org/llama.cpp) — LLM inference engine (CUDA)
 - [Open WebUI](https://github.com/open-webui/open-webui) — browser chat interface
 - [mcpo](https://github.com/open-webui/mcpo) — MCP-to-OpenAPI proxy
-- [qso-graph MCP servers](https://github.com/qso-graph) — ham radio tool ecosystem
+- [qso-graph MCP servers](https://github.com/qso-graph) — open amateur radio software, built to work together
