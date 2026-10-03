@@ -33,14 +33,19 @@ uv tool install qso-graph-auth
 # Create a persona (your callsign identity)
 qso-auth persona add --name ki7mt --callsign KI7MT --start 2020-01-01
 
-# Store credentials for each service (prompts interactively)
+# Enable each service for the persona, then store its credentials (prompts interactively)
+qso-auth provider enable ki7mt eqsl
+qso-auth provider enable ki7mt lotw
+qso-auth provider enable ki7mt qrz
+qso-auth provider enable ki7mt qrz_logbook
+qso-auth provider enable ki7mt hamqth
 qso-auth creds set ki7mt eqsl
 qso-auth creds set ki7mt lotw
 qso-auth creds set ki7mt qrz
 qso-auth creds set ki7mt qrz_logbook
 qso-auth creds set ki7mt hamqth
 
-# Verify everything is wired up
+# List what's stored
 qso-auth creds doctor
 ```
 
