@@ -8,7 +8,6 @@ render_macros: true
 
 ```bash
 uvx pota-mcp            # run it; nothing to install
-pip install pota-mcp    # or install it into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/pota-mcp) · [PyPI](https://pypi.org/project/pota-mcp/)

@@ -4,7 +4,6 @@
 
 ```bash
 uvx eqsl-mcp            # run it; nothing to install
-pip install eqsl-mcp    # or install it into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/eqsl-mcp) · [PyPI](https://pypi.org/project/eqsl-mcp/)

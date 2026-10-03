@@ -8,7 +8,6 @@ render_macros: true
 
 ```bash
 uvx omiss-mcp            # run it; nothing to install
-pip install omiss-mcp    # or install it into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/omiss-mcp) · [PyPI](https://pypi.org/project/omiss-mcp/)

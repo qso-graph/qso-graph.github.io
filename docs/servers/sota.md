@@ -8,7 +8,6 @@ render_macros: true
 
 ```bash
 uvx sota-mcp            # run it; nothing to install
-pip install sota-mcp    # or install it into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/sota-mcp) · [PyPI](https://pypi.org/project/sota-mcp/)

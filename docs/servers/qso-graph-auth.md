@@ -12,7 +12,7 @@ uv tool install qso-graph-auth
 
 ## What It Does
 
-qso-graph-auth manages credentials for all authenticated QSO-Graph servers. It provides:
+qso-graph-auth manages credentials for all authenticated QSO Graph servers. It provides:
 
 - **Persona management** — named identities (callsign + date range) stored in `~/.config/adif-mcp/personas.json`
 - **Credential storage** — passwords and API keys stored in your OS keyring (never in config files)

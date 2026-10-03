@@ -8,7 +8,6 @@ render_macros: true
 
 ```bash
 uvx iota-mcp            # run it; nothing to install
-pip install iota-mcp    # or install it into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/iota-mcp) · [PyPI](https://pypi.org/project/iota-mcp/)

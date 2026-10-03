@@ -2,9 +2,32 @@
 render_macros: true
 ---
 
-# Server Overview
+# MCP Servers
 
-QSO-Graph provides {{ server_count() }} MCP servers ({{ tool_total() }} tools), plus the qso-graph-auth credential foundation, the qsp-client relay and the llm-stack, covering amateur radio logging, confirmations, propagation services, and local LLM integration.
+QSO Graph provides {{ server_count() }} MCP servers ({{ tool_total() }} tools), plus the qso-graph-auth credential foundation, the qsp-client relay and the llm-stack, covering amateur radio logging, confirmations, propagation services, and local LLM integration. Start with [Getting Started](../getting-started.md).
+
+## How it works
+
+The servers are [MCP servers](https://modelcontextprotocol.io/): they run locally on your machine and expose ham radio services as tools that AI assistants can call. Your credentials stay in your OS keyring and never leave your machine.
+
+```
+You: "Do I have any new LoTW confirmations this week?"
+  │
+  ▼
+AI Assistant (Claude, ChatGPT, Cursor, etc.)
+  │
+  ▼ calls lotw_confirmations(persona="ki7mt", since="2026-03-01")
+  │
+lotw-mcp (local process)
+  │
+  ▼ HTTPS request to lotw.arrl.org (credentials from OS keyring)
+  │
+LoTW API
+  │
+  ▼ ADIF response
+  │
+You: "You have 3 new confirmations: JA1ABC on 20m FT8, ..."
+```
 
 ---
 

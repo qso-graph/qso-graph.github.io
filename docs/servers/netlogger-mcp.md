@@ -8,7 +8,6 @@ render_macros: true
 
 ```bash
 uvx netlogger-mcp            # run it; nothing to install
-pip install netlogger-mcp    # or install it into your own environment
 ```
 
 [GitHub](https://github.com/qso-graph/netlogger-mcp) · [PyPI](https://pypi.org/project/netlogger-mcp/)

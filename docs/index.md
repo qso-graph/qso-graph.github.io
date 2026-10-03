@@ -10,7 +10,11 @@ QSO Graph is a suite of open amateur radio tools: a net logger, a club service, 
 
 ## Today
 
-**MCP servers** connect AI assistants to the services hams use every day. Ask your assistant to look up a callsign, check your LoTW confirmations, find POTA spots, or get a band-by-band propagation forecast, all in plain language. They are listed [below](#mcp-servers), with [Getting Started](getting-started.md) and [Security](security.md).
+**{{ server_count() }} MCP servers ({{ tool_total() }} tools)** connect AI assistants to the services hams use every day. Ask your assistant to look up a callsign, check your LoTW confirmations, find POTA spots, or get a band-by-band propagation forecast, all in plain language.
+
+- [The servers](servers/index.md): logbooks (QRZ, LoTW, eQSL, HamQTH), public services (POTA, SOTA, IOTA, space weather, WSPR, OMISS), ADIF, propagation analytics, N1MM Logger+ and NetLogger
+- [Getting Started](getting-started.md): install uv, then add a server to your MCP client
+- [Security](security.md): credentials stay in your OS keyring, never in files, logs or what the AI sees
 
 ## Where we're heading
 
@@ -22,65 +26,17 @@ QSO Graph is a suite of open amateur radio tools: a net logger, a club service, 
 | **qso-graph-core** | Club services for clubs that have none of their own: members, awards, net history | Planned |
 | **qso-graph-atlas** | HF propagation data and analysis | Planned |
 
-**[ADIF](https://adif.org/) is the anchor:** everything here follows the ADIF specification, and extensions only add to it. The pieces talk through published interfaces and shared reference data, not shared code, and each service is built so a club can run it on its own server.
+More on each in [Products](products.md).
+
+## How it fits together
+
+**[ADIF](https://adif.org/) is the anchor:** everything here follows the ADIF specification, and extensions only add to it. Every tool stands alone, and the pieces talk through published interfaces and shared reference data, not shared code. The rules behind that are in [How QSO Graph Works](how-it-works.md).
 
 ---
 
-## MCP Servers
+## Quick start
 
-### Foundation
-
-| Package | Tools | What It Does |
-|---------|:-----:|--------------|
-| [qso-graph-auth](servers/qso-graph-auth.md) | — | OS keyring credential management, persona CRUD, provider management |
-| [adif-mcp](servers/adif-mcp.md) | {{ tools("adif-mcp") }} | ADIF 3.1.7 spec engine, validation, parsing, geospatial |
-
-### Logbook Services (Authenticated)
-
-| Package | Tools | Auth | What It Does |
-|---------|:-----:|------|--------------|
-| [eqsl-mcp](servers/eqsl.md) | {{ tools("eqsl-mcp") }} | Persona | eQSL inbox, QSO verification, AG status, download, version info |
-| [qrz-mcp](servers/qrz.md) | {{ tools("qrz-mcp") }} | Persona + API key | Callsign lookup, DXCC, logbook access, download, version info |
-| [lotw-mcp](servers/lotw.md) | {{ tools("lotw-mcp") }} | Persona | LoTW confirmations, QSOs, DXCC credits, download, version info |
-| [hamqth-mcp](servers/hamqth.md) | {{ tools("hamqth-mcp") }} | Persona | Callsign lookup, DXCC, bio, activity, DX spots, RBN, QSO verify, version info |
-
-### Public Services (No Auth Required)
-
-| Package | Tools | What It Does |
-|---------|:-----:|--------------|
-| [pota-mcp](servers/pota.md) | {{ tools("pota-mcp") }} | Live spots, park info, stats, schedules, nearby parks, version info |
-| [sota-mcp](servers/sota.md) | {{ tools("sota-mcp") }} | Spots, alerts, summit info, nearby search, version info |
-| [iota-mcp](servers/iota.md) | {{ tools("iota-mcp") }} | Group lookup, island search, DXCC mapping, nearby, version info |
-| [solar-mcp](servers/solar.md) | {{ tools("solar-mcp") }} | SFI, Kp, solar wind, X-ray, band outlook, version info |
-| [wspr-mcp](servers/wspr.md) | {{ tools("wspr-mcp") }} | Beacon spots, band activity, top beacons/spotters, propagation, SNR trends, version info |
-| [omiss-mcp](servers/omiss-mcp.md) | {{ tools("omiss-mcp") }} | OMISS net schedule, nets on the air, members, check-in history, Statehood, officers, awards, statistics |
-
-### Propagation Analytics
-
-| Package | Tools | What It Does |
-|---------|:-----:|--------------|
-| [ionis-mcp](https://github.com/qso-graph/ionis-mcp) | {{ tools("ionis-mcp") }} | IONIS-AI HF propagation analytics over published signature datasets |
-
-### Radio Logging
-
-| Package | Tools | What It Does |
-|---------|:-----:|--------------|
-| [n1mm-mcp](servers/n1mm-mcp.md) | {{ tools("n1mm-mcp") }} | N1MM Logger+ live contest state over UDP broadcast |
-| [netlogger-mcp](servers/netlogger-mcp.md) | {{ tools("netlogger-mcp") }} | NetLogger nets on the air, live check-ins and who's up, past nets |
-
-### Infrastructure
-
-| Package | What It Does |
-|---------|--------------|
-| [qsp-client](servers/qsp-client.md) | QSP — relay MCP tools to any local LLM (llama.cpp, Ollama, vLLM, SGLang) |
-| [llm-stack](servers/llm-stack.md) | Docker Compose — Open WebUI + llama.cpp + MCP tools in a browser |
-
----
-
-## Quick Install
-
-With [uv](https://docs.astral.sh/uv/), there's nothing to install per server: your MCP client runs
-each one with `uvx`, always the current release.
+QSO Graph's Python tools run with [uv](https://docs.astral.sh/uv/). There's nothing to install per server: your MCP client runs each one with `uvx`, always the current release.
 
 ```bash
 # Install uv once (Linux / macOS; see Getting Started for Windows)
@@ -94,66 +50,24 @@ uv tool install qso-graph-auth
 uv tool install qsp-client
 ```
 
-Prefer pip? Every package is also a standalone `pip install`.
-
 See [Getting Started](getting-started.md) for MCP client configuration.
-
----
-
-## How It Works
-
-QSO-Graph packages are [MCP servers](https://modelcontextprotocol.io/) — they run locally on your machine and expose ham radio services as tools that AI assistants can call. Your credentials stay in your OS keyring and never leave your machine.
-
-```
-You: "Do I have any new LoTW confirmations this week?"
-  │
-  ▼
-AI Assistant (Claude, ChatGPT, Cursor, etc.)
-  │
-  ▼ calls lotw_confirmations(persona="ki7mt", since="2026-03-01")
-  │
-lotw-mcp (local process)
-  │
-  ▼ HTTPS request to lotw.arrl.org (credentials from OS keyring)
-  │
-LoTW API
-  │
-  ▼ ADIF response
-  │
-You: "You have 3 new confirmations: JA1ABC on 20m FT8, ..."
-```
-
----
-
-## Security First
-
-All QSO-Graph servers follow a [security framework](security.md) with 10 non-negotiable guarantees:
-
-- Credentials stored in OS keyring only — never in config files
-- Credentials never appear in logs, tool results, or error messages
-- No command injection surface — no `subprocess`, no `shell=True`
-- All external connections HTTPS only
-- Rate limiting to prevent account bans
-- Input validation on all user-provided strings
-- Security audit before every PyPI release
 
 ---
 
 ## Live Demo
 
-See QSO-Graph tools in action — no install required:
+See the MCP tools in action, with nothing to install:
 
 **[:material-open-in-new: Launch Demo](https://qso-graph-demo.vercel.app/){ .md-button .md-button--primary }**
 
-Dashboard, physics lab, DXCC progress, path analyzer, and log viewer — all powered by pre-computed MCP tool output from 49,233 real QSOs.
+Dashboard, physics lab, DXCC progress, path analyzer, and log viewer, all powered by pre-computed MCP tool output from 49,233 real QSOs.
 
 ---
 
 ## Project Links
 
-- **Demo**: [qso-graph-demo.vercel.app](https://qso-graph-demo.vercel.app/)
 - **GitHub**: [github.com/qso-graph](https://github.com/qso-graph)
-- **PyPI**: [eqsl-mcp](https://pypi.org/project/eqsl-mcp/) · [qrz-mcp](https://pypi.org/project/qrz-mcp/) · [lotw-mcp](https://pypi.org/project/lotw-mcp/)
-- **Foundation**: [qso-graph-auth](servers/qso-graph-auth.md) — credential management ([PyPI](https://pypi.org/project/qso-graph-auth/)) · [adif-mcp](servers/adif-mcp.md) — ADIF 3.1.7 spec engine ([PyPI](https://pypi.org/project/adif-mcp/))
-- **Testing**: [108/108 PASS](testing.md) — security audit + ADIF 3.1.7 official test corpus + forensic validation
-- **Related**: [IONIS](https://ionis-ai.com/) — HF propagation prediction from 14B amateur radio observations
+- **Specification**: [qso-graph-spec](https://github.com/qso-graph/qso-graph-spec/tree/v1.0) (v1.0)
+- **Demo**: [qso-graph-demo.vercel.app](https://qso-graph-demo.vercel.app/)
+- **Testing**: [108/108 PASS](testing.md): security audit, ADIF 3.1.7 official test corpus, forensic validation
+- **Related**: [IONIS-AI](https://ionis-ai.com/): HF propagation prediction from 14B amateur radio observations

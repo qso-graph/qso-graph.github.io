@@ -1,6 +1,6 @@
 # Architecture
 
-**How QSO-Graph servers work together — two foundation packages, nine MCP servers, zero cloud dependencies.**
+**How QSO Graph servers work together — two foundation packages, nine MCP servers, zero cloud dependencies.**
 
 ---
 
@@ -171,7 +171,7 @@ MCP Tool Result ──── data only, no credentials
 
 ## Package Independence
 
-Each server is its own package. Run it with `uvx`, or `pip install` it:
+Each server is its own package, run with `uvx`:
 
 ```bash
 uvx eqsl-mcp            # just eqsl-mcp + its dependencies
@@ -226,16 +226,16 @@ See [Getting Started](getting-started.md) for configuration for all 6 supported 
 
 ### Good Neighbor Policy
 
-QSO-Graph servers **wrap** external APIs — they don't replicate them. Rate limiting is built in to prevent account bans. If a service goes down, the server fails gracefully.
+QSO Graph servers **wrap** external APIs — they don't replicate them. Rate limiting is built in to prevent account bans. If a service goes down, the server fails gracefully.
 
 ### Read-Only Security Model
 
-No QSO-Graph server writes to external services. All operations are read-only: lookups, downloads, queries. No log uploads, no QSO submissions, no account modifications.
+No QSO Graph server writes to external services. All operations are read-only: lookups, downloads, queries. No log uploads, no QSO submissions, no account modifications.
 
 ### Validate Before Upload
 
 adif-mcp's validation engine catches data defects at the source. A busted QSO is not a confirmation — and a rare DXpedition contact may be irreplaceable. Validate before uploading to LoTW or eQSL.
 
-### Pip Install and Go
+### One Command and Go
 
 Every server is one `uvx` away. No Docker, no containers, no config files (except MCP client config). Credentials go in the OS keyring, not YAML files.

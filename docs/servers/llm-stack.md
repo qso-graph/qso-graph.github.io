@@ -137,7 +137,7 @@ After launching, register the MCP tool servers:
 | WSPR MCP | `http://mcp-tools:8003` | 8 — spots, band activity, propagation, grid activity, SNR trends |
 | SOTA MCP | `http://mcp-tools:8004` | 4 — spots, alerts, summit info, nearby summits |
 | IOTA MCP | `http://mcp-tools:8005` | 6 — island lookup, search, DXCC mapping, nearby groups |
-| IONIS MCP | `http://mcp-tools:8006` | 11 — propagation analytics (requires datasets) |
+| IONIS-AI MCP | `http://mcp-tools:8006` | 11 — propagation analytics (requires datasets) |
 
 3. **Enable tools per chat** — click the wrench icon in the chat input area
 4. **Model settings** — in Advanced Params, set Function Calling to **Native**
@@ -164,24 +164,24 @@ Summits on the Air — live spots, activation alerts, summit info, nearby summit
 ### IOTA (6 tools)
 Islands on the Air — group lookup, island search, DXCC mapping, nearby groups, programme statistics.
 
-### IONIS (11 tools, optional)
-Propagation analytics from 175M+ signatures — band openings, path analysis, solar correlation, dark hour analysis, current conditions. Requires [IONIS datasets](https://sourceforge.net/projects/ionis-ai/files/v1.0/) (~15 GB).
+### IONIS-AI (11 tools, optional)
+Propagation analytics from 175M+ signatures — band openings, path analysis, solar correlation, dark hour analysis, current conditions. Requires [IONIS-AI datasets](https://sourceforge.net/projects/ionis-ai/files/v1.0/) (~15 GB).
 
 ---
 
-## IONIS Datasets (Optional)
+## IONIS-AI Datasets (Optional)
 
-To enable the 11 IONIS propagation analytics tools:
+To enable the 11 IONIS-AI propagation analytics tools:
 
 1. Download datasets from [SourceForge](https://sourceforge.net/projects/ionis-ai/files/v1.0/) (~15 GB)
 2. Set `IONIS_DATA_DIR` in `.env` to the download directory
-3. Launch with the IONIS override:
+3. Launch with the IONIS-AI override:
 
 ```bash
 docker compose -f docker-compose.yaml -f docker-compose.ionis.yaml up -d
 ```
 
-Without IONIS datasets, the other 30 tools still work.
+Without IONIS-AI datasets, the other 30 tools still work.
 
 ---
 

@@ -4,7 +4,7 @@ render_macros: true
 
 # Testing & Validation
 
-**Every QSO-Graph server is tested across four independent layers before release.** Each layer catches different failure modes. All four must pass before a fleet-wide release.
+**Every QSO Graph server is tested across four independent layers before release.** Each layer catches different failure modes. All four must pass before a fleet-wide release.
 
 | Layer | Name | What It Catches | Blocking? |
 |-------|------|-----------------|-----------|
@@ -228,7 +228,7 @@ EQSL_MCP_MOCK=1 HAMQTH_MCP_MOCK=1 LOTW_MCP_MOCK=1 QRZ_MCP_MOCK=1 \
 
 ## Audit Process
 
-The QSO-Graph release process requires three rounds of review before any PyPI publication:
+The QSO Graph release process requires three rounds of review before any PyPI publication:
 
 1. **Writer** — writes code and runs all tests locally
 2. **1st Audit/Reviewer** — independent functional review, pulls code, runs tests on separate machine
@@ -248,4 +248,4 @@ All three must pass before the tag is created.
 | K1MU ADIF Validator | [rickmurphy.net/adifvalidator.html](https://www.rickmurphy.net/adifvalidator.html) |
 | adif-multitool (flwyd) | [github.com/flwyd/adif-multitool](https://github.com/flwyd/adif-multitool) |
 | MCP Security Best Practices | [modelcontextprotocol.io](https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices) |
-| QSO-Graph Test Framework (internal) | [ionis-devel/planning/QSO-GRAPH-TEST-FRAMEWORK.md](https://github.com/IONIS-AI/ionis-devel) |
+| QSO Graph Test Framework (internal) | [ionis-devel/planning/QSO-GRAPH-TEST-FRAMEWORK.md](https://github.com/IONIS-AI/ionis-devel) |
