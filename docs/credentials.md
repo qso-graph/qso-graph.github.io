@@ -132,8 +132,7 @@ qso-auth creds doctor --persona ki7mt
 | Command | Description |
 |---------|-------------|
 | `qso-auth creds set PERSONA PROVIDER` | Store credentials (interactive prompt) |
-| `qso-auth creds get PERSONA PROVIDER` | Show credentials (redacted) |
-| `qso-auth creds get PERSONA PROVIDER --raw` | Show credentials (unmasked) |
+| `qso-auth creds get PERSONA PROVIDER` | Show what is stored (secrets shown as `•••`) |
 | `qso-auth creds delete PERSONA PROVIDER` | Remove credentials from keyring |
 | `qso-auth creds doctor` | Check all personas for missing credentials |
 
