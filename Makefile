@@ -14,6 +14,7 @@ install:  ## Install Python dependencies
 
 data:  ## Collect every server's released version and tools
 	$(PYTHON) scripts/collect_servers.py
+	$(PYTHON) scripts/fetch_spec.py
 
 build:  ## Build the static site into site/
 	$(MKDOCS) build
