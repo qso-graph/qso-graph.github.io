@@ -15,14 +15,21 @@ uv tool install qso-graph-auth
 # 2. Create a persona (your callsign identity)
 qso-auth persona add --name ki7mt --callsign KI7MT --start 2020-01-01
 
-# 3. Store credentials for a service (prompts for username + password)
+# 3. Enable a service for that persona
+qso-auth provider enable ki7mt eqsl
+
+# 4. Store its credentials (prompts for your username, then your password, hidden)
 qso-auth creds set ki7mt eqsl
 
-# 4. Verify everything is wired up
+# 5. List what's stored
 qso-auth creds doctor
 ```
 
 That's it. The MCP servers will find your credentials automatically.
+
+!!! warning "Don't skip `provider enable`"
+    Credentials stored without it can't be used: the server reports that the persona has no ref for that
+    service, and `creds doctor` doesn't list them.
 
 ---
 
@@ -47,61 +54,36 @@ That's it. The MCP servers will find your credentials automatically.
 ### eQSL
 
 ```bash
+qso-auth provider enable ki7mt eqsl
 qso-auth creds set ki7mt eqsl
-```
-
-```
-Username: KI7MT
-Password: ********
-✓ Stored eqsl credentials for ki7mt
 ```
 
 ### LoTW
 
 ```bash
+qso-auth provider enable ki7mt lotw
 qso-auth creds set ki7mt lotw
-```
-
-```
-Username: KI7MT
-Password: ********
-✓ Stored lotw credentials for ki7mt
 ```
 
 ### QRZ (Callsign Lookup)
 
 ```bash
+qso-auth provider enable ki7mt qrz
 qso-auth creds set ki7mt qrz
-```
-
-```
-Username: KI7MT
-Password: ********
-✓ Stored qrz credentials for ki7mt
 ```
 
 ### QRZ (Logbook API)
 
 ```bash
+qso-auth provider enable ki7mt qrz_logbook
 qso-auth creds set ki7mt qrz_logbook
-```
-
-```
-Username: KI7MT
-API Key: ********
-✓ Stored qrz_logbook credentials for ki7mt
 ```
 
 ### HamQTH
 
 ```bash
+qso-auth provider enable ki7mt hamqth
 qso-auth creds set ki7mt hamqth
-```
-
-```
-Username: KI7MT
-Password: ********
-✓ Stored hamqth credentials for ki7mt
 ```
 
 ---
@@ -115,13 +97,11 @@ qso-auth creds doctor
 ```
 
 ```
-Credential Health Check
-=======================
-✓ ki7mt:eqsl      — stored (username_password)
-✓ ki7mt:lotw      — stored (username_password)
-✓ ki7mt:qrz       — stored (username_password)
-✓ ki7mt:qrz_logbook — stored (api_key)
-✓ ki7mt:hamqth    — stored (username_password)
+  ki7mt:eqsl — stored (username_password)
+  ki7mt:lotw — stored (username_password)
+  ki7mt:qrz — stored (username_password)
+  ki7mt:qrz_logbook — stored (api_key)
+  ki7mt:hamqth — stored (username_password)
 
 Summary: stored=5, missing=0
 ```
@@ -173,12 +153,12 @@ If you have multiple callsigns (contest calls, special events, club stations), c
 
 ```bash
 # Primary callsign
-qso-auth persona add --name ki7mt --callsign KI7MT --start 2020-01-01
+qso-auth persona add --name ki7mt --callsign KI7MT --start 2020-01-01 --providers eqsl qrz
 qso-auth creds set ki7mt eqsl
 qso-auth creds set ki7mt qrz
 
 # Contest callsign (with end date)
-qso-auth persona add --name k7mt --callsign K7MT --start 2024-06-01 --end 2024-06-30
+qso-auth persona add --name k7mt --callsign K7MT --start 2024-06-01 --end 2024-06-30 --providers eqsl
 qso-auth creds set k7mt eqsl
 
 # Set your primary as active
