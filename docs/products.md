@@ -4,7 +4,7 @@ render_macros: true
 
 # Products
 
-QSO Graph is several products, not one program. Each stands alone: use the one that applies to you and ignore the rest. They follow the same [rules](how-it-works.md), so moving between them is easy.
+QSO Graph is several products, not one program. Each stands alone: use the one that applies to you and ignore the rest. They follow the same [specification](spec/index.md), so moving between them is easy.
 
 | Product | Kind | Status |
 |:--------|:-----|:-------|

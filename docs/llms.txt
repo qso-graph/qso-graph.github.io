@@ -38,7 +38,7 @@
 ## Documentation
 
 - [Products](https://qso-graph.io/products/): every QSO Graph product, what it is, and its status.
-- [How QSO Graph Works](https://qso-graph.io/how-it-works/): the eight pillars of QSO-GRAPH-SPEC v1.0 (each with its test), ADIF as the anchor, contracts not shared code.
+- [Specification](https://qso-graph.io/spec/): QSO-GRAPH-SPEC as published: the vision, the eight pillars (each with a mechanical test), the contracts, governance.
 - [Getting Started](https://qso-graph.io/getting-started/): Installation with uv (servers run with uvx), credential setup, MCP client configuration for Claude Desktop, Claude Code, ChatGPT, Cursor, VS Code, and Gemini CLI.
 - [Architecture](https://qso-graph.io/architecture/): System design — foundation layer, credential flow, rate limiting, read-only security model.
 - [Testing & Validation](https://qso-graph.io/testing/): four test layers per server, ADIF 3.1.7 official test corpus validation, forensic tests from real operator data.

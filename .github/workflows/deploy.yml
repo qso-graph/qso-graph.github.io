@@ -43,6 +43,12 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: python scripts/collect_servers.py
 
+      # The specification, word for word, at the tag in spec.lock (scripts/fetch_spec.py).
+      - name: Import the specification
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/fetch_spec.py
+
       - name: Build (strict)
         run: mkdocs build --strict
 

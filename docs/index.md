@@ -30,7 +30,7 @@ More on each in [Products](products.md).
 
 ## How it fits together
 
-**[ADIF](https://adif.org/) is the anchor:** everything here follows the ADIF specification, and extensions only add to it. Every tool stands alone, and the pieces talk through published interfaces and shared reference data, not shared code. The rules behind that are in [How QSO Graph Works](how-it-works.md).
+**[ADIF](https://adif.org/) is the anchor:** everything here follows the ADIF specification, and extensions only add to it. Every tool stands alone, and the pieces talk through published interfaces and shared reference data, not shared code. The rules behind that are in the [QSO Graph specification](spec/index.md).
 
 ---
 
@@ -67,7 +67,7 @@ Dashboard, physics lab, DXCC progress, path analyzer, and log viewer, all powere
 ## Project Links
 
 - **GitHub**: [github.com/qso-graph](https://github.com/qso-graph)
-- **Specification**: [qso-graph-spec](https://github.com/qso-graph/qso-graph-spec/tree/v1.0) (v1.0)
+- **Specification**: [QSO-GRAPH-SPEC](spec/index.md) ([source](https://github.com/qso-graph/qso-graph-spec))
 - **Demo**: [qso-graph-demo.vercel.app](https://qso-graph-demo.vercel.app/)
 - **Testing**: [108/108 PASS](testing.md): security audit, ADIF 3.1.7 official test corpus, forensic validation
 - **Related**: [IONIS-AI](https://ionis-ai.com/): HF propagation prediction from 14B amateur radio observations
