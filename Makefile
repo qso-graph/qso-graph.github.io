@@ -3,7 +3,7 @@ PYTHON  ?= python3
 MKDOCS  ?= mkdocs
 PORT    ?= 8080
 
-.PHONY: help install data build serve clean distclean
+.PHONY: help install data build serve clean distclean publish-spec
 
 help:  ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
@@ -21,6 +21,9 @@ build:  ## Build the static site into site/
 
 serve:  ## Start the dev server on PORT (default 8080)
 	$(MKDOCS) serve --dev-addr localhost:$(PORT)
+
+publish-spec:  ## Tag the spec's main as VERSION=vX.Y.Z [NOTES="..."] and publish it here now
+	@VERSION="$(VERSION)" NOTES="$(NOTES)" scripts/publish_spec.sh
 
 clean:  ## Remove build artifacts
 	rm -rf site/

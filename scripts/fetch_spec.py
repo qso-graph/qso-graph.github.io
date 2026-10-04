@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Import the QSO Graph specification into the site, as published, at the tag in spec.lock.
+"""Import the QSO Graph specification into the site, as published, at its latest release tag.
 
 The spec repository is the one copy (qso-graph/qso-graph-spec). This copies its Markdown at the
 pinned tag into docs/spec/ (not committed), word for word, and only adjusts what a website needs:
@@ -9,7 +9,8 @@ pinned tag into docs/spec/ (not committed), word for word, and only adjusts what
 - a link to a file the spec doesn't contain at that tag (BYLAWS.md, which governance/README.md says
   "lands once the open questions are settled") is shown as plain text, and listed here.
 
-Moving the site to a new spec release is a one-line change to spec.lock.
+spec.lock says which release: `latest` (the highest vX.Y.Z tag, so tagging the spec publishes it:
+`make publish-spec VERSION=vX.Y.Z`), or one tag, to hold the site at it.
 
     python scripts/fetch_spec.py
 """
@@ -32,14 +33,35 @@ UA = "qso-graph-site (+https://github.com/qso-graph/qso-graph.github.io)"
 LINK = re.compile(r"(\[[^\]]*\]\()([^)\s]+)(\))")
 
 
-def fetch(tag: str) -> dict[str, str]:
-    """The Markdown files of the spec at `tag`, keyed by their path in the repository."""
+TAG = re.compile(r"^v(\d+)\.(\d+)\.(\d+)$")
+
+
+def _get(url: str) -> bytes:
     headers = {"User-Agent": UA}
     if os.getenv("GITHUB_TOKEN"):
         headers["Authorization"] = f"Bearer {os.environ['GITHUB_TOKEN']}"
-    url = f"https://api.github.com/repos/{REPO}/tarball/{tag}"
     with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=60) as r:
-        data = r.read()
+        return r.read()
+
+
+def latest_tag() -> str:
+    """The spec's highest release tag, vX.Y.Z (a tag named otherwise isn't a release)."""
+    import json
+    tags, page = [], 1
+    while True:
+        batch = json.loads(_get(f"https://api.github.com/repos/{REPO}/tags?per_page=100&page={page}"))
+        if not batch:
+            break
+        tags += [t["name"] for t in batch if TAG.match(t["name"])]
+        page += 1
+    if not tags:
+        raise SystemExit(f"{REPO} has no vX.Y.Z tag")
+    return max(tags, key=lambda n: tuple(int(x) for x in TAG.match(n).groups()))
+
+
+def fetch(tag: str) -> dict[str, str]:
+    """The Markdown files of the spec at `tag`, keyed by their path in the repository."""
+    data = _get(f"https://api.github.com/repos/{REPO}/tarball/{tag}")
     files = {}
     with tarfile.open(fileobj=io.BytesIO(data), mode="r:gz") as tar:
         for m in tar.getmembers():
@@ -86,7 +108,8 @@ def convert(path: str, text: str, files: dict[str, str], tag: str, missing: list
 
 
 def main() -> int:
-    tag = (ROOT / "spec.lock").read_text().strip()
+    pin = (ROOT / "spec.lock").read_text().strip()
+    tag = latest_tag() if pin == "latest" else pin
     files = fetch(tag)
     missing: list[str] = []
     if OUT.exists():
