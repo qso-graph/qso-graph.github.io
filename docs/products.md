@@ -25,9 +25,9 @@ QSO Graph is several products, not one program. Each stands alone: use the one t
 
 ## QSO Graph Logger
 
-**QGLogger** is a contest logger for nets: a native desktop app (Qt 6 / C++) for the net control station. The rule it is built around: nothing interrupts an operator running a net. Updates never install during a net, a new version reads the old log, and the check-in grid doesn't stall.
+**QGLogger is a contest-style logger for nets.** It does one job: running and following a net, quickly and reliably. It isn't another general-purpose logger; there are already many good ones. Your contacts go to the logger you already use, by ADIF, and to LoTW, eQSL and QRZ. It's lean (a native desktop app) and secure. The rule it is built around: nothing interrupts an operator running a net. Updates never install during a net, a new version reads the old log, and the check-in grid doesn't stall.
 
-Releases are signed by more than one person, and the app checks those signatures before it installs an update. It follows ADIF, so an operator can take their log to any other logger.
+Every update is signed by more than one person, and the app checks those signatures before it installs it. It follows ADIF, so an operator can take their log to any other logger.
 
 ## QSO Graph SDK
 
