@@ -71,7 +71,10 @@ say "deploying the site (https://github.com/$SITE/actions/runs/$run)"
 gh run watch "$run" -R "$SITE" --exit-status >/dev/null || die "the deploy failed: https://github.com/$SITE/actions/runs/$run"
 
 for i in $(seq 1 30); do
-  if curl -fsS "https://qso-graph.io/spec/?v=$(date +%s)" | grep -q "QSO-GRAPH-SPEC $VERSION"; then
+  # Read the page whole, then match: piping curl into grep -q ends the read early, curl reports a write
+  # error, and with pipefail that counts as a miss even when the version is there.
+  page="$(curl -fsS "https://qso-graph.io/spec/?v=$(date +%s)" 2>/dev/null || true)"
+  if [[ "$page" == *"QSO-GRAPH-SPEC $VERSION"* ]]; then
     say "live: https://qso-graph.io/spec/ shows $VERSION"
     exit 0
   fi
