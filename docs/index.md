@@ -20,7 +20,7 @@ QSO Graph is a suite of open amateur radio tools: a net logger, a club service, 
 
 | Product | What it is | Status |
 |:--------|:-----------|:-------|
-| **QSO Graph Logger** (QGLogger) | A contest logger for nets: native desktop (Qt 6 / C++), with releases signed by more than one person and updates checked before they install | In development |
+| **QSO Graph Logger** (QGLogger) | A contest-style logger for nets. Lean, fast and secure: it runs the net, and hands your contacts to the logger you already use | In development |
 | **[QSO Graph SDK](https://github.com/qso-graph/qso-graph-sdk)** (QGSDK) | The build kit for QGLogger: one command to a pinned build environment on Windows or Linux | Available |
 | **qso-graph-adif** | The ADIF specification as a service: fields, enumerations and data types by version, validation and lookups, through an API and a web interface | Planned |
 | **qso-graph-core** | Club services for clubs that have none of their own: members, awards, net history | Planned |
@@ -30,7 +30,9 @@ More on each in [Products](products.md).
 
 ## How it fits together
 
-**[ADIF](https://adif.org/) is the anchor:** everything here follows the ADIF specification, and extensions only add to it. Every tool stands alone, and the pieces talk through published interfaces and shared reference data, not shared code. The rules behind that are in the [QSO Graph specification](spec/index.md).
+**[ADIF](https://adif.org/) is the base.** Every QSO Graph tool reads and writes ADIF, the format the whole hobby already shares, and uses ADIF's own definition for every field ADIF defines. **No one-off custom fields:** when a tool genuinely needs something ADIF doesn't have, it is defined **once**, published, and used the same way across every QSO Graph tool where it applies. That costs more than a quick private field, and it's a cost accepted deliberately: it's what keeps the tools working together, and what lets you take your log anywhere.
+
+Every tool stands alone, and the pieces talk through published interfaces and shared reference data, not shared code. The rules behind that are in the [QSO Graph specification](spec/index.md).
 
 ---
 
