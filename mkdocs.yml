@@ -78,6 +78,7 @@ nav:
     - Vision: spec/VISION.md
     - Pillars: spec/PILLARS.md
     - Contracts: spec/contracts/index.md
+    - Club definition: spec/contracts/club-definition.md
     - Governance: spec/governance/index.md
   - MCP Servers:
     - servers/index.md
