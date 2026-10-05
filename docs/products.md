@@ -10,7 +10,7 @@ QSO Graph is several products, not one program. Each stands alone: use the one t
 |:--------|:-----|:-------|
 | [MCP servers](#mcp-servers) | Python packages for AI assistants | Available |
 | [QSO Graph Logger](#qso-graph-logger) | Desktop app (Windows, Linux) | In development |
-| [QSO Graph SDK](#qso-graph-sdk) | Build kit | In development |
+| [QSO Graph SDK](#qso-graph-sdk) | Build kit | Available |
 | [qso-graph-adif](#qso-graph-adif) | Service: API and web interface | Planned |
 | [qso-graph-core](#qso-graph-core) | Service for clubs | Planned |
 | [qso-graph-atlas](#qso-graph-atlas) | Service: propagation | Planned |
@@ -32,6 +32,8 @@ Releases are signed by more than one person, and the app checks those signatures
 ## QSO Graph SDK
 
 **QGSDK** is the build kit for QGLogger: one command sets up a pinned build environment (Qt, compilers, packaging tools) on Windows or Linux. The build itself is plain CMake, so the SDK is a convenience, never a requirement.
+
+[GitHub](https://github.com/qso-graph/qso-graph-sdk)
 
 ## qso-graph-adif
 

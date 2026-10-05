@@ -21,7 +21,7 @@ QSO Graph is a suite of open amateur radio tools: a net logger, a club service, 
 | Product | What it is | Status |
 |:--------|:-----------|:-------|
 | **QSO Graph Logger** (QGLogger) | A contest logger for nets: native desktop (Qt 6 / C++), with releases signed by more than one person and updates checked before they install | In development |
-| **QSO Graph SDK** (QGSDK) | The build kit for QGLogger: one command to a pinned build environment, per platform | In development |
+| **[QSO Graph SDK](https://github.com/qso-graph/qso-graph-sdk)** (QGSDK) | The build kit for QGLogger: one command to a pinned build environment on Windows or Linux | Available |
 | **qso-graph-adif** | The ADIF specification as a service: fields, enumerations and data types by version, validation and lookups, through an API and a web interface | Planned |
 | **qso-graph-core** | Club services for clubs that have none of their own: members, awards, net history | Planned |
 | **qso-graph-atlas** | HF propagation data and analysis | Planned |
