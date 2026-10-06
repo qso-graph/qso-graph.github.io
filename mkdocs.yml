@@ -1,8 +1,8 @@
 site_name: QSO Graph
 site_description: >-
-  Open amateur radio software, built to work together: a net logger, club services, propagation
-  analytics, and MCP servers connecting AI assistants to QRZ, LoTW, eQSL, HamQTH, POTA, SOTA, IOTA,
-  space weather and WSPR. ADIF-based, open source, secure by design.
+  Open amateur radio software for your station: logging, nets, awards, spots and your radio, in one place,
+  on Windows, macOS and Linux; with MCP servers connecting AI assistants to QRZ, LoTW, eQSL, HamQTH, POTA,
+  SOTA, IOTA, space weather and WSPR. ADIF-based, open source, secure by design.
 site_author: Greg Beam, KI7MT
 site_url: https://qso-graph.io/
 repo_url: https://github.com/qso-graph/qso-graph.github.io
