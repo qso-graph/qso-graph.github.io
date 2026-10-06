@@ -6,7 +6,7 @@ render_macros: true
 
 **Open amateur radio software, built to work together.**
 
-QSO Graph is a suite of open amateur radio tools: a net logger, a club service, propagation analytics, and the libraries and AI integrations behind them. They share one data model, publish their interfaces, and are built so that any of them can be used alone. Free software under the GPL, for individual operators and for clubs, small and large.
+QSO Graph is open amateur radio software for your station: logging, nets, awards, spots and your radio, in one place, on Windows, macOS and Linux, with the libraries and AI integrations behind them. They share one data model, publish their interfaces, and are built so that any of them can be used alone. Free software under the GPL, for individual operators and for clubs, small and large.
 
 ## Today
 

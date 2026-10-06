@@ -2,7 +2,7 @@
 
 ## Mission
 
-QSO Graph is open amateur radio software, built to work together: a net logger, club services, propagation analytics, and the libraries and AI integrations behind them. Each tool does one job and stands alone; together they share ADIF and published interfaces, so an operator or a club can use the one that applies and add others later.
+QSO Graph is open amateur radio software for your station: logging, nets, awards, spots and your radio, in one place, on Windows, macOS and Linux, with the libraries and AI integrations behind them. Each tool does one job and stands alone; together they share ADIF and published interfaces, so an operator or a club can use the one that applies and add others later.
 
 It started with the [MCP servers](../servers/index.md), which let an AI assistant answer questions from an operator's own data: "Do I have any new LoTW confirmations?" "What's the solar forecast?" "What POTA spots are on 20m right now?" The [products](../products.md) page lists what is available and what is coming.
 
