@@ -56,7 +56,13 @@ plugins:
       redirect_maps:
         servers/qsp-mcp.md: servers/qsp-client.md  # renamed 2026-09-28
         servers/llm-stack.md: https://github.com/KI7MT/llm-stack  # moved to KI7MT 2026-10
-        how-it-works.md: spec/index.md  # the spec itself, imported, replaced its summary 2026-10
+        how-it-works.md: specification.md
+        spec/index.md: specification.md  # spec being rewritten for QSO Graph Desktop, 2026-10
+        spec/VISION.md: specification.md
+        spec/PILLARS.md: specification.md
+        spec/contracts/index.md: specification.md
+        spec/contracts/club-definition.md: specification.md
+        spec/governance/index.md: specification.md
   - macros:
       render_by_default: false
       on_undefined: strict
@@ -74,13 +80,7 @@ extra:
 nav:
   - Home: index.md
   - Products: products.md
-  - Specification:
-    - spec/index.md
-    - Vision: spec/VISION.md
-    - Pillars: spec/PILLARS.md
-    - Contracts: spec/contracts/index.md
-    - Club definition: spec/contracts/club-definition.md
-    - Governance: spec/governance/index.md
+  - Specification: specification.md
   - MCP Servers:
     - servers/index.md
     - Getting Started: getting-started.md

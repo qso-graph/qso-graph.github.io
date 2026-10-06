@@ -30,7 +30,7 @@ More on each in [Products](products.md).
 
 **[ADIF](https://adif.org/) is the base.** Every QSO Graph tool reads and writes ADIF, the format the whole hobby already shares, and uses ADIF's own definition for every field ADIF defines. **No one-off custom fields:** when a tool genuinely needs something ADIF doesn't have, it is defined **once**, published, and used the same way across every QSO Graph tool where it applies. That costs more than a quick private field, and it's a cost accepted deliberately: it's what keeps the tools working together, and what lets you take your log anywhere.
 
-Every tool stands alone, and the pieces talk through published interfaces and shared reference data, not shared code. The rules behind that are in the [QSO Graph specification](spec/index.md).
+Every tool stands alone, and the pieces talk through published interfaces and shared reference data, not shared code. The rules behind that are in the [QSO Graph specification](specification.md), being rewritten for QSO Graph Desktop.
 
 ---
 
@@ -67,7 +67,7 @@ Dashboard, physics lab, DXCC progress, path analyzer, and log viewer, all powere
 ## Project Links
 
 - **GitHub**: [github.com/qso-graph](https://github.com/qso-graph)
-- **Specification**: [QSO-GRAPH-SPEC](spec/index.md) ([source](https://github.com/qso-graph/qso-graph-spec))
+- **Specification**: [being rewritten](specification.md) for QSO Graph Desktop
 - **Demo**: [qso-graph-demo.vercel.app](https://qso-graph-demo.vercel.app/)
 - **Testing**: [108/108 PASS](testing.md): security audit, ADIF 3.1.7 official test corpus, forensic validation
 - **Related**: [IONIS-AI](https://ionis-ai.com/): HF propagation prediction from 14B amateur radio observations
