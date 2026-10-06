@@ -10,6 +10,7 @@ QSO Graph is several products, not one program. Each stands alone: use the one t
 |:--------|:-----|:-------|
 | [MCP servers](#mcp-servers) | Python packages for AI assistants | Available |
 | [QSO Graph Desktop](#qso-graph-desktop) | Desktop app (Windows, macOS, Linux) | In design |
+| [QSO Graph SDK](#qso-graph-sdk) | Build kit | Available |
 
 --------|:-----|:-------|
 | [MCP servers](#mcp-servers) | Python packages for AI assistants | Available |
@@ -36,3 +37,11 @@ follows ADIF, so your log goes anywhere. Built to enterprise security standards 
 
 It is in design. Earlier plans for a separate net logger, an ADIF service and a self-hosted club server
 are folded into it.
+
+## QSO Graph SDK
+
+**QGSDK** is the build kit for QSO Graph's standalone apps: one command sets up a pinned build
+environment (Qt, compilers, packaging tools) on Windows or Linux. The build itself is plain CMake, so the
+SDK is a convenience, never a requirement.
+
+[GitHub](https://github.com/qso-graph/qso-graph-sdk)
