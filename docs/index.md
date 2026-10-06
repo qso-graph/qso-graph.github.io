@@ -20,11 +20,9 @@ QSO Graph is open amateur radio software for your station: logging, nets, awards
 
 | Product | What it is | Status |
 |:--------|:-----------|:-------|
-| **QSO Graph Logger** (QGLogger) | A contest-style logger for nets. Lean, fast and secure: it runs the net, and hands your contacts to the logger you already use | In development |
-| **[QSO Graph SDK](https://github.com/qso-graph/qso-graph-sdk)** (QGSDK) | The build kit for QGLogger: one command to a pinned build environment on Windows or Linux | Available |
-| **qso-graph-adif** | The ADIF specification as a service: fields, enumerations and data types by version, validation and lookups, through an API and a web interface | Planned |
-| **qso-graph-core** | Club services for clubs that have none of their own: members, awards, net history | Planned |
-| **qso-graph-atlas** | HF propagation data and analysis | Planned |
+| **MCP servers** | Connect AI assistants to logbooks, public services, ADIF and propagation data | Available |
+| **QSO Graph Desktop** | One app for your station on Windows, macOS and Linux: your logbook, nets, awards, spots and your radio, with your callsigns and logins kept in your own OS keyring | In design |
+| **[QSO Graph SDK](https://github.com/qso-graph/qso-graph-sdk)** (QGSDK) | The build kit for QSO Graph's standalone apps: Qt and CMake, one command to a pinned build environment on Windows or Linux | Available |
 
 More on each in [Products](products.md).
 
@@ -32,7 +30,7 @@ More on each in [Products](products.md).
 
 **[ADIF](https://adif.org/) is the base.** Every QSO Graph tool reads and writes ADIF, the format the whole hobby already shares, and uses ADIF's own definition for every field ADIF defines. **No one-off custom fields:** when a tool genuinely needs something ADIF doesn't have, it is defined **once**, published, and used the same way across every QSO Graph tool where it applies. That costs more than a quick private field, and it's a cost accepted deliberately: it's what keeps the tools working together, and what lets you take your log anywhere.
 
-Every tool stands alone, and the pieces talk through published interfaces and shared reference data, not shared code. The rules behind that are in the [QSO Graph specification](spec/index.md).
+Every tool stands alone, and the pieces talk through published interfaces and shared reference data, not shared code. The rules behind that are in the [QSO Graph specification](specification.md), being rewritten for QSO Graph Desktop.
 
 ---
 
@@ -69,7 +67,7 @@ Dashboard, physics lab, DXCC progress, path analyzer, and log viewer, all powere
 ## Project Links
 
 - **GitHub**: [github.com/qso-graph](https://github.com/qso-graph)
-- **Specification**: [QSO-GRAPH-SPEC](spec/index.md) ([source](https://github.com/qso-graph/qso-graph-spec))
+- **Specification**: [being rewritten](specification.md) for QSO Graph Desktop
 - **Demo**: [qso-graph-demo.vercel.app](https://qso-graph-demo.vercel.app/)
 - **Testing**: [108/108 PASS](testing.md): security audit, ADIF 3.1.7 official test corpus, forensic validation
 - **Related**: [IONIS-AI](https://ionis-ai.com/): HF propagation prediction from 14B amateur radio observations
