@@ -55,6 +55,7 @@ plugins:
   - redirects:
       redirect_maps:
         servers/qsp-mcp.md: servers/qsp-client.md  # renamed 2026-09-28
+        servers/llm-stack.md: https://github.com/KI7MT/llm-stack  # moved to KI7MT 2026-10
         how-it-works.md: spec/index.md  # the spec itself, imported, replaced its summary 2026-10
   - macros:
       render_by_default: false
@@ -104,7 +105,6 @@ nav:
       - NetLogger: servers/netlogger-mcp.md
     - Infrastructure:
       - QSP (Tool Relay): servers/qsp-client.md
-      - LLM Stack: servers/llm-stack.md
     - Architecture: architecture.md
     - Testing: testing.md
     - Security: security.md

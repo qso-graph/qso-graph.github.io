@@ -4,7 +4,7 @@ render_macros: true
 
 # MCP Servers
 
-QSO Graph provides {{ server_count() }} MCP servers ({{ tool_total() }} tools), plus the qso-graph-auth credential foundation, the qsp-client relay and the llm-stack, covering amateur radio logging, confirmations, propagation services, and local LLM integration. Start with [Getting Started](../getting-started.md).
+QSO Graph provides {{ server_count() }} MCP servers ({{ tool_total() }} tools), plus the qso-graph-auth credential foundation and the qsp-client relay, covering amateur radio logging, confirmations, propagation services, and local LLM integration. Start with [Getting Started](../getting-started.md).
 
 ## How it works
 
@@ -78,7 +78,6 @@ You: "You have 3 new confirmations: JA1ABC on 20m FT8, ..."
 | Package | Purpose | Auth Pattern |
 |---------|---------|-------------|
 | [qsp-client](qsp-client.md) | QSP — relay MCP tools to any local LLM endpoint | None (local) |
-| [llm-stack](llm-stack.md) | Docker Compose — Open WebUI + llama.cpp + MCP tools in a browser | None (local) |
 
 ---
 
