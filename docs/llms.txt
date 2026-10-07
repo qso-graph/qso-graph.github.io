@@ -26,6 +26,12 @@
 - [wspr-mcp](https://qso-graph.io/servers/wspr/): wspr.live ClickHouse — beacon spots, band activity, top beacons, top spotters, propagation, grid activity, longest paths, SNR trends. {{ tools("wspr-mcp") }} tools.
 - [omiss-mcp](https://qso-graph.io/servers/omiss-mcp/): OMISS (O.M. International Sideband Society) — net schedule, nets on the air, member lookup, check-in history, Statehood schedule, officers, awards, net statistics. {{ tools("omiss-mcp") }} tools.
 
+## Reference Data (No Auth, No Network)
+
+- [cq-zones-mcp](https://qso-graph.io/servers/cq-zones/): CQ zones (1-40) as CQ publishes them (WAZ Zone Definitions, 2018-04-01), in ADIF's DXCC and subdivision codes, credited to CQ / WWROF. {{ tools("cq-zones-mcp") }} tools.
+- [itu-zones-mcp](https://qso-graph.io/servers/itu-zones/): ITU zones (1-90) as the IARU publishes them for amateur use (HF Managers Handbook, chapter 9.8), in ADIF's DXCC and subdivision codes, credited to IARU Region 1. {{ tools("itu-zones-mcp") }} tools.
+- [darc-dok-mcp](https://qso-graph.io/servers/darc-dok/): DARC DOKs and special DOKs with their validity windows, credited to DARC. {{ tools("darc-dok-mcp") }} tools.
+
 ## Radio Logging
 
 - [n1mm-mcp](https://qso-graph.io/servers/n1mm-mcp/): N1MM Logger+ live contest state over UDP broadcast. {{ tools("n1mm-mcp") }} tools.

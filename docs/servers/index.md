@@ -66,6 +66,16 @@ You: "You have 3 new confirmations: JA1ABC on 20m FT8, ..."
 |---------|:-----:|---------|-------------|
 | [ionis-mcp](https://github.com/qso-graph/ionis-mcp) | {{ tools("ionis-mcp") }} | IONIS-AI signature datasets | None (local) |
 
+### Reference Data
+
+The lists ADIF's fields point to but ADIF doesn't define, each as its owner publishes it and credited to that owner. The facts ship with the package; the owner's document doesn't.
+
+| Package | Tools | Owner's list | Auth Pattern |
+|---------|:-----:|---------|-------------|
+| [cq-zones-mcp](cq-zones.md) | {{ tools("cq-zones-mcp") }} | CQ zones: CQ's WAZ Zone Definitions | None (local) |
+| [itu-zones-mcp](itu-zones.md) | {{ tools("itu-zones-mcp") }} | ITU zones: the IARU's HF Managers Handbook, ch. 9.8 | None (local) |
+| [darc-dok-mcp](darc-dok.md) | {{ tools("darc-dok-mcp") }} | DARC's DOKs and special DOKs | None (local) |
+
 ### Radio Logging
 
 | Package | Tools | Service | Auth Pattern |
