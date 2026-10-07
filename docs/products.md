@@ -12,19 +12,11 @@ QSO Graph is several products, not one program. Each stands alone: use the one t
 | [QSO Graph Desktop](#qso-graph-desktop) | Desktop app (Windows, macOS, Linux) | In design |
 | [QSO Graph SDK](#qso-graph-sdk) | Build kit | Available |
 
---------|:-----|:-------|
-| [MCP servers](#mcp-servers) | Python packages for AI assistants | Available |
-| [QSO Graph Logger](#qso-graph-logger) | Desktop app (Windows, Linux) | In development |
-| [QSO Graph SDK](#qso-graph-sdk) | Build kit | Available |
-| [qso-graph-adif](#qso-graph-adif) | Service: API and web interface | Planned |
-| [qso-graph-core](#qso-graph-core) | Service for clubs | Planned |
-| [qso-graph-atlas](#qso-graph-atlas) | Service: propagation | Planned |
-
 ---
 
 ## MCP servers
 
-{{ server_count() }} servers ({{ tool_total() }} tools) that connect AI assistants to QRZ, LoTW, eQSL, HamQTH, POTA, SOTA, IOTA, space weather, WSPR, OMISS, N1MM Logger+ and NetLogger, plus the ADIF specification and IONIS-AI propagation analytics. They run on your own machine, read-only, with credentials in your OS keyring.
+{{ server_count() }} servers ({{ tool_total() }} tools) that connect AI assistants to QRZ, LoTW, eQSL, HamQTH, POTA, SOTA, IOTA, space weather, WSPR, OMISS, N1MM Logger+ and NetLogger, plus the ADIF specification, CQ and ITU zones and DARC DOKs as their owners publish them, and IONIS-AI propagation analytics. They run on your own machine, read-only, with credentials in your OS keyring.
 
 [The servers](servers/index.md) · [Getting Started](getting-started.md) · [Security](security.md)
 
