@@ -8,11 +8,46 @@
 
 ### ADIF Specification (adif-mcp)
 
-The [Amateur Data Interchange Format](https://adif.org.uk/) is the foundation of amateur radio logging interoperability. adif-mcp bundles the complete ADIF 3.1.6 specification — 186 fields, 26 enumerations, and 28 data types.
+The [Amateur Data Interchange Format](https://adif.org.uk/) is the foundation of amateur radio logging interoperability. adif-mcp includes ADIF's published specification files, unmodified, for the previous and current versions (3.1.6 and 3.1.7), as ADIF publishes them for reuse.
 
 - **Author**: Joe Turley, G3ZOD (R.G. Turley OBE)
 - **Website**: [adif.org.uk](https://adif.org.uk/)
 - **Test corpus**: [CreateADIFTestFiles](https://github.com/g3zod/CreateADIFTestFiles) by G3ZOD — 6,191 records exercising every enumeration value
+
+---
+
+## Reference Data
+
+These packages serve facts from each owner's published list, credited to the owner. The owner's document is not included: each package links to it and records its SHA-256 so anyone can check the facts against it. Our GPL-3.0 licence covers our code, not their data.
+
+### CQ zones (cq-zones-mcp)
+
+The 40 CQ zones, used by CQ's Worked All Zones (WAZ) award and the CQ World Wide DX Contest.
+
+- **Owner**: CQ Communications, Inc. and the World Wide Radio Operators Foundation (WWROF)
+- **Source**: [WAZ Zone Definitions](https://cqww.com/cq_waz_list.htm) ("Updated and correct as of April 1, 2018")
+
+### ITU zones (itu-zones-mcp)
+
+The 90 ITU zones for amateur use, used by the IARU HF Championship and ITU-zone awards. Kept in the IARU Region 1 HF Managers Handbook under recommendation REC/99/LH/C4.2; drafted by G3HTA from the ITU's CIRAF zones and approved by all three IARU regions.
+
+- **Owner**: International Amateur Radio Union (IARU), Region 1
+- **Source**: [HF Managers Handbook v8.2](https://www.iaru-r1.org/wp-content/uploads/2019/12/IARURegion1HFManagerHandbook8.2.1.pdf), chapter 9.8, "Definition of ITU-Zones when used by radio amateurs" (November 2000)
+
+### DOKs and special DOKs (darc-dok-mcp)
+
+DARC's local-club and event codes, used for the DLD award, the DOK best-lists and the WAG contest.
+
+- **Owner**: Deutscher Amateur-Radio-Club e.V. (DARC)
+- **Sources**: [DOK-Liste](https://www.darc.de/fileadmin/filemounts/referate/dx/DOK-Liste.pdf) (DARC DX-Referat, by Karsten Radwan, DL2ABM, 26.12.2016) and the [special-DOK list](https://www.darc.de/fileadmin/filemounts/referate/sdok/SDOK_List.csv) (DARC SDOK-Referat)
+
+### Validation sources (cq-zones-mcp, itu-zones-mcp)
+
+The zone packages' tests check the facts against these, fetched from their sites; where they differ, the owner's list wins.
+
+- **AD1C's country files**: Jim Reisert, AD1C, [country-files.com](https://www.country-files.com/)
+- **ARRL's DXCC list**: [arrl.org](https://www.arrl.org/country-lists-prefixes)
+- **ADIF 3.1.7**: the Primary_Administrative_Subdivision zone columns
 
 ---
 

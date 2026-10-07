@@ -100,6 +100,10 @@ nav:
       - Solar Weather: servers/solar.md
       - WSPR: servers/wspr.md
       - OMISS: servers/omiss-mcp.md
+    - Reference Data:
+      - CQ Zones: servers/cq-zones.md
+      - ITU Zones: servers/itu-zones.md
+      - DARC DOKs: servers/darc-dok.md
     - Radio Logging:
       - N1MM Logger+: servers/n1mm-mcp.md
       - NetLogger: servers/netlogger-mcp.md
