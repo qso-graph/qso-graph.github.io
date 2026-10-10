@@ -144,7 +144,7 @@ Every server includes automated security tests:
 
 **Do NOT open public GitHub issues for security vulnerabilities.**
 
-Email: [ki7mt@yahoo.com](mailto:ki7mt@yahoo.com)
+Email: [maintainers@qso-graph.io](mailto:maintainers@qso-graph.io)
 Subject: `[SECURITY] QSO Graph vulnerability report`
 
 Include:
