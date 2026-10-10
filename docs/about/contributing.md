@@ -42,7 +42,7 @@ Found a bug or have a feature request? Open an issue on the relevant repository:
 
 Report security issues privately:
 
-- **Email**: [ki7mt@yahoo.com](mailto:ki7mt@yahoo.com)
+- **Email**: [maintainers@qso-graph.io](mailto:maintainers@qso-graph.io)
 - **Subject**: `[SECURITY] QSO Graph vulnerability report`
 
 Include:
