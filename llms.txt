@@ -1,0 +1,68 @@
+# QSO Graph — Open amateur radio software, built to work together
+
+> QSO Graph is open amateur radio software for your station: logging, nets, awards, spots and your radio, in one place, on Windows, macOS and Linux, with the libraries and AI integrations behind them. They share one data model (ADIF-based), publish their interfaces, and can each be used alone. Available now: 17 open-source Model Context Protocol servers with 132 tools, connecting AI assistants to amateur radio services, secure by design. In development: QSO Graph Logger (a contest-style logger for nets: lean, fast and secure; not a general-purpose logger). Available: QSO Graph SDK (https://github.com/qso-graph/qso-graph-sdk), the build kit for it. Planned: qso-graph-adif, qso-graph-core, qso-graph-atlas.
+
+## MCP servers
+
+## Foundation
+
+- [qso-graph-auth](https://qso-graph.io/servers/qso-graph-auth/): OS keyring credential management, persona CRUD, provider management. Foundation for all authenticated servers.
+- [adif-mcp](https://qso-graph.io/servers/adif-mcp/): ADIF 3.1.7 spec engine, validation, parsing, enumerations, geospatial. 8 tools.
+
+## Logbook Services (Authenticated)
+
+- [eqsl-mcp](https://qso-graph.io/servers/eqsl/): eQSL.cc — inbox download, QSO verification, AG status, last upload, download. 6 tools.
+- [qrz-mcp](https://qso-graph.io/servers/qrz/): QRZ.com — callsign lookup, DXCC resolution, logbook access, download. 6 tools.
+- [lotw-mcp](https://qso-graph.io/servers/lotw/): LoTW (ARRL) — confirmations, QSOs, DXCC credits, user activity, download. 6 tools.
+- [hamqth-mcp](https://qso-graph.io/servers/hamqth/): HamQTH — callsign lookup, DXCC, bio, activity, DX spots, RBN, QSO verify. 8 tools.
+
+## Public Services (No Auth Required)
+
+- [pota-mcp](https://qso-graph.io/servers/pota/): Parks on the Air — live spots, park info, stats, schedules, location search. 8 tools.
+- [sota-mcp](https://qso-graph.io/servers/sota/): Summits on the Air — spots, alerts, summit info, nearby search. 5 tools.
+- [solar-mcp](https://qso-graph.io/servers/solar/): NOAA SWPC — SFI, Kp, solar wind, X-ray flux, band outlook, alerts. 7 tools.
+- [iota-mcp](https://qso-graph.io/servers/iota/): Islands on the Air — group lookup, island search, DXCC mapping, nearby groups, programme stats. 7 tools.
+- [ionis-mcp](https://github.com/qso-graph/ionis-mcp): IONIS-AI HF propagation analytics over published signature datasets. 12 tools.
+- [wspr-mcp](https://qso-graph.io/servers/wspr/): wspr.live ClickHouse — beacon spots, band activity, top beacons, top spotters, propagation, grid activity, longest paths, SNR trends. 9 tools.
+- [omiss-mcp](https://qso-graph.io/servers/omiss-mcp/): OMISS (O.M. International Sideband Society) — net schedule, nets on the air, member lookup, check-in history, Statehood schedule, officers, awards, net statistics. 14 tools.
+
+## Reference Data (No Auth, No Network)
+
+- [cq-zones-mcp](https://qso-graph.io/servers/cq-zones/): CQ zones (1-40) as CQ publishes them (WAZ Zone Definitions, 2018-04-01), in ADIF's DXCC and subdivision codes, credited to CQ / WWROF. 6 tools.
+- [itu-zones-mcp](https://qso-graph.io/servers/itu-zones/): ITU zones (1-90) as the IARU publishes them for amateur use (HF Managers Handbook, chapter 9.8), in ADIF's DXCC and subdivision codes, credited to IARU Region 1. 6 tools.
+- [darc-dok-mcp](https://qso-graph.io/servers/darc-dok/): DARC DOKs and special DOKs with their validity windows, credited to DARC. 6 tools.
+
+## Radio Logging
+
+- [n1mm-mcp](https://qso-graph.io/servers/n1mm-mcp/): N1MM Logger+ live contest state over UDP broadcast. 12 tools.
+- [netlogger-mcp](https://qso-graph.io/servers/netlogger-mcp/): NetLogger nets on the air, live check-ins and who's up, past nets. 6 tools.
+
+## Infrastructure
+
+- [qsp-client](https://qso-graph.io/servers/qsp-client/): QSP relay (formerly qsp-mcp) — an MCP client that gives any OpenAI-compatible local LLM the qso-graph tools.
+
+## Documentation
+
+- [Products](https://qso-graph.io/products/): every QSO Graph product, what it is, and its status.
+- [Specification](https://qso-graph.io/specification/): being rewritten for QSO Graph Desktop; published again when ready.
+- [Getting Started](https://qso-graph.io/getting-started/): Installation with uv (servers run with uvx), credential setup, MCP client configuration for Claude Desktop, Claude Code, ChatGPT, Cursor, VS Code, and Gemini CLI.
+- [Architecture](https://qso-graph.io/architecture/): System design — foundation layer, credential flow, rate limiting, read-only security model.
+- [Testing & Validation](https://qso-graph.io/testing/): four test layers per server, ADIF 3.1.7 official test corpus validation, forensic tests from real operator data.
+- [Security](https://qso-graph.io/security/): 10 non-negotiable security guarantees, credential architecture, forbidden patterns, release process, incident response.
+
+## Key Facts
+
+- All credentials stored in OS keyring (macOS Keychain, Windows Credential Manager, Linux Secret Service)
+- All external connections HTTPS only
+- No subprocess, no shell=True, no eval/exec in any package
+- Every package requires security audit before PyPI publication
+- Read-only — no server writes to external services
+- License: GPL-3.0-or-later
+- Author: Greg Beam, KI7MT
+
+## Links
+
+- GitHub: https://github.com/qso-graph
+- Documentation: https://qso-graph.io
+- Demo: https://qso-graph-demo.vercel.app
+- Related: https://ionis-ai.com (HF propagation prediction from 14B amateur radio observations)
