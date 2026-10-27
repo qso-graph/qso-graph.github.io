@@ -58,7 +58,8 @@ See [Getting Started](getting-started.md) for MCP client configuration.
 
 See the MCP tools in action, with nothing to install:
 
-**[:material-open-in-new: Launch Demo](https://qso-graph-demo.vercel.app/){ .md-button .md-button--primary }**
+**[:material-open-in-new: Launch the logbook demo](https://qso-graph.io/qso-graph-demo-logbook/){ .md-button .md-button--primary }**
+**[:material-open-in-new: Launch the DXpedition demo](https://qso-graph.io/qso-graph-demo-dxpedition/){ .md-button }**
 
 Dashboard, physics lab, DXCC progress, path analyzer, and log viewer, all powered by pre-computed MCP tool output from 49,233 real QSOs.
 
@@ -68,6 +69,6 @@ Dashboard, physics lab, DXCC progress, path analyzer, and log viewer, all powere
 
 - **GitHub**: [github.com/qso-graph](https://github.com/qso-graph)
 - **Specification**: [being rewritten](specification.md) for QSO Graph Desktop
-- **Demo**: [qso-graph-demo.vercel.app](https://qso-graph-demo.vercel.app/)
+- **Demos**: [logbook](https://qso-graph.io/qso-graph-demo-logbook/) and [DXpedition](https://qso-graph.io/qso-graph-demo-dxpedition/)
 - **Testing**: [108/108 PASS](testing.md): security audit, ADIF 3.1.7 official test corpus, forensic validation
 - **Related**: [IONIS-AI](https://ionis-ai.com/): HF propagation prediction from 14B amateur radio observations

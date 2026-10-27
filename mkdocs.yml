@@ -112,7 +112,7 @@ nav:
     - Architecture: architecture.md
     - Testing: testing.md
     - Security: security.md
-  - Demo: https://qso-graph-demo.vercel.app/
+  - Demo: https://qso-graph.io/qso-graph-demo-logbook/
   - About:
     - about/index.md
     - Attributions: about/attributions.md
