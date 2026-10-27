@@ -64,5 +64,6 @@
 
 - GitHub: https://github.com/qso-graph
 - Documentation: https://qso-graph.io
-- Demo: https://qso-graph-demo.vercel.app
+- Demo (logbook): https://qso-graph.io/qso-graph-demo-logbook/
+- Demo (DXpedition): https://qso-graph.io/qso-graph-demo-dxpedition/
 - Related: https://ionis-ai.com (HF propagation prediction from 14B amateur radio observations)
