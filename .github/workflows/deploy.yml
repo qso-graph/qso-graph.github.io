@@ -27,16 +27,31 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      # Node 24 releases of all three: the v4/v5/v6 here ran on Node 20, which
+      # GitHub has deprecated. The same versions the qso-graph packages use.
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      # A patch version, not "3.12": asked for a minor version, setup-python
+      # may take an older 3.12 already on the runner, and only 3.12.16 and later
+      # reject the compromised eMudhra intermediate CAs (2026-10).
+      - uses: actions/setup-python@v6
         with:
-          python-version: '3.12'
+          python-version: '3.12.16'
 
-      - uses: astral-sh/setup-uv@v6
+      - uses: astral-sh/setup-uv@v7
 
+      # pip trusts its own vendored certifi as well as the system store, so it
+      # needs the release past the same advisory before it fetches anything.
+      - name: Current pip
+        run: |
+          python -m pip install --upgrade "pip>=26.2.2"
+          python -m pip --version
+
+      # Every package pinned with its hashes (requirements.in is what we ask
+      # for; regenerate with the command at the top of requirements.txt). This
+      # job holds a token that can push to the site.
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install --require-hashes -r requirements.txt
 
       - name: Collect every server's released version and tools
         env:

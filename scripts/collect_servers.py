@@ -31,7 +31,7 @@ from pathlib import Path
 
 ORG = "qso-graph"
 OUT = Path(__file__).resolve().parent.parent / "data" / "servers.json"
-PYTHON = "3.12"  # each server's own environment, made by uv
+PYTHON = "3.12.16"  # each server's own environment, made by uv; a patch, so never a stale system 3.12
 PYPI_INDEX = "https://pypi.org/simple"
 UA = "qso-graph-site (+https://github.com/qso-graph/qso-graph.github.io)"
 

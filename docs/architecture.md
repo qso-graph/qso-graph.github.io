@@ -123,7 +123,7 @@ Safe Return ───────── No credentials in results, errors, or lo
 |----------|-------|
 | Transport | stdio (default) or `--transport streamable-http` for MCP Inspector |
 | Framework | FastMCP 3.x |
-| Python | 3.10+ |
+| Python | 3.11+ |
 | License | GPL-3.0-or-later |
 | Mock mode | `<NAME>_MCP_MOCK=1` for testing without credentials |
 

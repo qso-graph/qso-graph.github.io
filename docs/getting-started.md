@@ -11,7 +11,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh                      # Linux / m
 powershell -c "irm https://astral.sh/uv/install.ps1 | iex"          # Windows
 ```
 
-All packages require **Python 3.10+** (uv fetches one if you need it).
+All packages require **Python 3.11+** (uv fetches one if you need it).
 
 ---
 
