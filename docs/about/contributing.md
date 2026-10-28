@@ -28,7 +28,7 @@ Found a bug or have a feature request? Open an issue on the relevant repository:
 
 ### Code Style
 
-- Python 3.10+ type hints
+- Python 3.11+ type hints
 - No `subprocess`, `os.system`, or `shell=True` (see [Security](../security.md))
 - All external URLs must be HTTPS
 - Error messages must not include user input values

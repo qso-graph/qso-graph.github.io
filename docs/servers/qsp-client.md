@@ -187,5 +187,5 @@ qsp-client is a **strict, stateless pipe**:
 
 - `mcp>=1.0` — MCP client SDK
 - `httpx>=0.27` — HTTP client
-- Python 3.10+
+- Python 3.11+
 - No torch, no numpy, no heavy dependencies
