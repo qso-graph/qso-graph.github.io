@@ -9,8 +9,9 @@ QSO Graph is several products, not one program. Each stands alone: use the one t
 | Product | Kind | Status |
 |:--------|:-----|:-------|
 | [MCP servers](#mcp-servers) | Python packages for AI assistants | Available |
-| [QSO Graph Desktop](#qso-graph-desktop) | Desktop app (Windows, macOS, Linux) | In design |
+| [QSO Graph Desktop](#qso-graph-desktop) | Desktop app (Windows, Linux, macOS) | Available (0.4.0) |
 | [QSO Graph SDK](#qso-graph-sdk) | Build kit | Available |
+| [QSO Graph Sim](#qso-graph-sim) | Test tool for developers | In development |
 
 ---
 
@@ -22,18 +23,40 @@ QSO Graph is several products, not one program. Each stands alone: use the one t
 
 ## QSO Graph Desktop
 
-**One app for your station**, on Windows, macOS and Linux: your logbook, the nets you join or run, where
-you stand on awards and what you still need, spots, and your radio, in one place. Your callsigns and
-logins are kept in your own operating system's keyring, never in a file and never on our servers. It
-follows ADIF, so your log goes anywhere. Built to enterprise security standards and tested accordingly.
+**A desktop home for your station**, on Windows, Linux and macOS. Free software, no account, and
+everything you enter stays on your computer.
 
-It is in design. Earlier plans for a separate net logger, an ADIF service and a self-hosted club server
-are folded into it.
+Today it keeps your callsigns and their logins for QRZ.com, QRZ Logbook, LoTW, eQSL, HamQTH and Club
+Log in your operating system's own credential store, never in a file; your Locations, with grid, DXCC,
+zones, county and ARRL section and your POTA, SOTA, WWFF and IOTA references; Parks On the Air (parks
+near you, who is on the air, the least-activated); band conditions; the sun, the moon and the grey
+line; and every ADIF field and value in ADIF's own words.
+
+Everything a ham does in it is an extension, built on the same extension interface an outside one
+would use. Next come integrations with the programs you already run, starting with a read-only
+monitor of WSJT-X's decodes.
+
+**Download:** the [Releases page](https://github.com/qso-graph/qso-graph-desktop/releases): signed for Windows, notarized for macOS, and for Linux an
+AppImage, or our [signed apt and dnf repository](https://github.com/qso-graph/qso-graph-desktop/blob/main/guide/install.md#linux).
+On a Mac, also `brew install qso-graph/tap/qso-graph-desktop`. A Microsoft Store listing is in review.
+
+Earlier plans for a separate net logger, an ADIF service and a self-hosted club server are folded into it.
 
 ## QSO Graph SDK
 
-**QGSDK** is the build kit for QSO Graph's standalone apps: one command sets up a pinned build
-environment (Qt, compilers, packaging tools) on Windows or Linux. The build itself is plain CMake, so the
-SDK is a convenience, never a requirement.
+**QGSDK** is the build kit for QSO Graph's software: one command sets up a pinned build environment
+on Windows, Linux and macOS, by profile. `desktop` is the tools for QSO Graph Desktop (Node.js, Rust,
+Go, CMake), `logger` is Qt and its compiler and packaging tools, and `mcp` is uv and the Pythons the MCP
+servers test against. Every version is pinned and every download checked. It is a convenience, never a
+requirement.
 
 [GitHub](https://github.com/qso-graph/qso-graph-sdk)
+
+## QSO Graph Sim
+
+**qso-graph-sim** plays back what a ham radio program sends on the network, from that program's own
+log, so whatever receives it can be built and tested without a radio. It starts with WSJT-X: give it an
+`ALL.TXT` and it sends those decodes as WSJT-X's own UDP messages. It is how QSO Graph Desktop's WSJT-X
+monitor is tested. Not on PyPI yet.
+
+[GitHub](https://github.com/qso-graph/qso-graph-sim)

@@ -21,8 +21,8 @@ QSO Graph is open amateur radio software for your station: logging, nets, awards
 | Product | What it is | Status |
 |:--------|:-----------|:-------|
 | **MCP servers** | Connect AI assistants to logbooks, public services, ADIF and propagation data | Available |
-| **QSO Graph Desktop** | One app for your station on Windows, macOS and Linux: your logbook, nets, awards, spots and your radio, with your callsigns and logins kept in your own OS keyring | In design |
-| **[QSO Graph SDK](https://github.com/qso-graph/qso-graph-sdk)** (QGSDK) | The build kit for QSO Graph's standalone apps: Qt and CMake, one command to a pinned build environment on Windows or Linux | Available |
+| **[QSO Graph Desktop](https://github.com/qso-graph/qso-graph-desktop/releases)** | A desktop home for your station on Windows, Linux and macOS: your callsigns and their logins (kept in your own OS credential store), your Locations, Parks On the Air, band conditions, the sun and moon, and ADIF Lookup. Integrations with WSJT-X and the other programs you run come next | Available (0.4.0) |
+| **[QSO Graph SDK](https://github.com/qso-graph/qso-graph-sdk)** (QGSDK) | The build kit for QSO Graph's software: one command to a pinned build environment, by profile (QSO Graph Desktop, the Qt logger, the MCP servers), on Windows, Linux and macOS | Available |
 
 More on each in [Products](products.md).
 
