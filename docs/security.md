@@ -28,7 +28,7 @@ Every QSO Graph MCP server guarantees:
 Credentials flow through the OS keyring and never appear in the MCP protocol:
 
 ```
-User runs: qso-auth creds set ki7mt qrz
+User runs: qso-graph-auth creds set ki7mt qrz
                 ↓
         OS Keyring (encrypted by OS)
         - macOS: Keychain
@@ -111,11 +111,28 @@ with open("config.json") as f:
 
 No package is published to PyPI without completing the full security pipeline:
 
-1. **Development** — implement feature, run local security checklist
-2. **CI Pipeline** — `pip-audit`, security test suite, static analysis
-3. **Security Audit Request** — developer sends request via internal message queue
-4. **Security Review** — independent agent reviews all source files, credential flows, error messages, input handling, and dependencies
-5. **Release Decision** — PASS required before tagging and publishing
+Publishing is gated mechanically, in `publish.yml`, and every check either passes
+or the release does not happen. There is no human sign-off step, because a step
+that depends on somebody being available is not a gate:
+
+1. **The run is from `main`** — enforced by the `pypi` environment's deployment
+   branch rule, not only by the workflow file
+2. **CI passed on the exact commit being published** — the full test suite, `ruff`,
+   `mypy` and CodeQL
+3. **The version agrees everywhere** — the typed version, `pyproject.toml` and
+   `server.json` must match, and the version must be new on PyPI and untagged
+4. **`tests/test_security.py` passes** — the credential, HTTPS and injection checks
+   described above
+5. **`pip-audit --strict` finds no known vulnerability** in the declared
+   dependencies, resolved fresh, and a separate job audits the lockfile weekly
+6. **Source greps** — no `subprocess`, no plaintext `http://`, no credential logging
+7. **The tag is cut last**, only after PyPI *and* the MCP Registry both serve the
+   version, so a green run means published everywhere
+
+Earlier versions of this page described an audit request sent to an internal
+message queue and an independent reviewer returning a PASS. That process was
+retired: it was not what actually stood between a change and PyPI, and
+describing a reviewer who does not exist overstates what a reader is getting.
 
 ---
 

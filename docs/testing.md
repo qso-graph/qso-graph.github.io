@@ -8,7 +8,7 @@ render_macros: true
 
 | Layer | Name | What It Catches | Blocking? |
 |-------|------|-----------------|-----------|
-| **L1** | Security Audit | Credential leaks, injection, unsafe patterns | Hard stop |
+| **L1** | Security tests (`test_security.py`) | Credential leaks, injection, unsafe patterns | Hard stop |
 | **L2** | Unit Tests (Mock Mode) | Tool logic, parameter handling, return shapes | Hard stop |
 | **L3** | Integration Tests (Live) | API connectivity, auth flows, data correctness | Pre-release gate |
 | **L4** | Fleet Composition | Tool name collisions, schema conflicts, cross-server consistency | Fleet releases |
@@ -129,30 +129,36 @@ EQSL_MCP_MOCK=1 HAMQTH_MCP_MOCK=1 LOTW_MCP_MOCK=1 QRZ_MCP_MOCK=1 \
 
 ---
 
-## adif-mcp Validation (v1.0.0)
+## adif-mcp Validation
 
-adif-mcp is the foundation package. Beyond the standard security and unit tests, it carries a comprehensive validation suite against the ADIF 3.1.6 specification:
+adif-mcp is the foundation package. Beyond the standard security and unit tests, it carries a comprehensive validation suite against the ADIF 3.1.7 specification:
 
-### Test Matrix — 48/48 PASS
+### Test matrix
 
-| Category | ID Prefix | Tests | Status |
-|----------|-----------|:-----:|--------|
-| Enumeration Listing | ADIF-ENL | 3 | 3/3 PASS |
-| Enumeration Search | ADIF-ENS | 6 | 6/6 PASS |
-| Enum Validation — Simple | ADIF-EVS | 6 | 6/6 PASS |
-| Enum Validation — Compound | ADIF-EVC | 3 | 3/3 PASS |
-| Enum Validation — Conditional | ADIF-EVX | 2 | 2/2 PASS |
-| Enum Validation — Regression | ADIF-EVR | 1 | 1/1 PASS |
-| Official ADIF 3.1.6 Test Corpus | ADIF-TCR | 2 | 2/2 PASS |
-| Enum JSON Parity | ADIF-TCR | 1 | 1/1 PASS |
-| Security Audit | — | 6 | 6/6 PASS |
-| KI7MT Forensic Hard Tests | KI7MT-FRN | 12 | 12/12 PASS |
-| Empty Value Handling | ADIF-EVS | 2 | 2/2 PASS |
-| **Total** | — | **48** | **48/48 PASS** |
+The registered validation cases live in the repository, as
+[`tests/TEST-CASE-REGISTER.md`](https://github.com/qso-graph/adif-mcp/blob/main/tests/TEST-CASE-REGISTER.md)
+— each with its input, expected result and the reason it exists. That file is the
+record; this page used to copy its table and had drifted to a total of 48 against
+the register's 109, which is what happens to a number kept in two places.
 
-### Official ADIF 3.1.6 Test Corpus
+Two figures, both measured on 2026-10-28:
 
-The gold standard for ADIF validation. The [official test file](https://adif.org.uk/316/resources) from G3ZOD's `CreateADIFTestFiles` contains **6,191 QSO records** exercising every enumeration value in the specification.
+| | |
+|---|---|
+| Registered validation cases | **109**, all passing |
+| Full `pytest` suite | **186** tests — the registered cases plus unit, security, CLI and packaging tests |
+
+### Official ADIF test corpus
+
+The gold standard for ADIF validation: the official test files from G3ZOD's
+`CreateADIFTestFiles`, which exercise every enumeration value in the
+specification. Both the current and previous versions are run, because logs
+written against 3.1.6 do not stop existing when 3.1.7 publishes:
+
+| Corpus | QSO records |
+|---|---:|
+| [ADIF 3.1.7](https://adif.org.uk/317/resources) | 6,197 |
+| [ADIF 3.1.6](https://adif.org.uk/316/resources) | 6,191 |
 
 | Test | Records | Result |
 |------|--------:|--------|
@@ -226,15 +232,20 @@ EQSL_MCP_MOCK=1 HAMQTH_MCP_MOCK=1 LOTW_MCP_MOCK=1 QRZ_MCP_MOCK=1 \
 
 ---
 
-## Audit Process
+## Release gate
 
-The QSO Graph release process requires three rounds of review before any PyPI publication:
+Publishing is gated mechanically rather than socially. `publish.yml` checks that
+CI passed on the exact commit being published, that the version agrees across
+`pyproject.toml` and `server.json` and is new on PyPI and untagged, that
+`tests/test_security.py` passes, that `pip-audit --strict` reports no known
+vulnerability, and that no `subprocess`, plaintext `http://` or credential
+logging appears in `src/`. The tag is cut last, only after PyPI **and** the MCP
+Registry both serve the version.
 
-1. **Writer** — writes code and runs all tests locally
-2. **1st Audit/Reviewer** — independent functional review, pulls code, runs tests on separate machine
-3. **2nd Audit/Reviewer** — failure analysis and security audit, reviews all source files for credential leaks, injection surfaces, and error message safety
-
-All three must pass before the tag is created.
+This page previously described three rounds of human review — a writer and two
+independent audit/reviewers — as a requirement before any publication. That was
+retired. It was not what stood between a change and PyPI, and describing
+reviewers who are not there overstates what a reader is getting.
 
 ---
 
@@ -242,8 +253,9 @@ All three must pass before the tag is created.
 
 | Resource | URL |
 |----------|-----|
-| ADIF 3.1.6 Specification | [adif.org/316](https://adif.org/316/ADIF_316.htm) |
-| Official Test Corpus (G3ZOD) | [adif.org.uk/316/resources](https://adif.org.uk/316/resources) |
+| ADIF 3.1.7 Specification | [adif.org.uk/317](https://adif.org.uk/317/ADIF_317.htm) |
+| ADIF 3.1.6 Specification | [adif.org.uk/316](https://adif.org.uk/316/ADIF_316.htm) |
+| Official Test Corpus (G3ZOD) | [adif.org.uk/317/resources](https://adif.org.uk/317/resources) |
 | CreateADIFTestFiles | [github.com/g3zod/CreateADIFTestFiles](https://github.com/g3zod/CreateADIFTestFiles) |
 | K1MU ADIF Validator | [rickmurphy.net/adifvalidator.html](https://www.rickmurphy.net/adifvalidator.html) |
 | adif-multitool (flwyd) | [github.com/flwyd/adif-multitool](https://github.com/flwyd/adif-multitool) |

@@ -1,6 +1,6 @@
 # Architecture
 
-**How QSO Graph servers work together — two foundation packages, nine MCP servers, zero cloud dependencies.**
+**How QSO Graph servers work together — 22 MCP servers over two foundation packages, zero cloud dependencies.**
 
 ---
 
@@ -11,34 +11,61 @@ graph TD
     AI["<b>AI Assistant</b><br/>Claude · ChatGPT · Cursor · Gemini"]
     AI -->|"MCP Protocol (stdio)"| Servers
 
-    subgraph Servers["MCP Servers (local)"]
+    subgraph Servers["MCP Servers (local) — 22 published"]
         direction TB
-        eqsl["eqsl-mcp"]
-        qrz["qrz-mcp"]
-        lotw["lotw-mcp"]
-        hamqth["hamqth-mcp"]
-        pota["pota-mcp"]
-        sota["sota-mcp"]
-        solar["solar-mcp"]
-        wspr["wspr-mcp"]
+
+        subgraph Logs["Logbooks & QSL — your credentials"]
+            eqsl["eqsl-mcp"]
+            qrz["qrz-mcp"]
+            lotw["lotw-mcp"]
+            hamqth["hamqth-mcp"]
+        end
+
+        subgraph Act["Operating activity"]
+            pota["pota-mcp"]
+            sota["sota-mcp"]
+            iota["iota-mcp"]
+            omiss["omiss-mcp"]
+            netlogger["netlogger-mcp"]
+            wspr["wspr-mcp"]
+        end
+
+        subgraph Prop["Propagation & space weather"]
+            solar["solar-mcp"]
+            ionis["ionis-mcp"]
+            eme["eme-mcp"]
+            meteor["meteor-mcp"]
+        end
+
+        subgraph Ref["Reference data — ships in the wheel, no network"]
+            adif["adif-mcp"]
+            cq["cq-zones-mcp"]
+            itu["itu-zones-mcp"]
+            darc["darc-dok-mcp"]
+        end
+
+        subgraph Local["Your own station"]
+            n1mm["n1mm-mcp"]
+        end
+
+        subgraph Dev["In development — no working tools yet"]
+            dxe["dxe-mcp"]
+            js8["js8call-mcp"]
+            contest["qso-graph-contest-mcp"]
+        end
 
         subgraph Auth["qso-graph-auth"]
             persona["PersonaManager → OS Keyring"]
         end
 
-        subgraph ADIF["adif-mcp"]
-            spec["ADIF 3.1.6 Spec (186 fields, 26 enums)"]
-            valid["Validation Engine"]
-            geo["Geospatial (distance, heading)"]
-        end
-
-        eqsl & qrz & lotw & hamqth --> Auth
+        Logs --> Auth
     end
 
-    Servers -->|"HTTPS only"| Services
+    Logs & Act & Prop -->|"HTTPS only"| Services
+    n1mm -->|"UDP, your LAN only"| Station["N1MM Logger+ on your PC"]
 
     subgraph Services["External Services"]
-        svc["eQSL.cc · QRZ.com · LoTW · HamQTH<br/>POTA · SOTA · NOAA SWPC · WSPR Network"]
+        svc["eQSL.cc · QRZ.com · LoTW · HamQTH · POTA · SOTA<br/>IOTA · OMISS · NetLogger · NOAA SWPC · WSPR · GMN · JPL"]
     end
 ```
 
@@ -64,16 +91,17 @@ When a server needs credentials, it calls `qso-graph-auth` which reads them from
 
 ```bash
 uv tool install qso-graph-auth
-qso-auth persona add --name ki7mt --callsign KI7MT --start 2020-01-01
-qso-auth creds set ki7mt eqsl
+qso-graph-auth persona add --name ki7mt --callsign KI7MT --start 2020-01-01
+qso-graph-auth creds set ki7mt eqsl
 ```
 
-### adif-mcp — ADIF 3.1.6 Spec Engine
+### adif-mcp — ADIF 3.1.7 Spec Engine
 
-The complete ADIF 3.1.6 spec bundled as JSON:
+The complete ADIF 3.1.7 spec bundled as JSON, with 3.1.6 retained for logs written against it:
 
 - **186 fields** with data types, valid ranges, and descriptions
-- **26 enumerations** with 4,427+ records (Mode, Band, DXCC, Country, Contest_ID, etc.)
+- **25 enumerations** with 3,345 records (Mode, Band, DXCC_Entity_Code, Contest_ID, etc.), plus
+  `Country` re-keyed by adif-mcp from ADIF's entity names — 26 enumerations and 3,745 records as shipped
 - **28 data types** (Number, String, Date, GridSquare, etc.)
 
 Plus validation, parsing, and geospatial tools. See [adif-mcp](servers/adif-mcp.md) for the full 8-tool reference.
@@ -149,7 +177,7 @@ Each server implements rate limiting appropriate for its service:
 Credentials take one path and never deviate:
 
 ```
-User ──── qso-auth creds set ──── OS Keyring (encrypted)
+User ──── qso-graph-auth creds set ──── OS Keyring (encrypted)
                                        │
 MCP Server ──── qso-graph-auth read ───┘
     │                                (in-process, never serialized)
@@ -207,7 +235,7 @@ All servers work with any MCP client. Example for Claude Desktop:
 }
 ```
 
-For Claude Code, add to `~/.claude/settings.json`:
+For Claude Code, add to `~/.claude.json`:
 
 ```json
 {

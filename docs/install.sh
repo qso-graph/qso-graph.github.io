@@ -13,7 +13,7 @@ QSO Graph's tools run with uv (https://docs.astral.sh/uv/):
   2. Your MCP client runs each server with uvx, always the current release:
        "command": "uvx", "args": ["pota-mcp"]
   3. Command-line tools:
-       uv tool install qso-graph-auth    # credentials (qso-auth)
+       uv tool install qso-graph-auth    # credentials (the qso-graph-auth command)
        uv tool install qsp-client        # the local-LLM relay
 
 Full instructions: https://qso-graph.io/getting-started/
