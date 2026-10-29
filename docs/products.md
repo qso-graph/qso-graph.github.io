@@ -11,7 +11,7 @@ QSO Graph is several products, not one program. Each stands alone: use the one t
 | [MCP servers](#mcp-servers) | Python packages for AI assistants | Available |
 | [QSO Graph Desktop](#qso-graph-desktop) | Desktop app (Windows, Linux, macOS) | Available (0.4.0) |
 | [QSO Graph SDK](#qso-graph-sdk) | Build kit | Available |
-| [QSO Graph Sim](#qso-graph-sim) | Test tool for developers | In development |
+| [QSO Graph Sim](#qso-graph-sim) | Test tool for developers | Available (0.1.0) |
 
 ---
 
@@ -57,6 +57,6 @@ requirement.
 **qso-graph-sim** plays back what a ham radio program sends on the network, from that program's own
 log, so whatever receives it can be built and tested without a radio. It starts with WSJT-X: give it an
 `ALL.TXT` and it sends those decodes as WSJT-X's own UDP messages. It is how QSO Graph Desktop's WSJT-X
-monitor is tested. Not on PyPI yet.
+monitor is tested. `uv tool install qso-graph-sim`.
 
-[GitHub](https://github.com/qso-graph/qso-graph-sim)
+[GitHub](https://github.com/qso-graph/qso-graph-sim) · [PyPI](https://pypi.org/project/qso-graph-sim/)
