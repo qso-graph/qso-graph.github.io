@@ -18,7 +18,12 @@ qso-graph-auth manages credentials for all authenticated QSO Graph servers. It p
 - **Credential storage** — passwords and API keys stored in your OS keyring (never in config files)
 - **Provider management** — enable/disable services per persona
 - **Health check** — `creds doctor` verifies all credentials are wired up
-- **CLI** — `qso-auth` command for all operations
+- **CLI** — `qso-graph-auth` command for all operations
+
+!!! note "The command was renamed in 0.5.0"
+    It used to be `qso-auth`, which did not match the package you installed.
+    `qso-auth` still works and prints a note saying where it went, so anything
+    already in a script keeps running; it will be removed in a later release.
 
 All authenticated MCP servers (`eqsl-mcp`, `qrz-mcp`, `lotw-mcp`, `hamqth-mcp`) depend on this package.
 
@@ -31,22 +36,22 @@ All authenticated MCP servers (`eqsl-mcp`, `qrz-mcp`, `lotw-mcp`, `hamqth-mcp`) 
 uv tool install qso-graph-auth
 
 # Create a persona (your callsign identity)
-qso-auth persona add --name ki7mt --callsign KI7MT --start 2020-01-01
+qso-graph-auth persona add --name ki7mt --callsign KI7MT --start 2020-01-01
 
 # Enable each service for the persona, then store its credentials (prompts interactively)
-qso-auth provider enable ki7mt eqsl
-qso-auth provider enable ki7mt lotw
-qso-auth provider enable ki7mt qrz
-qso-auth provider enable ki7mt qrz_logbook
-qso-auth provider enable ki7mt hamqth
-qso-auth creds set ki7mt eqsl
-qso-auth creds set ki7mt lotw
-qso-auth creds set ki7mt qrz
-qso-auth creds set ki7mt qrz_logbook
-qso-auth creds set ki7mt hamqth
+qso-graph-auth provider enable ki7mt eqsl
+qso-graph-auth provider enable ki7mt lotw
+qso-graph-auth provider enable ki7mt qrz
+qso-graph-auth provider enable ki7mt qrz_logbook
+qso-graph-auth provider enable ki7mt hamqth
+qso-graph-auth creds set ki7mt eqsl
+qso-graph-auth creds set ki7mt lotw
+qso-graph-auth creds set ki7mt qrz
+qso-graph-auth creds set ki7mt qrz_logbook
+qso-graph-auth creds set ki7mt hamqth
 
 # List what's stored
-qso-auth creds doctor
+qso-graph-auth creds doctor
 ```
 
 See the [Credential Setup Guide](../credentials.md) for full details, per-server examples, and troubleshooting.
@@ -59,29 +64,29 @@ See the [Credential Setup Guide](../credentials.md) for full details, per-server
 
 | Command | Description |
 |---------|-------------|
-| `qso-auth persona add --name NAME --callsign CALL --start YYYY-MM-DD` | Create a persona |
-| `qso-auth persona list` | List all personas |
-| `qso-auth persona list --verbose` | List with callsign and date range |
-| `qso-auth persona show NAME` | Show persona details |
-| `qso-auth persona set-active NAME` | Set the active persona |
-| `qso-auth persona remove NAME` | Delete a persona |
+| `qso-graph-auth persona add --name NAME --callsign CALL --start YYYY-MM-DD` | Create a persona |
+| `qso-graph-auth persona list` | List all personas |
+| `qso-graph-auth persona list --verbose` | List with callsign and date range |
+| `qso-graph-auth persona show NAME` | Show persona details |
+| `qso-graph-auth persona set-active NAME` | Set the active persona |
+| `qso-graph-auth persona remove NAME` | Delete a persona |
 
 ### Credential Commands
 
 | Command | Description |
 |---------|-------------|
-| `qso-auth creds set PERSONA PROVIDER` | Store credentials (interactive prompt) |
-| `qso-auth creds get PERSONA PROVIDER` | Show what is stored (secrets shown as `•••`) |
-| `qso-auth creds delete PERSONA PROVIDER` | Remove credentials from keyring |
-| `qso-auth creds doctor` | Check all personas for missing credentials |
+| `qso-graph-auth creds set PERSONA PROVIDER` | Store credentials (interactive prompt) |
+| `qso-graph-auth creds get PERSONA PROVIDER` | Show what is stored (secrets shown as `•••`) |
+| `qso-graph-auth creds delete PERSONA PROVIDER` | Remove credentials from keyring |
+| `qso-graph-auth creds doctor` | Check all personas for missing credentials |
 
 ### Provider Commands
 
 | Command | Description |
 |---------|-------------|
-| `qso-auth provider list` | List supported providers |
-| `qso-auth provider enable PERSONA PROVIDER` | Enable a provider for a persona |
-| `qso-auth provider disable PERSONA PROVIDER` | Disable a provider for a persona |
+| `qso-graph-auth provider list` | List supported providers |
+| `qso-graph-auth provider enable PERSONA PROVIDER` | Enable a provider for a persona |
+| `qso-graph-auth provider disable PERSONA PROVIDER` | Disable a provider for a persona |
 
 ---
 

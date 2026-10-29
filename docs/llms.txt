@@ -55,7 +55,10 @@
 - All credentials stored in OS keyring (macOS Keychain, Windows Credential Manager, Linux Secret Service)
 - All external connections HTTPS only
 - No subprocess, no shell=True, no eval/exec in any package
-- Every package requires security audit before PyPI publication
+- Every package is gated at publish by mechanical checks: CI green on the
+  published commit, test_security.py, pip-audit --strict, source greps for
+  subprocess/plaintext-http/credential-logging, and a tag cut only after both
+  PyPI and the MCP Registry serve the version
 - Read-only — no server writes to external services
 - License: GPL-3.0-or-later
 - Author: Greg Beam, KI7MT

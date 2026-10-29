@@ -99,7 +99,7 @@ eQSL, QRZ, LoTW, and HamQTH use **qso-graph-auth personas** — named identities
 
 ```bash
 uv tool install qso-graph-auth
-qso-auth creds set ki7mt eqsl
+qso-graph-auth creds set ki7mt eqsl
 ```
 
 Every tool call includes a `persona` parameter so the server knows which credentials to use. See [Getting Started](../getting-started.md) for setup.

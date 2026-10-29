@@ -70,5 +70,5 @@ Dashboard, physics lab, DXCC progress, path analyzer, and log viewer, all powere
 - **GitHub**: [github.com/qso-graph](https://github.com/qso-graph)
 - **Specification**: [being rewritten](specification.md) for QSO Graph Desktop
 - **Demos**: [logbook](https://qso-graph.io/qso-graph-demo-logbook/) and [DXpedition](https://qso-graph.io/qso-graph-demo-dxpedition/)
-- **Testing**: [108/108 PASS](testing.md): security audit, ADIF 3.1.7 official test corpus, forensic validation
+- **Testing**: [2,464 tests across 24 packages](testing.md), all passing as of 2026-10-28: security tests, the official ADIF 3.1.7 and 3.1.6 test corpora, and forensic validation
 - **Related**: [IONIS-AI](https://ionis-ai.com/): HF propagation prediction from 14B amateur radio observations

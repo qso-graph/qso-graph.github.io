@@ -23,17 +23,17 @@ Servers that access your accounts use [qso-graph-auth](https://pypi.org/project/
 uv tool install qso-graph-auth
 
 # Create a persona (your callsign identity)
-qso-auth persona add --name ki7mt --callsign KI7MT --start 2020-01-01
+qso-graph-auth persona add --name ki7mt --callsign KI7MT --start 2020-01-01
 
 # Store credentials for each service (prompts interactively — never pass passwords on the command line)
-qso-auth creds set ki7mt eqsl
-qso-auth creds set ki7mt lotw
-qso-auth creds set ki7mt qrz
-qso-auth creds set ki7mt qrz_logbook
-qso-auth creds set ki7mt hamqth
+qso-graph-auth creds set ki7mt eqsl
+qso-graph-auth creds set ki7mt lotw
+qso-graph-auth creds set ki7mt qrz
+qso-graph-auth creds set ki7mt qrz_logbook
+qso-graph-auth creds set ki7mt hamqth
 
 # Verify everything is wired up
-qso-auth creds doctor
+qso-graph-auth creds doctor
 ```
 
 Your credentials are stored in the OS keyring (macOS Keychain, Windows Credential Manager, or Linux Secret Service) — never in config files.
@@ -95,7 +95,7 @@ Add servers to `~/Library/Application Support/Claude/claude_desktop_config.json`
 
 ### Claude Code
 
-Add to `~/.claude/settings.json`:
+Add to `~/.claude.json`:
 
 ```json
 {
