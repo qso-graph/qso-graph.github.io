@@ -120,12 +120,7 @@ L4 tests verify that all 12 servers work correctly when loaded together. They im
 | Null defaults from `Optional` params | Tracked | FastMCP generates `{"default": null}` from Python `Optional[str] = None`. Valid JSON Schema but may affect some local LLM tool parsers. |
 | Band parameter type split | By design | qso-graph servers use string band names (`"20M"`), ionis-mcp uses integer ADIF band IDs (`107`). |
 
-```bash
-# Run L4 fleet tests (all 12 servers must be installed)
-cd ionis-devel
-EQSL_MCP_MOCK=1 HAMQTH_MCP_MOCK=1 LOTW_MCP_MOCK=1 QRZ_MCP_MOCK=1 \
-  pytest tests/test_fleet.py -v
-```
+The L4 fleet suite is not published; its results are the tables above.
 
 ---
 
@@ -222,14 +217,6 @@ for repo in adif-mcp eqsl-mcp qrz-mcp lotw-mcp hamqth-mcp pota-mcp \
 done
 ```
 
-### Fleet composition tests
-
-```bash
-cd ionis-devel
-EQSL_MCP_MOCK=1 HAMQTH_MCP_MOCK=1 LOTW_MCP_MOCK=1 QRZ_MCP_MOCK=1 \
-  pytest tests/test_fleet.py -v
-```
-
 ---
 
 ## Release gate
@@ -260,4 +247,3 @@ reviewers who are not there overstates what a reader is getting.
 | K1MU ADIF Validator | [rickmurphy.net/adifvalidator.html](https://www.rickmurphy.net/adifvalidator.html) |
 | adif-multitool (flwyd) | [github.com/flwyd/adif-multitool](https://github.com/flwyd/adif-multitool) |
 | MCP Security Best Practices | [modelcontextprotocol.io](https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices) |
-| QSO Graph Test Framework (internal) | [ionis-devel/planning/QSO-GRAPH-TEST-FRAMEWORK.md](https://github.com/IONIS-AI/ionis-devel) |
