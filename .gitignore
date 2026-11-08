@@ -2,7 +2,7 @@ site/
 __pycache__/
 .cache/
 *.pyc
-data/
+/data/
 docs/spec/
 docs/applications/
 docs/mcp-servers/

@@ -1,5 +1,5 @@
 import unittest
-from scripts.fetch_docs import product_path, sanitize_html
+from scripts.fetch_docs import product_path, product_text, sanitize_html, take_title
 
 
 class SanitizerTests(unittest.TestCase):
@@ -54,3 +54,23 @@ class SanitizerTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class TitleTests(unittest.TestCase):
+    """Starlight prints the title as the page heading, so a README's own first heading moves there."""
+
+    def test_first_heading_becomes_the_title_and_leaves_the_body(self):
+        page = product_text('README.md', b'<!-- mcp-name: x -->\n# pota-mcp\n\nText.\n\n## Install\n', {}, 'pota-mcp', 'v1.0.0')
+        self.assertTrue(page.startswith('---\ntitle: "pota-mcp"\n---\n'))
+        self.assertNotIn('# pota-mcp', page)
+        self.assertIn('## Install', page)
+        self.assertIn('<!-- mcp-name: x -->', page)
+
+    def test_a_hash_line_in_a_fence_is_code_not_a_title(self):
+        title, body = take_title('```sh\n# install it\nuvx pota-mcp\n```\n\n# Real title\n')
+        self.assertEqual(title, 'Real title')
+        self.assertIn('# install it', body)
+        self.assertNotIn('# Real title', body)
+
+    def test_no_heading_keeps_the_body(self):
+        self.assertEqual(take_title('Just text.\n'), (None, 'Just text.\n'))

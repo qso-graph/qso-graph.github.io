@@ -191,20 +191,42 @@ def sanitize_html(body):
     return result
 
 
+def take_title(body):
+    """The first `# heading` outside code fences, and the body without that line.
+
+    Starlight prints the page's title as its heading, so a README's own first heading would show
+    twice; it becomes the title and leaves the body. A `#` line inside a fence is code, never a title.
+    """
+    lines = body.splitlines(keepends=True)
+    fence = None
+    for i, line in enumerate(lines):
+        mark = re.match(r'\s{0,3}(`{3,}|~{3,})', line)
+        if mark:
+            if fence is None:
+                fence = mark.group(1)
+            elif mark.group(1).startswith(fence):
+                fence = None
+            continue
+        if fence is None:
+            heading = re.match(r'# +(.+?)\s*#*\s*$', line)
+            if heading:
+                return heading.group(1), ''.join(lines[:i] + lines[i + 1:])
+    return None, body
+
+
 def product_text(path, content, files, repo, tag):
     body = sanitize_html(content.decode('utf-8'))
-    heading = re.search(r'^# +(.+?)\s*#*\s*$', body, re.MULTILINE)
-    title = heading.group(1) if heading else PurePosixPath(path).stem.replace('-', ' ').title()
-    title = re.sub(r'\[([^]]+)\]\([^)]+\)', r'\1', title).strip()
+    front = ''
     if body.startswith('---\n') and '\n---\n' in body[4:]:
         end = body.index('\n---\n', 4)
         front = body[4:end]
-        if not re.search(r'^title:', front, re.MULTILINE):
-            front = f'title: {json.dumps(title)}\n' + front
         body = body[end + 5:]
-    else:
-        front = f'title: {json.dumps(title)}'
-    return f'---\n{front}\n---\n\n{body}'
+    heading, body = take_title(body)
+    title = heading or PurePosixPath(path).stem.replace('-', ' ').title()
+    title = re.sub(r'\[([^]]+)\]\([^)]+\)', r'\1', title).strip()
+    if not re.search(r'^title:', front, re.MULTILINE):
+        front = f'title: {json.dumps(title)}' + (f'\n{front}' if front else '')
+    return f'---\n{front}\n---\n\n{body.lstrip(chr(10))}'
 
 
 ORG = 'qso-graph'
