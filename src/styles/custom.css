@@ -6,3 +6,47 @@
   vertical-align: middle;
   margin: 0 0.15rem 0.25rem 0;
 }
+
+/* The buttons stay outside the panels so they remain available when a panel is hidden. */
+.panel-toggle { display: none; }
+@media (min-width: 50rem) {
+  .navigation-toggle {
+    display: block;
+    left: var(--sl-sidebar-width);
+    transform: translateX(-50%);
+  }
+  [data-navigation-collapsed] .navigation-toggle { left: 0; transform: none; }
+  [data-navigation-collapsed] .sidebar-pane { display: none; }
+  html[data-has-sidebar][data-navigation-collapsed] { --sl-content-inline-start: 0rem; }
+  .navigation-toggle span::before { content: '←'; }
+  [data-navigation-collapsed] .navigation-toggle span::before { content: '→'; }
+}
+@media (min-width: 72rem) {
+  .contents-toggle {
+    display: block;
+    right: max(var(--sl-sidebar-width), calc(var(--sl-sidebar-width) + (100vw - var(--sl-content-inline-start, 0rem) - var(--sl-content-width) - var(--sl-sidebar-width)) / 2));
+    transform: translateX(50%);
+  }
+  [data-contents-collapsed] .contents-toggle { right: 0; transform: none; }
+  [data-contents-collapsed] .right-sidebar-container { display: none; }
+  html[data-has-sidebar][data-has-toc][data-contents-collapsed] .main-pane { width: 100%; }
+  [data-navigation-collapsed] .content-panel .sl-container, [data-contents-collapsed] .content-panel .sl-container { max-width: 63.75rem; }
+  [data-navigation-collapsed][data-contents-collapsed] .content-panel .sl-container { max-width: 82.5rem; }
+  .contents-toggle span::before { content: '→'; }
+  [data-contents-collapsed] .contents-toggle span::before { content: '←'; }
+}
+.panel-toggle {
+  position: fixed;
+  z-index: var(--sl-z-index-menu);
+  top: calc(var(--sl-nav-height) + 0.65rem);
+  padding: 0.15rem 0.4rem;
+  border: 1px solid var(--sl-color-hairline);
+  border-radius: 0.3rem;
+  background: var(--sl-color-bg-nav);
+  color: var(--sl-color-gray-2);
+  cursor: pointer;
+  line-height: 1.3;
+}
+.panel-toggle:hover { color: var(--sl-color-white); border-color: var(--sl-color-gray-3); }
+.panel-toggle:focus-visible { outline: 2px solid var(--sl-color-text-accent); outline-offset: 2px; }
+@media print { .panel-toggle { display: none; } }

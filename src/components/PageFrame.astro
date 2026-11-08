@@ -1,0 +1,28 @@
+---
+import DefaultPageFrame from '@astrojs/starlight/components/PageFrame.astro';
+const { hasSidebar, toc } = Astro.locals.starlightRoute;
+---
+<DefaultPageFrame>
+  <slot name="header" slot="header" />
+  <slot name="sidebar" slot="sidebar" />
+  <slot />
+</DefaultPageFrame>
+{hasSidebar && <button class="panel-toggle navigation-toggle print:hidden" type="button" aria-controls="starlight__sidebar" aria-expanded="true" aria-label="Hide navigation" data-panel="navigation"><span aria-hidden="true"></span></button>}
+{toc && <button class="panel-toggle contents-toggle print:hidden" type="button" aria-controls="qso-desktop-contents" aria-expanded="true" aria-label="Hide contents" data-panel="contents"><span aria-hidden="true"></span></button>}
+<script is:inline>
+  document.querySelectorAll('.panel-toggle').forEach((button) => {
+    const panel = button.dataset.panel;
+    const attribute = `data-${panel}-collapsed`;
+    const update = () => {
+      const collapsed = document.documentElement.hasAttribute(attribute);
+      button.setAttribute('aria-expanded', String(!collapsed));
+      button.setAttribute('aria-label', `${collapsed ? 'Show' : 'Hide'} ${panel}`);
+    };
+    update();
+    button.addEventListener('click', () => {
+      const collapsed = document.documentElement.toggleAttribute(attribute);
+      update();
+      try { localStorage.setItem(`qso-${panel}-collapsed`, String(collapsed)); } catch {}
+    });
+  });
+</script>

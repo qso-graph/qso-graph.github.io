@@ -11,7 +11,12 @@ export default defineConfig({
     title: 'QSO Graph',
     favicon: '/assets/images/favicon.png',
     customCss: ['./src/styles/custom.css'],
-    components: { MarkdownContent: './src/components/MarkdownContent.astro' },
+    components: {
+      MarkdownContent: './src/components/MarkdownContent.astro',
+      Head: './src/components/Head.astro',
+      PageFrame: './src/components/PageFrame.astro',
+      TwoColumnContent: './src/components/TwoColumnContent.astro',
+    },
     social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/qso-graph/qso-graph.github.io' }],
     sidebar: [
       { label: 'Home', link: '/' },
