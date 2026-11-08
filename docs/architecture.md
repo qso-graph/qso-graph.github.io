@@ -104,7 +104,7 @@ The complete ADIF 3.1.7 spec bundled as JSON, with 3.1.6 retained for logs writt
   `Country` re-keyed by adif-mcp from ADIF's entity names — 26 enumerations and 3,745 records as shipped
 - **28 data types** (Number, String, Date, GridSquare, etc.)
 
-Plus validation, parsing, and geospatial tools. See [adif-mcp](servers/adif-mcp.md) for the full 8-tool reference.
+Plus validation, parsing, and geospatial tools. See [adif-mcp](mcp-servers/adif-mcp/index.md) for the full 8-tool reference.
 
 ### Validation Engine
 

@@ -53,6 +53,11 @@ jobs:
       - name: Install dependencies
         run: pip install --require-hashes -r requirements.txt
 
+      - name: Fetch released documentation
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/fetch_docs.py
+
       - name: Collect every server's released version and tools
         env:
           GITHUB_TOKEN: ${{ github.token }}

@@ -4,3 +4,7 @@ __pycache__/
 *.pyc
 data/
 docs/spec/
+docs/applications/
+docs/mcp-servers/
+docs/libraries/
+docs/tools/

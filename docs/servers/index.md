@@ -37,28 +37,28 @@ You: "You have 3 new confirmations: JA1ABC on 20m FT8, ..."
 
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
-| [qso-graph-auth](qso-graph-auth.md) | — | OS keyring credentials | None (local) |
-| [adif-mcp](adif-mcp.md) | {{ tools("adif-mcp") }} | ADIF 3.1.7 spec | None (local) |
+| [qso-graph-auth](../libraries/qso-graph-auth/index.md) | — | OS keyring credentials | None (local) |
+| [adif-mcp](../mcp-servers/adif-mcp/index.md) | {{ tools("adif-mcp") }} | ADIF 3.1.7 spec | None (local) |
 
 ### Logbook Services
 
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
-| [eqsl-mcp](eqsl.md) | {{ tools("eqsl-mcp") }} | eQSL.cc | Persona (session) |
-| [qrz-mcp](qrz.md) | {{ tools("qrz-mcp") }} | QRZ.com | Persona (XML) + API key (Logbook) |
-| [lotw-mcp](lotw.md) | {{ tools("lotw-mcp") }} | LoTW (ARRL) | Persona (HTTPS) |
-| [hamqth-mcp](hamqth.md) | {{ tools("hamqth-mcp") }} | HamQTH.com | Persona (XML session) |
+| [eqsl-mcp](../mcp-servers/eqsl-mcp/index.md) | {{ tools("eqsl-mcp") }} | eQSL.cc | Persona (session) |
+| [qrz-mcp](../mcp-servers/qrz-mcp/index.md) | {{ tools("qrz-mcp") }} | QRZ.com | Persona (XML) + API key (Logbook) |
+| [lotw-mcp](../mcp-servers/lotw-mcp/index.md) | {{ tools("lotw-mcp") }} | LoTW (ARRL) | Persona (HTTPS) |
+| [hamqth-mcp](../mcp-servers/hamqth-mcp/index.md) | {{ tools("hamqth-mcp") }} | HamQTH.com | Persona (XML session) |
 
 ### Public Services
 
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
-| [pota-mcp](pota.md) | {{ tools("pota-mcp") }} | Parks on the Air | None (public) |
-| [sota-mcp](sota.md) | {{ tools("sota-mcp") }} | Summits on the Air | None (public) |
-| [iota-mcp](iota.md) | {{ tools("iota-mcp") }} | Islands on the Air | None (public) |
-| [solar-mcp](solar.md) | {{ tools("solar-mcp") }} | NOAA SWPC | None (public) |
-| [wspr-mcp](wspr.md) | {{ tools("wspr-mcp") }} | wspr.live (ClickHouse) | None (public) |
-| [omiss-mcp](omiss-mcp.md) | {{ tools("omiss-mcp") }} | OMISS (omiss.net) | None (public) |
+| [pota-mcp](../mcp-servers/pota-mcp/index.md) | {{ tools("pota-mcp") }} | Parks on the Air | None (public) |
+| [sota-mcp](../mcp-servers/sota-mcp/index.md) | {{ tools("sota-mcp") }} | Summits on the Air | None (public) |
+| [iota-mcp](../mcp-servers/iota-mcp/index.md) | {{ tools("iota-mcp") }} | Islands on the Air | None (public) |
+| [solar-mcp](../mcp-servers/solar-mcp/index.md) | {{ tools("solar-mcp") }} | NOAA SWPC | None (public) |
+| [wspr-mcp](../mcp-servers/wspr-mcp/index.md) | {{ tools("wspr-mcp") }} | wspr.live (ClickHouse) | None (public) |
+| [omiss-mcp](../mcp-servers/omiss-mcp/index.md) | {{ tools("omiss-mcp") }} | OMISS (omiss.net) | None (public) |
 
 ### Propagation Analytics
 
@@ -72,22 +72,22 @@ The lists ADIF's fields point to but ADIF doesn't define, each as its owner publ
 
 | Package | Tools | Owner's list | Auth Pattern |
 |---------|:-----:|---------|-------------|
-| [cq-zones-mcp](cq-zones.md) | {{ tools("cq-zones-mcp") }} | CQ zones: CQ's WAZ Zone Definitions | None (local) |
-| [itu-zones-mcp](itu-zones.md) | {{ tools("itu-zones-mcp") }} | ITU zones: the IARU's HF Managers Handbook, ch. 9.8 | None (local) |
-| [darc-dok-mcp](darc-dok.md) | {{ tools("darc-dok-mcp") }} | DARC's DOKs and special DOKs | None (local) |
+| [cq-zones-mcp](../mcp-servers/cq-zones-mcp/index.md) | {{ tools("cq-zones-mcp") }} | CQ zones: CQ's WAZ Zone Definitions | None (local) |
+| [itu-zones-mcp](../mcp-servers/itu-zones-mcp/index.md) | {{ tools("itu-zones-mcp") }} | ITU zones: the IARU's HF Managers Handbook, ch. 9.8 | None (local) |
+| [darc-dok-mcp](../mcp-servers/darc-dok-mcp/index.md) | {{ tools("darc-dok-mcp") }} | DARC's DOKs and special DOKs | None (local) |
 
 ### Radio Logging
 
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
-| [n1mm-mcp](n1mm-mcp.md) | {{ tools("n1mm-mcp") }} | N1MM Logger+ (UDP broadcast) | None (local) |
-| [netlogger-mcp](netlogger-mcp.md) | {{ tools("netlogger-mcp") }} | NetLogger | Callsign (public API) |
+| [n1mm-mcp](../mcp-servers/n1mm-mcp/index.md) | {{ tools("n1mm-mcp") }} | N1MM Logger+ (UDP broadcast) | None (local) |
+| [netlogger-mcp](../mcp-servers/netlogger-mcp/index.md) | {{ tools("netlogger-mcp") }} | NetLogger | Callsign (public API) |
 
 ### Infrastructure
 
 | Package | Purpose | Auth Pattern |
 |---------|---------|-------------|
-| [qsp-client](qsp-client.md) | QSP — relay MCP tools to any local LLM endpoint | None (local) |
+| [qsp-client](../tools/qsp-client/index.md) | QSP — relay MCP tools to any local LLM endpoint | None (local) |
 
 ---
 

@@ -7,35 +7,35 @@
 ## Foundation
 
 - [qso-graph-auth](https://qso-graph.io/servers/qso-graph-auth/): OS keyring credential management, persona CRUD, provider management. Foundation for all authenticated servers.
-- [adif-mcp](https://qso-graph.io/servers/adif-mcp/): ADIF 3.1.7 spec engine, validation, parsing, enumerations, geospatial. {{ tools("adif-mcp") }} tools.
+- [adif-mcp](https://qso-graph.io/servers/adif-mcp/): ADIF 3.1.7 spec engine, validation, parsing, enumerations, geospatial.
 
 ## Logbook Services (Authenticated)
 
-- [eqsl-mcp](https://qso-graph.io/servers/eqsl/): eQSL.cc — inbox download, QSO verification, AG status, last upload, download. {{ tools("eqsl-mcp") }} tools.
-- [qrz-mcp](https://qso-graph.io/servers/qrz/): QRZ.com — callsign lookup, DXCC resolution, logbook access, download. {{ tools("qrz-mcp") }} tools.
-- [lotw-mcp](https://qso-graph.io/servers/lotw/): LoTW (ARRL) — confirmations, QSOs, DXCC credits, user activity, download. {{ tools("lotw-mcp") }} tools.
-- [hamqth-mcp](https://qso-graph.io/servers/hamqth/): HamQTH — callsign lookup, DXCC, bio, activity, DX spots, RBN, QSO verify. {{ tools("hamqth-mcp") }} tools.
+- [eqsl-mcp](https://qso-graph.io/servers/eqsl/): eQSL.cc — inbox download, QSO verification, AG status, last upload, download.
+- [qrz-mcp](https://qso-graph.io/servers/qrz/): QRZ.com — callsign lookup, DXCC resolution, logbook access, download.
+- [lotw-mcp](https://qso-graph.io/servers/lotw/): LoTW (ARRL) — confirmations, QSOs, DXCC credits, user activity, download.
+- [hamqth-mcp](https://qso-graph.io/servers/hamqth/): HamQTH — callsign lookup, DXCC, bio, activity, DX spots, RBN, QSO verify.
 
 ## Public Services (No Auth Required)
 
-- [pota-mcp](https://qso-graph.io/servers/pota/): Parks on the Air — live spots, park info, stats, schedules, location search. {{ tools("pota-mcp") }} tools.
-- [sota-mcp](https://qso-graph.io/servers/sota/): Summits on the Air — spots, alerts, summit info, nearby search. {{ tools("sota-mcp") }} tools.
-- [solar-mcp](https://qso-graph.io/servers/solar/): NOAA SWPC — SFI, Kp, solar wind, X-ray flux, band outlook, alerts. {{ tools("solar-mcp") }} tools.
-- [iota-mcp](https://qso-graph.io/servers/iota/): Islands on the Air — group lookup, island search, DXCC mapping, nearby groups, programme stats. {{ tools("iota-mcp") }} tools.
-- [ionis-mcp](https://github.com/qso-graph/ionis-mcp): IONIS-AI HF propagation analytics over published signature datasets. {{ tools("ionis-mcp") }} tools.
-- [wspr-mcp](https://qso-graph.io/servers/wspr/): wspr.live ClickHouse — beacon spots, band activity, top beacons, top spotters, propagation, grid activity, longest paths, SNR trends. {{ tools("wspr-mcp") }} tools.
-- [omiss-mcp](https://qso-graph.io/servers/omiss-mcp/): OMISS (O.M. International Sideband Society) — net schedule, nets on the air, member lookup, check-in history, Statehood schedule, officers, awards, net statistics. {{ tools("omiss-mcp") }} tools.
+- [pota-mcp](https://qso-graph.io/servers/pota/): Parks on the Air — live spots, park info, stats, schedules, location search.
+- [sota-mcp](https://qso-graph.io/servers/sota/): Summits on the Air — spots, alerts, summit info, nearby search.
+- [solar-mcp](https://qso-graph.io/servers/solar/): NOAA SWPC — SFI, Kp, solar wind, X-ray flux, band outlook, alerts.
+- [iota-mcp](https://qso-graph.io/servers/iota/): Islands on the Air — group lookup, island search, DXCC mapping, nearby groups, programme stats.
+- [ionis-mcp](https://github.com/qso-graph/ionis-mcp): IONIS-AI HF propagation analytics over published signature datasets.
+- [wspr-mcp](https://qso-graph.io/servers/wspr/): wspr.live ClickHouse — beacon spots, band activity, top beacons, top spotters, propagation, grid activity, longest paths, SNR trends.
+- [omiss-mcp](https://qso-graph.io/servers/omiss-mcp/): OMISS (O.M. International Sideband Society) — net schedule, nets on the air, member lookup, check-in history, Statehood schedule, officers, awards, net statistics.
 
 ## Reference Data (No Auth, No Network)
 
-- [cq-zones-mcp](https://qso-graph.io/servers/cq-zones/): CQ zones (1-40) as CQ publishes them (WAZ Zone Definitions, 2018-04-01), in ADIF's DXCC and subdivision codes, credited to CQ / WWROF. {{ tools("cq-zones-mcp") }} tools.
-- [itu-zones-mcp](https://qso-graph.io/servers/itu-zones/): ITU zones (1-90) as the IARU publishes them for amateur use (HF Managers Handbook, chapter 9.8), in ADIF's DXCC and subdivision codes, credited to IARU Region 1. {{ tools("itu-zones-mcp") }} tools.
-- [darc-dok-mcp](https://qso-graph.io/servers/darc-dok/): DARC DOKs and special DOKs with their validity windows, credited to DARC. {{ tools("darc-dok-mcp") }} tools.
+- [cq-zones-mcp](https://qso-graph.io/servers/cq-zones/): CQ zones (1-40) as CQ publishes them (WAZ Zone Definitions, 2018-04-01), in ADIF's DXCC and subdivision codes, credited to CQ / WWROF.
+- [itu-zones-mcp](https://qso-graph.io/servers/itu-zones/): ITU zones (1-90) as the IARU publishes them for amateur use (HF Managers Handbook, chapter 9.8), in ADIF's DXCC and subdivision codes, credited to IARU Region 1.
+- [darc-dok-mcp](https://qso-graph.io/servers/darc-dok/): DARC DOKs and special DOKs with their validity windows, credited to DARC.
 
 ## Radio Logging
 
-- [n1mm-mcp](https://qso-graph.io/servers/n1mm-mcp/): N1MM Logger+ live contest state over UDP broadcast. {{ tools("n1mm-mcp") }} tools.
-- [netlogger-mcp](https://qso-graph.io/servers/netlogger-mcp/): NetLogger nets on the air, live check-ins and who's up, past nets. {{ tools("netlogger-mcp") }} tools.
+- [n1mm-mcp](https://qso-graph.io/servers/n1mm-mcp/): N1MM Logger+ live contest state over UDP broadcast.
+- [netlogger-mcp](https://qso-graph.io/servers/netlogger-mcp/): NetLogger nets on the air, live check-ins and who's up, past nets.
 
 ## Infrastructure
 

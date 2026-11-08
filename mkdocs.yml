@@ -48,21 +48,42 @@ markdown_extensions:
   - toc:
       permalink: true
 
+hooks:
+  - scripts/nav.py
+
 plugins:
   - search
   # Versions and tool counts come from data/servers.json (scripts/collect_servers.py).
   # Only pages with `render_macros: true` in their front matter are rendered.
   - redirects:
       redirect_maps:
-        servers/qsp-mcp.md: servers/qsp-client.md  # renamed 2026-09-28
+        servers/qsp-mcp.md: tools/qsp-client/index.md  # renamed 2026-09-28
         servers/llm-stack.md: https://github.com/KI7MT/llm-stack  # moved to KI7MT 2026-10
         how-it-works.md: specification.md
-        spec/index.md: specification.md  # spec being rewritten for QSO Graph Desktop, 2026-10
+        spec/index.md: specification.md
         spec/VISION.md: specification.md
         spec/PILLARS.md: specification.md
         spec/contracts/index.md: specification.md
         spec/contracts/club-definition.md: specification.md
         spec/governance/index.md: specification.md
+        servers/adif-mcp.md: mcp-servers/adif-mcp/index.md
+        servers/cq-zones.md: mcp-servers/cq-zones-mcp/index.md
+        servers/darc-dok.md: mcp-servers/darc-dok-mcp/index.md
+        servers/eqsl.md: mcp-servers/eqsl-mcp/index.md
+        servers/hamqth.md: mcp-servers/hamqth-mcp/index.md
+        servers/iota.md: mcp-servers/iota-mcp/index.md
+        servers/itu-zones.md: mcp-servers/itu-zones-mcp/index.md
+        servers/lotw.md: mcp-servers/lotw-mcp/index.md
+        servers/n1mm-mcp.md: mcp-servers/n1mm-mcp/index.md
+        servers/netlogger-mcp.md: mcp-servers/netlogger-mcp/index.md
+        servers/omiss-mcp.md: mcp-servers/omiss-mcp/index.md
+        servers/pota.md: mcp-servers/pota-mcp/index.md
+        servers/qrz.md: mcp-servers/qrz-mcp/index.md
+        servers/qso-graph-auth.md: libraries/qso-graph-auth/index.md
+        servers/qsp-client.md: tools/qsp-client/index.md
+        servers/solar.md: mcp-servers/solar-mcp/index.md
+        servers/sota.md: mcp-servers/sota-mcp/index.md
+        servers/wspr.md: mcp-servers/wspr-mcp/index.md
   - macros:
       render_by_default: false
       on_undefined: strict
@@ -76,44 +97,3 @@ extra:
     - icon: fontawesome/brands/python
       link: https://pypi.org/search/?q=qso-graph
       name: QSO Graph packages on PyPI
-
-nav:
-  - Home: index.md
-  - Products: products.md
-  - Specification: specification.md
-  - MCP Servers:
-    - servers/index.md
-    - Getting Started: getting-started.md
-    - Credential Setup: credentials.md
-    - Foundation:
-      - qso-graph-auth: servers/qso-graph-auth.md
-      - adif-mcp: servers/adif-mcp.md
-    - Logbook Services:
-      - eQSL: servers/eqsl.md
-      - QRZ: servers/qrz.md
-      - LoTW: servers/lotw.md
-      - HamQTH: servers/hamqth.md
-    - Public Services:
-      - POTA: servers/pota.md
-      - SOTA: servers/sota.md
-      - IOTA: servers/iota.md
-      - Solar Weather: servers/solar.md
-      - WSPR: servers/wspr.md
-      - OMISS: servers/omiss-mcp.md
-    - Reference Data:
-      - CQ Zones: servers/cq-zones.md
-      - ITU Zones: servers/itu-zones.md
-      - DARC DOKs: servers/darc-dok.md
-    - Radio Logging:
-      - N1MM Logger+: servers/n1mm-mcp.md
-      - NetLogger: servers/netlogger-mcp.md
-    - Infrastructure:
-      - QSP (Tool Relay): servers/qsp-client.md
-    - Architecture: architecture.md
-    - Testing: testing.md
-    - Security: security.md
-  - Demo: https://qso-graph.io/qso-graph-demo-logbook/
-  - About:
-    - about/index.md
-    - Attributions: about/attributions.md
-    - Contributing: about/contributing.md
