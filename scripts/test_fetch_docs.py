@@ -1,6 +1,8 @@
 import unittest
 import json
 import tempfile
+import io
+from contextlib import redirect_stdout
 from pathlib import Path
 from unittest.mock import patch
 from scripts import fetch_docs
@@ -23,6 +25,45 @@ class ManifestTests(unittest.TestCase):
         self.assertEqual(manifest[0]['description'], 'A useful tool')
         self.assertEqual(manifest[0]['tag'], 'v1.2.3')
         self.assertEqual(manifest[0]['section'], 'tools')
+        self.assertEqual(manifest[0]['sections'], ['tools'])
+
+    def test_multiple_sections_use_first_as_home(self):
+        self.assert_sections(['qso-graph-library', 'qso-graph-app'],
+                             ['applications', 'libraries'])
+
+    def test_infra_with_section_is_a_product(self):
+        self.assert_sections(['qso-graph-infra', 'qso-graph-library'], ['libraries'])
+
+    def assert_sections(self, topics, expected):
+        repo = {'name': 'example', 'private': False, 'archived': False, 'topics': topics}
+        release = {'draft': False, 'prerelease': False, 'tag_name': 'v1.2.3'}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / 'docs.lock').write_text('{}')
+            with patch.object(fetch_docs, 'ROOT', root), \
+                 patch.object(fetch_docs, 'pages', side_effect=[[repo], [release]]), \
+                 patch.object(fetch_docs, 'product_files', return_value={'README.md': b'# Example\n'}):
+                fetch_docs.main()
+            manifest = json.loads((root / 'data' / 'docs.json').read_text())
+            self.assertEqual(manifest[0]['sections'], expected)
+            self.assertEqual(manifest[0]['section'], expected[0])
+            for section in expected:
+                self.assertEqual((root / 'src/content/docs' / section / 'example/index.md').exists(),
+                                 section == expected[0])
+
+    def test_repositories_without_section_are_logged_and_skipped(self):
+        repos = [{'name': name, 'private': False, 'archived': False, 'topics': topics}
+                 for name, topics in [('plain', []), ('infra', ['qso-graph-infra'])]]
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / 'docs.lock').write_text('{}')
+            output = io.StringIO()
+            with patch.object(fetch_docs, 'ROOT', root), \
+                 patch.object(fetch_docs, 'pages', return_value=repos), redirect_stdout(output):
+                fetch_docs.main()
+            self.assertEqual(json.loads((root / 'data/docs.json').read_text()), [])
+            self.assertIn('plain: no section topic; skipped', output.getvalue())
+            self.assertIn('infra: infrastructure; skipped', output.getvalue())
 
 
 class SanitizerTests(unittest.TestCase):

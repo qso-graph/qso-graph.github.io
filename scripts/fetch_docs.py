@@ -245,12 +245,10 @@ def main():
             if repo['private'] or repo['archived']:
                 continue
             topics = set(repo.get('topics', []))
-            if 'qso-graph-infra' in topics:
-                print(f'{name}: infrastructure; skipped')
-                continue
-            section = [v for k, v in SECTIONS.items() if k in topics]
-            if len(section) != 1:
-                print(f'{name}: {"no section topic" if not section else "multiple section topics"}; skipped')
+            sections = [v for k, v in SECTIONS.items() if k in topics]
+            if not sections:
+                reason = 'infrastructure' if 'qso-graph-infra' in topics else 'no section topic'
+                print(f'{name}: {reason}; skipped')
                 continue
             releases = list(pages(f'https://api.github.com/repos/{ORG}/{name}/releases'))
             releases = [r for r in releases if not r['draft'] and not r['prerelease'] and TAG.fullmatch(r['tag_name'])]
@@ -265,7 +263,7 @@ def main():
                 print(f'{name}: no README.md at {tag}; skipped')
                 continue
             metadata = files.pop('server.json', None)
-            if section[0] == 'mcp-servers' and metadata:
+            if 'mcp-servers' in sections and metadata:
                 registry = json.loads(metadata)
                 package = next((p['identifier'] for p in registry.get('packages', []) if p.get('registryType') == 'pypi'), None)
                 if package:
@@ -280,7 +278,7 @@ def main():
                     if name not in pins and tag != 'v' + version:
                         print(f'{name}: release {tag} does not match PyPI v{version}; skipped')
                         continue
-            dest = stage / section[0] / name
+            dest = stage / sections[0] / name
             paths = [product_path(path) for path in files]
             if len(paths) != len(set(paths)):
                 raise ValueError(f'{name}: conflicting output paths')
@@ -288,9 +286,9 @@ def main():
                 target = dest / product_path(path)
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_bytes(product_text(path, content, files, name, tag).encode() if path.lower().endswith(('.md', '.mdoc')) else content)
-            fetched.append({'repo': name, 'section': section[0], 'description': repo.get('description'), 'tag': tag,
+            fetched.append({'repo': name, 'section': sections[0], 'sections': sections, 'description': repo.get('description'), 'tag': tag,
                             'sources': {product_path(path): path for path in files if path.lower().endswith(('.md', '.mdoc'))}})
-            print(f'{name}: {tag} -> src/content/docs/{section[0]}/{name}')
+            print(f'{name}: {tag} -> src/content/docs/{sections[0]}/{name}')
         for section in SECTIONS.values():
             target = ROOT / 'src' / 'content' / 'docs' / section
             if target.exists():
