@@ -1,0 +1,32 @@
+---
+import servers from '../../data/servers.json';
+import products from '../../data/docs.json';
+const { repo } = Astro.props;
+const server = Object.values(servers).find((s) => s.repo === repo);
+const product = products.find((p) => p.repo === repo);
+if (!server || !product || product.tag !== `v${server.version}` || server.kind !== 'server') throw new Error(`${repo}: missing matching released server data`);
+function type(s) {
+  if (s.anyOf) return s.anyOf.filter((x) => x.type !== 'null').map(type).join(' or ') || 'null';
+  if (s.enum) return s.enum.join(' / ');
+  if (s.type === 'array') return `list of ${type(s.items || {})}`;
+  return s.type || 'any';
+}
+function description(text) {
+  const lines = text.split('\n'); let section = '';
+  return lines.filter((line) => {
+    const match = line.match(/^(Args|Arguments|Parameters|Returns|Raises|Example|Examples):\s*$/);
+    if (match) { section = match[1]; return section === 'Returns'; }
+    return !section || section === 'Returns';
+  }).join('\n').trim();
+}
+---
+<hr />
+<h2 id="tool-reference">Tool Reference</h2>
+<p>Generated from the released server's own tool definitions.</p>
+{server.tool_details.map((tool) => <section>
+  <h3 id={tool.name}>{tool.name}</h3>
+  {description(tool.description).split(/\n\s*\n/).filter(Boolean).map((paragraph) => <p style="white-space: pre-line">{paragraph}</p>)}
+  {Object.keys(tool.inputSchema.properties || {}).length ? <table><thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Default</th><th>Description</th></tr></thead><tbody>
+    {(tool.params?.length ? tool.params : Object.keys(tool.inputSchema.properties)).map((name) => { const s = tool.inputSchema.properties[name]; const required = (tool.inputSchema.required || []).includes(name); return <tr><td><code>{name}</code></td><td>{type(s)}</td><td>{required ? 'Yes' : 'No'}</td><td>{!required && 'default' in s ? <code>{JSON.stringify(s.default)}</code> : ''}</td><td>{s.description || ''}</td></tr>; })}
+  </tbody></table> : <p>No parameters.</p>}
+</section>)}

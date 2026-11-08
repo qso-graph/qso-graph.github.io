@@ -1,0 +1,18 @@
+---
+import '@astrojs/starlight/style/markdown.css';
+import { Aside } from '@astrojs/starlight/components';
+import ToolReference from './ToolReference.astro';
+import products from '../../data/docs.json';
+
+const file = Astro.locals.starlightRoute.entry.filePath.replaceAll('\\', '/');
+const product = products.find((p) => file.includes(`/docs/${p.section}/${p.repo}/`));
+const relative = product && file.split(`/docs/${product.section}/${product.repo}/`)[1];
+const source = product && relative && product.sources[relative];
+---
+<div class="sl-markdown-content">
+  {source && <Aside type="note" title={`${product.repo} ${product.tag}`}>
+    Documentation for <strong>{product.repo} {product.tag}</strong>. <a href={`https://github.com/qso-graph/${product.repo}/blob/${product.tag}/${source}`}>Source at {product.tag}</a>.
+  </Aside>}
+  <slot />
+  {product && source === 'README.md' && product.section === 'mcp-servers' && <ToolReference repo={product.repo} />}
+</div>

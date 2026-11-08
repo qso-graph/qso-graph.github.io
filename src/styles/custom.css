@@ -1,0 +1,8 @@
+/* Badges: a README's images inside a paragraph sit side by side, as GitHub shows them.
+   Starlight makes every image in content a block of its own, which stacks them. */
+.sl-markdown-content p > img,
+.sl-markdown-content p > a > img {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0.15rem 0.25rem 0;
+}

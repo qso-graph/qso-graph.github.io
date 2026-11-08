@@ -1,0 +1,14 @@
+---
+import servers from '../../data/servers.json';
+const { name, package: pkg } = Astro.props;
+const server = servers[pkg];
+if (pkg && !server) throw new Error(`Missing package data: ${pkg}`);
+let value;
+if (name === 'server_count') value = Object.values(servers).filter((s) => s.kind === 'server').length;
+else if (name === 'tool_total') value = Object.values(servers).reduce((n, s) => n + s.tools.length, 0);
+else if (name === 'version') value = server.version;
+else if (name === 'tools') value = server.tools.length;
+else if (name === 'ci_badge') value = `https://github.com/qso-graph/${server.repo}/actions/workflows/ci.yml`;
+else throw new Error(`Unknown metric: ${name}`);
+---
+{name === 'ci_badge' ? <a href={value}><img alt="CI" src={`${value}/badge.svg`} /></a> : value}
