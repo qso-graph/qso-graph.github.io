@@ -22,7 +22,10 @@ export default defineConfig({
   redirects,
   integrations: [starlight({
     title: 'QSO Graph',
-    favicon: '/assets/images/favicon.png',
+    // QSO Graph's mark: the same icon as the installers, the Dock and the Start menu.
+    logo: { src: './src/assets/qso-graph-icon.png', alt: '' },
+    favicon: '/favicon.png',
+    head: [{ tag: 'link', attrs: { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' } }],
     customCss: ['./src/styles/custom.css'],
     components: {
       MarkdownContent: './src/components/MarkdownContent.astro',

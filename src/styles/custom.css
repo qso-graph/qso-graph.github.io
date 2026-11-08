@@ -50,3 +50,10 @@
 .panel-toggle:hover { color: var(--sl-color-white); border-color: var(--sl-color-gray-3); }
 .panel-toggle:focus-visible { outline: 2px solid var(--sl-color-text-accent); outline-offset: 2px; }
 @media print { .panel-toggle { display: none; } }
+
+/* The mark beside the site title, sized to the header. */
+.site-title img {
+  height: 2rem;
+  width: auto;
+  border-radius: 0.4rem;
+}
