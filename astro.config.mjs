@@ -40,8 +40,11 @@ export default defineConfig({
       { label: 'Specification', link: '/specification/' },
       // Every group starts collapsed and opens when clicked; the group holding the page being read
       // opens on its own, so the reader always sees where they are.
-      ...SECTIONS.map(([section, label]) => ({ label, collapsed: true, items: productItems(section) })),
-      { label: 'MCP Servers overview', link: '/servers/' },
+      // MCP Servers opens with its overview page, then the servers.
+      ...SECTIONS.map(([section, label]) => ({ label, collapsed: true, items: [
+        ...(section === 'mcp-servers' ? [{ label: 'Overview', link: '/servers/' }] : []),
+        ...productItems(section),
+      ] })),
       { label: 'Getting Started', link: '/getting-started/' },
       { label: 'Credential Setup', link: '/credentials/' },
       { label: 'Architecture', link: '/architecture/' },
