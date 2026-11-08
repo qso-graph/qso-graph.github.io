@@ -1,0 +1,156 @@
+---
+title: "MCP Servers"
+---
+
+import {Metric, Products} from "@site/src/components/SiteData";
+
+QSO Graph provides <Metric name="server_count" /> MCP servers (<Metric name="tool_total" /> tools), plus the qso-graph-auth credential foundation and the qsp-client relay, covering amateur radio logging, confirmations, propagation services, and local LLM integration. Start with [Getting Started](/getting-started/).
+
+## How it works
+
+The servers are [MCP servers](https://modelcontextprotocol.io/): they run locally on your machine and expose ham radio services as tools that AI assistants can call. Your credentials stay in your OS keyring and never leave your machine.
+
+```
+You: "Do I have any new LoTW confirmations this week?"
+  │
+  ▼
+AI Assistant (Claude, ChatGPT, Cursor, etc.)
+  │
+  ▼ calls lotw_confirmations(persona="ki7mt", since="2026-03-01")
+  │
+lotw-mcp (local process)
+  │
+  ▼ HTTPS request to lotw.arrl.org (credentials from OS keyring)
+  │
+LoTW API
+  │
+  ▼ ADIF response
+  │
+You: "You have 3 new confirmations: JA1ABC on 20m FT8, ..."
+```
+
+---
+
+## Fleet Summary
+
+### Foundation
+
+| Package | Tools | Service | Auth Pattern |
+|---------|:-----:|---------|-------------|
+| [qso-graph-auth](/libraries/qso-graph-auth/) | — | OS keyring credentials | None (local) |
+| [adif-mcp](/mcp-servers/adif-mcp/) | <Metric name="tools" package="adif-mcp" /> | ADIF 3.1.7 spec | None (local) |
+
+### Logbook Services
+
+| Package | Tools | Service | Auth Pattern |
+|---------|:-----:|---------|-------------|
+| [eqsl-mcp](/mcp-servers/eqsl-mcp/) | <Metric name="tools" package="eqsl-mcp" /> | eQSL.cc | Persona (session) |
+| [qrz-mcp](/mcp-servers/qrz-mcp/) | <Metric name="tools" package="qrz-mcp" /> | QRZ.com | Persona (XML) + API key (Logbook) |
+| [lotw-mcp](/mcp-servers/lotw-mcp/) | <Metric name="tools" package="lotw-mcp" /> | LoTW (ARRL) | Persona (HTTPS) |
+| [hamqth-mcp](/mcp-servers/hamqth-mcp/) | <Metric name="tools" package="hamqth-mcp" /> | HamQTH.com | Persona (XML session) |
+
+### Public Services
+
+| Package | Tools | Service | Auth Pattern |
+|---------|:-----:|---------|-------------|
+| [pota-mcp](/mcp-servers/pota-mcp/) | <Metric name="tools" package="pota-mcp" /> | Parks on the Air | None (public) |
+| [sota-mcp](/mcp-servers/sota-mcp/) | <Metric name="tools" package="sota-mcp" /> | Summits on the Air | None (public) |
+| [iota-mcp](/mcp-servers/iota-mcp/) | <Metric name="tools" package="iota-mcp" /> | Islands on the Air | None (public) |
+| [solar-mcp](/mcp-servers/solar-mcp/) | <Metric name="tools" package="solar-mcp" /> | NOAA SWPC | None (public) |
+| [wspr-mcp](/mcp-servers/wspr-mcp/) | <Metric name="tools" package="wspr-mcp" /> | wspr.live (ClickHouse) | None (public) |
+| [omiss-mcp](/mcp-servers/omiss-mcp/) | <Metric name="tools" package="omiss-mcp" /> | OMISS (omiss.net) | None (public) |
+
+### Propagation Analytics
+
+| Package | Tools | Service | Auth Pattern |
+|---------|:-----:|---------|-------------|
+| [ionis-mcp](https://github.com/qso-graph/ionis-mcp) | <Metric name="tools" package="ionis-mcp" /> | IONIS-AI signature datasets | None (local) |
+
+### Reference Data
+
+The lists ADIF's fields point to but ADIF doesn't define, each as its owner publishes it and credited to that owner. The facts ship with the package; the owner's document doesn't.
+
+| Package | Tools | Owner's list | Auth Pattern |
+|---------|:-----:|---------|-------------|
+| [cq-zones-mcp](/mcp-servers/cq-zones-mcp/) | <Metric name="tools" package="cq-zones-mcp" /> | CQ zones: CQ's WAZ Zone Definitions | None (local) |
+| [itu-zones-mcp](/mcp-servers/itu-zones-mcp/) | <Metric name="tools" package="itu-zones-mcp" /> | ITU zones: the IARU's HF Managers Handbook, ch. 9.8 | None (local) |
+| [darc-dok-mcp](/mcp-servers/darc-dok-mcp/) | <Metric name="tools" package="darc-dok-mcp" /> | DARC's DOKs and special DOKs | None (local) |
+
+### Radio Logging
+
+| Package | Tools | Service | Auth Pattern |
+|---------|:-----:|---------|-------------|
+| [n1mm-mcp](/mcp-servers/n1mm-mcp/) | <Metric name="tools" package="n1mm-mcp" /> | N1MM Logger+ (UDP broadcast) | None (local) |
+| [netlogger-mcp](/mcp-servers/netlogger-mcp/) | <Metric name="tools" package="netlogger-mcp" /> | NetLogger | Callsign (public API) |
+
+### Infrastructure
+
+| Package | Purpose | Auth Pattern |
+|---------|---------|-------------|
+| [qsp-client](/tools/qsp-client/) | QSP — relay MCP tools to any local LLM endpoint | None (local) |
+
+---
+
+## Authentication Patterns
+
+### Persona Auth (OS Keyring)
+
+eQSL, QRZ, LoTW, and HamQTH use **qso-graph-auth personas** — named identities with credentials stored in your OS keyring:
+
+```bash
+uv tool install qso-graph-auth
+qso-graph-auth creds set ki7mt eqsl
+```
+
+Every tool call includes a `persona` parameter so the server knows which credentials to use. See [Getting Started](/getting-started/) for setup.
+
+### Public (No Auth)
+
+POTA, SOTA, IOTA, Solar, WSPR and OMISS servers access public data — no credentials needed. Just install and go.
+
+---
+
+## Architecture
+
+All servers share a common architecture:
+
+```
+AI Assistant
+  │
+  ▼ MCP protocol (stdio)
+  │
+MCP Server (local process)
+  │
+  ├── Rate Limiter (prevents account bans)
+  ├── Input Validator (regex on all user strings)
+  ├── Response Cache (in-memory TTL)
+  │
+  ▼ HTTPS only
+  │
+External API (eQSL, QRZ, LoTW, etc.)
+```
+
+### Common Properties
+
+- **Transport**: stdio (default) or `--transport streamable-http` for MCP Inspector
+- **Framework**: FastMCP 3.x
+- **Python**: 3.11+
+- **License**: GPL-3.0-or-later
+- **Mock mode**: Every server supports `<NAME>_MCP_MOCK=1` for testing without credentials
+
+### Rate Limiting
+
+Each server implements rate limiting appropriate for its service:
+
+| Server | Min Delay | Max Rate | Ban Freeze |
+|--------|-----------|----------|------------|
+| eqsl-mcp | 500ms | — | — |
+| qrz-mcp | 500ms | 35/min | 3600s (IP ban) |
+| lotw-mcp | 500ms | — | — |
+| hamqth-mcp | 500ms | — | — |
+| pota-mcp | 100ms | — | — |
+| sota-mcp | 200ms | — | — |
+| iota-mcp | 200ms | — | — |
+| solar-mcp | 200ms | — | — |
+| wspr-mcp | 3000ms | 20/min | Circuit breaker (60-300s) |
+| omiss-mcp | 2000ms | 30/min, shared by every copy | 429/503 back-off (60-3600s) |

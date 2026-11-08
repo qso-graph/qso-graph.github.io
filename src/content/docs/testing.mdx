@@ -1,0 +1,250 @@
+---
+title: "Testing & Validation"
+---
+
+import {Metric, Products} from "@site/src/components/SiteData";
+
+**Every QSO Graph server is tested across four independent layers before release.** Each layer catches different failure modes. All four must pass before a fleet-wide release.
+
+| Layer | Name | What It Catches | Blocking? |
+|-------|------|-----------------|-----------|
+| **L1** | Security tests (`test_security.py`) | Credential leaks, injection, unsafe patterns | Hard stop |
+| **L2** | Unit Tests (Mock Mode) | Tool logic, parameter handling, return shapes | Hard stop |
+| **L3** | Integration Tests (Live) | API connectivity, auth flows, data correctness | Pre-release gate |
+| **L4** | Fleet Composition | Tool name collisions, schema conflicts, cross-server consistency | Fleet releases |
+
+---
+
+## Fleet Overview
+
+**<Metric name="server_count" /> servers, <Metric name="tool_total" /> tools, 4 test layers.** Versions and tool counts are the released packages', collected when the site is built; the CI badge is each repo's live status.
+
+| Package | Version | Tools | CI |
+|---------|---------|:-----:|:--:|
+| [adif-mcp](/mcp-servers/adif-mcp/) | <Metric name="version" package="adif-mcp" /> | <Metric name="tools" package="adif-mcp" /> | <Metric name="ci_badge" package="adif-mcp" /> |
+| [eqsl-mcp](/mcp-servers/eqsl-mcp/) | <Metric name="version" package="eqsl-mcp" /> | <Metric name="tools" package="eqsl-mcp" /> | <Metric name="ci_badge" package="eqsl-mcp" /> |
+| [qrz-mcp](/mcp-servers/qrz-mcp/) | <Metric name="version" package="qrz-mcp" /> | <Metric name="tools" package="qrz-mcp" /> | <Metric name="ci_badge" package="qrz-mcp" /> |
+| [lotw-mcp](/mcp-servers/lotw-mcp/) | <Metric name="version" package="lotw-mcp" /> | <Metric name="tools" package="lotw-mcp" /> | <Metric name="ci_badge" package="lotw-mcp" /> |
+| [hamqth-mcp](/mcp-servers/hamqth-mcp/) | <Metric name="version" package="hamqth-mcp" /> | <Metric name="tools" package="hamqth-mcp" /> | <Metric name="ci_badge" package="hamqth-mcp" /> |
+| [pota-mcp](/mcp-servers/pota-mcp/) | <Metric name="version" package="pota-mcp" /> | <Metric name="tools" package="pota-mcp" /> | <Metric name="ci_badge" package="pota-mcp" /> |
+| [sota-mcp](/mcp-servers/sota-mcp/) | <Metric name="version" package="sota-mcp" /> | <Metric name="tools" package="sota-mcp" /> | <Metric name="ci_badge" package="sota-mcp" /> |
+| [solar-mcp](/mcp-servers/solar-mcp/) | <Metric name="version" package="solar-mcp" /> | <Metric name="tools" package="solar-mcp" /> | <Metric name="ci_badge" package="solar-mcp" /> |
+| [wspr-mcp](/mcp-servers/wspr-mcp/) | <Metric name="version" package="wspr-mcp" /> | <Metric name="tools" package="wspr-mcp" /> | <Metric name="ci_badge" package="wspr-mcp" /> |
+| [iota-mcp](/mcp-servers/iota-mcp/) | <Metric name="version" package="iota-mcp" /> | <Metric name="tools" package="iota-mcp" /> | <Metric name="ci_badge" package="iota-mcp" /> |
+| [n1mm-mcp](/mcp-servers/n1mm-mcp/) | <Metric name="version" package="n1mm-mcp" /> | <Metric name="tools" package="n1mm-mcp" /> | <Metric name="ci_badge" package="n1mm-mcp" /> |
+| [ionis-mcp](/mcp-servers/ionis-mcp/) | <Metric name="version" package="ionis-mcp" /> | <Metric name="tools" package="ionis-mcp" /> | <Metric name="ci_badge" package="ionis-mcp" /> |
+| [netlogger-mcp](/mcp-servers/netlogger-mcp/) | <Metric name="version" package="netlogger-mcp" /> | <Metric name="tools" package="netlogger-mcp" /> | <Metric name="ci_badge" package="netlogger-mcp" /> |
+| [omiss-mcp](/mcp-servers/omiss-mcp/) | <Metric name="version" package="omiss-mcp" /> | <Metric name="tools" package="omiss-mcp" /> | <Metric name="ci_badge" package="omiss-mcp" /> |
+
+---
+
+## L1: Security Audit
+
+Every package includes `test_security.py` with 6 source-code audit tests. These scan all Python source files for forbidden patterns — they are not runtime tests.
+
+| # | Test | What It Catches |
+|---|------|-----------------|
+| S1 | `test_no_print_credentials` | `print()` calls containing password, secret, api_key, or token |
+| S2 | `test_no_logging_credentials` | `logging.*()` calls containing credential keywords |
+| S3 | `test_no_subprocess` | Any use of `subprocess` or `shell=True` (command injection) |
+| S4 | `test_all_urls_https` | Hardcoded `http://` URLs (except localhost) |
+| S5 | `test_error_messages_safe` | Exception messages that could expose credentials |
+| S6 | `test_no_eval_exec` | Any use of `eval()` or `exec()` (code injection) |
+
+These tests run in CI on every push and must pass before any PyPI publish. If the security gate fails, the publish job is **blocked**. No exceptions.
+
+---
+
+## L2: Unit Tests (Mock Mode)
+
+Each server supports a mock mode (`{SERVER}_MCP_MOCK=1`) that replaces HTTP calls with embedded test fixtures. L2 tests verify tool logic, parameter handling, return shapes, parser correctness, and helper functions without making any API calls.
+
+| Category | What's Tested | Example |
+|----------|---------------|---------|
+| **Parser/Helper Functions** | ADIF parsing, frequency conversion, date normalization, grid validation | `parse_adif()`, `freq_to_band()`, `to_yyyymmddhhmm()` |
+| **Tool Return Shapes** | Every tool returns expected fields, types, and structures | `eqsl_inbox()` returns `total`, `records`, `by_band` |
+| **Parameter Handling** | Filters, defaults, edge cases, invalid input | Band filter, callsign uppercase, empty string handling |
+| **Caching** | TTL expiry, cache hits, overwrites | `_cache_set()` / `_cache_get()` with timed expiry |
+| **Data Models** | Dataclass immutability, field defaults, type conversions | `FetchResult(records=[])` is frozen |
+
+```bash
+# Run L2 tests for any server (no network needed)
+cd solar-mcp
+pytest tests/test_tools.py -v
+```
+
+---
+
+## L3: Live Integration Tests
+
+L3 tests hit real APIs with known-good reference values. They verify that external services are responding correctly and that our client code handles real-world responses.
+
+Tests are gated behind a `--live` flag and skipped by default. This keeps CI fast and avoids hammering volunteer-run services.
+
+| Server | Tests | APIs Hit | Reference Values |
+|--------|:-----:|----------|------------------|
+| solar-mcp | 15 | NOAA SWPC | SFI 50-400, Kp 0-9, flare class A-X, 10 HF bands |
+| pota-mcp | 15 | POTA API | US-0001 (Acadia NP), K4SWL, US-ME parks |
+| sota-mcp | 10 | SOTA API | W7I/CU-001 (Borah Peak, Idaho) |
+| wspr-mcp | 12 | wspr.live ClickHouse | DN13→JN48 path, JO62 grid, 20m band activity |
+| iota-mcp | 12 | iota-world.org | OC-001 (Australia), 1000+ groups in programme |
+| hamqth-mcp | 10 | HamQTH (public) | W1AW DXCC=291, DX cluster spots, RBN decodes |
+
+```bash
+# Run L3 live tests (requires network)
+cd solar-mcp
+pytest tests/test_live.py --live -v
+```
+
+:::warning Rate Limiting
+WSPR and HamQTH L3 tests include a 1-second pause between requests to respect volunteer-run services. Tests take longer but avoid API bans.
+:::
+
+---
+
+## L4: Fleet Composition Tests
+
+L4 tests verify that all 12 servers work correctly when loaded together. They import every server's MCP object, enumerate all tools, and check for cross-server conflicts.
+
+| Category | Tests | What's Verified |
+|----------|:-----:|-----------------|
+| **F1: Tool Name Uniqueness** | 5 | No unexpected name collisions, snake_case convention, server namespacing, tool counts |
+| **F2: Schema Validity** | 7 | Non-empty descriptions, typed properties, required fields exist, description length bounds |
+| **F3: Fleet Inventory** | 5 | All 12 servers loaded, expected tools present, no empty servers |
+| **F4: Cross-Server Consistency** | 3 | Band parameter types, callsign naming, limit parameter types |
+
+### Known Findings
+
+| Finding | Status | Detail |
+|---------|--------|--------|
+| `solar_conditions` name collision | **Resolved** | ionis-mcp v1.2.8 renamed to `solar_history`. No more collision. |
+| Null defaults from `Optional` params | Tracked | FastMCP generates `{"default": null}` from Python `Optional[str] = None`. Valid JSON Schema but may affect some local LLM tool parsers. |
+| Band parameter type split | By design | qso-graph servers use string band names (`"20M"`), ionis-mcp uses integer ADIF band IDs (`107`). |
+
+The L4 fleet suite is not published; its results are the tables above.
+
+---
+
+## adif-mcp Validation
+
+adif-mcp is the foundation package. Beyond the standard security and unit tests, it carries a comprehensive validation suite against the ADIF 3.1.7 specification:
+
+### Test matrix
+
+The registered validation cases live in the repository, as
+[`tests/TEST-CASE-REGISTER.md`](https://github.com/qso-graph/adif-mcp/blob/main/tests/TEST-CASE-REGISTER.md)
+— each with its input, expected result and the reason it exists. That file is the
+record; this page used to copy its table and had drifted to a total of 48 against
+the register's 109, which is what happens to a number kept in two places.
+
+Two figures, both measured on 2026-10-28:
+
+| | |
+|---|---|
+| Registered validation cases | **109**, all passing |
+| Full `pytest` suite | **186** tests — the registered cases plus unit, security, CLI and packaging tests |
+
+### Official ADIF test corpus
+
+The gold standard for ADIF validation: the official test files from G3ZOD's
+`CreateADIFTestFiles`, which exercise every enumeration value in the
+specification. Both the current and previous versions are run, because logs
+written against 3.1.6 do not stop existing when 3.1.7 publishes:
+
+| Corpus | QSO records |
+|---|---:|
+| [ADIF 3.1.7](https://adif.org.uk/317/resources) | 6,197 |
+| [ADIF 3.1.6](https://adif.org.uk/316/resources) | 6,191 |
+
+| Test | Records | Result |
+|------|--------:|--------|
+| Zero false errors on all official records | 6,191 | **PASS — 0 errors** |
+| All warnings are correct behavior | 6,191 | **PASS — 39 warnings** (23 user-defined fields + 16 import-only values) |
+| Enum JSON files match official exports | 25 files | **PASS — all identical** |
+
+**Rule:** If our validator rejects an official ADIF test record, our validator is wrong.
+
+### KI7MT Forensic Hard Tests
+
+12 tests derived from forensic analysis of **110,761 real QSO records** across three logger dialects (eQSL, QRZ, LoTW). Every test has a documented real-world source — no arbitrary tests.
+
+| ID | Test | Source | Why It Matters |
+|----|------|--------|----------------|
+| FRN-001 | Bread-and-butter FT8 QSO (9 enum fields) | QRZ — 15,000+ FT8 QSOs | FT8 is 88.7% of PSK Reporter spots. If this fails, everything fails. |
+| FRN-002 | MODE=FT4 correctly errors | QRZ — 2 of 49,233 records | FT4 must be MODE=MFSK + SUBMODE=FT4 per spec policy |
+| FRN-003 | Multi-field contest QSO (8+ enums) | QRZ — CQ WW DX CW logs | Contest logs have highest enum density |
+| FRN-004 | LoTW uppercase band (15M) | LoTW — 37,651 records | LoTW exports uppercase; case-insensitive matching required |
+| FRN-005 | QSL_VIA=M import-only warning | QRZ — pre-internet QSOs | Deprecated "manager" value must warn, not reject |
+| FRN-006 | Six QSL status fields in one record | QRZ — modern multi-service logs | QSL_RCVD + QSL_SENT + EQSL + LOTW — no cross-interference |
+| FRN-007 | Deleted DXCC entity (Aldabra) | DXCC enum — 62 deleted entities | Geopolitical mergers are valid historical data |
+| FRN-008 | PROP_MODE=SAT (satellite QSO) | QRZ — ISS/satellite contacts | Propagation_Mode enum rarely tested but critical |
+| FRN-009 | Credit:CARD&LOTW (& separator) | LoTW DXCC credits | Multi-medium compound format parsing |
+| FRN-010 | Freeform CONTEST_ID errors | eQSL — 470 invalid of 23,877 | "CQWW 2021" is not a valid Contest_ID |
+| FRN-011 | SUBMODE without MODE field | eQSL — incomplete records | Graceful handling of missing parent field |
+| FRN-012 | EQSL_AG=Y (Authenticity Guaranteed) | eQSL — AG status for DXCC | 3-value enum critical for DXCC credit eligibility |
+
+---
+
+## Running Tests
+
+### Single server — security only
+
+```bash
+cd eqsl-mcp
+pytest tests/test_security.py -v
+```
+
+### Single server — full mock suite
+
+```bash
+cd solar-mcp
+pytest tests/ -v
+```
+
+### Single server — including live API tests
+
+```bash
+cd solar-mcp
+pytest tests/ -v --live
+```
+
+### All servers — security sweep
+
+```bash
+for repo in adif-mcp eqsl-mcp qrz-mcp lotw-mcp hamqth-mcp pota-mcp \
+            sota-mcp solar-mcp wspr-mcp iota-mcp n1mm-mcp ionis-mcp; do
+    echo "=== $repo ==="
+    (cd $repo && pytest tests/test_security.py -v) 2>&1
+done
+```
+
+---
+
+## Release gate
+
+Publishing is gated mechanically rather than socially. `publish.yml` checks that
+CI passed on the exact commit being published, that the version agrees across
+`pyproject.toml` and `server.json` and is new on PyPI and untagged, that
+`tests/test_security.py` passes, that `pip-audit --strict` reports no known
+vulnerability, and that no `subprocess`, plaintext `http://` or credential
+logging appears in `src/`. The tag is cut last, only after PyPI **and** the MCP
+Registry both serve the version.
+
+This page previously described three rounds of human review — a writer and two
+independent audit/reviewers — as a requirement before any publication. That was
+retired. It was not what stood between a change and PyPI, and describing
+reviewers who are not there overstates what a reader is getting.
+
+---
+
+## References
+
+| Resource | URL |
+|----------|-----|
+| ADIF 3.1.7 Specification | [adif.org.uk/317](https://adif.org.uk/317/ADIF_317.htm) |
+| ADIF 3.1.6 Specification | [adif.org.uk/316](https://adif.org.uk/316/ADIF_316.htm) |
+| Official Test Corpus (G3ZOD) | [adif.org.uk/317/resources](https://adif.org.uk/317/resources) |
+| CreateADIFTestFiles | [github.com/g3zod/CreateADIFTestFiles](https://github.com/g3zod/CreateADIFTestFiles) |
+| K1MU ADIF Validator | [rickmurphy.net/adifvalidator.html](https://www.rickmurphy.net/adifvalidator.html) |
+| adif-multitool (flwyd) | [github.com/flwyd/adif-multitool](https://github.com/flwyd/adif-multitool) |
+| MCP Security Best Practices | [modelcontextprotocol.io](https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices) |

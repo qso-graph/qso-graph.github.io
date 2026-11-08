@@ -1,0 +1,75 @@
+---
+title: "QSO Graph"
+slug: /
+---
+
+import {Metric, Products} from "@site/src/components/SiteData";
+
+**Open amateur radio software, built to work together.**
+
+QSO Graph is open amateur radio software for your station: logging, nets, awards, spots and your radio, in one place, on Windows, macOS and Linux, with the libraries and AI integrations behind them. They share one data model, publish their interfaces, and are built so that any of them can be used alone. Free software under the GPL, for individual operators and for clubs, small and large.
+
+## Today
+
+**<Metric name="server_count" /> MCP servers (<Metric name="tool_total" /> tools)** connect AI assistants to the services hams use every day. Ask your assistant to look up a callsign, check your LoTW confirmations, find POTA spots, or get a band-by-band propagation forecast, all in plain language.
+
+- [The servers](/servers/): logbooks (QRZ, LoTW, eQSL, HamQTH), public services (POTA, SOTA, IOTA, space weather, WSPR, OMISS), ADIF, propagation analytics, N1MM Logger+ and NetLogger
+- [Getting Started](/getting-started/): install uv, then add a server to your MCP client
+- [Security](/security/): credentials stay in your OS keyring, never in files, logs or what the AI sees
+
+## Where we're heading
+
+| Product | What it is | Status |
+|:--------|:-----------|:-------|
+| **MCP servers** | Connect AI assistants to logbooks, public services, ADIF and propagation data | Available |
+| **[QSO Graph Desktop](https://github.com/qso-graph/qso-graph-desktop/releases)** | A desktop home for your station on Windows, Linux and macOS: your callsigns and their logins (kept in your own OS credential store), your Locations, Parks On the Air, band conditions, the sun and moon, and ADIF Lookup. Integrations with WSJT-X and the other programs you run come next | Available (0.4.0) |
+| **[QSO Graph SDK](https://github.com/qso-graph/qso-graph-sdk)** (QGSDK) | The build kit for QSO Graph's software: one command to a pinned build environment, by profile (QSO Graph Desktop, the Qt logger, the MCP servers), on Windows, Linux and macOS | Available |
+
+More on each in [Products](/products/).
+
+## How it fits together
+
+**[ADIF](https://adif.org/) is the base.** Every QSO Graph tool reads and writes ADIF, the format the whole hobby already shares, and uses ADIF's own definition for every field ADIF defines. **No one-off custom fields:** when a tool genuinely needs something ADIF doesn't have, it is defined **once**, published, and used the same way across every QSO Graph tool where it applies. That costs more than a quick private field, and it's a cost accepted deliberately: it's what keeps the tools working together, and what lets you take your log anywhere.
+
+Every tool stands alone, and the pieces talk through published interfaces and shared reference data, not shared code. The rules behind that are in the [QSO Graph specification](/specification/), being rewritten for QSO Graph Desktop.
+
+---
+
+## Quick start
+
+QSO Graph's Python tools run with [uv](https://docs.astral.sh/uv/). There's nothing to install per server: your MCP client runs each one with `uvx`, always the current release.
+
+```bash
+# Install uv once (Linux / macOS; see Getting Started for Windows)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Try any server
+uvx pota-mcp
+
+# Command-line tools: credentials, and the local-LLM relay
+uv tool install qso-graph-auth
+uv tool install qsp-client
+```
+
+See [Getting Started](/getting-started/) for MCP client configuration.
+
+---
+
+## Live Demo
+
+See the MCP tools in action, with nothing to install:
+
+**[Launch the logbook demo](https://qso-graph.io/qso-graph-demo-logbook/)**
+**[Launch the DXpedition demo](https://qso-graph.io/qso-graph-demo-dxpedition/)**
+
+Dashboard, physics lab, DXCC progress, path analyzer, and log viewer, all powered by pre-computed MCP tool output from 49,233 real QSOs.
+
+---
+
+## Project Links
+
+- **GitHub**: [github.com/qso-graph](https://github.com/qso-graph)
+- **Specification**: [being rewritten](/specification/) for QSO Graph Desktop
+- **Demos**: [logbook](https://qso-graph.io/qso-graph-demo-logbook/) and [DXpedition](https://qso-graph.io/qso-graph-demo-dxpedition/)
+- **Testing**: [2,464 tests across 24 packages](/testing/), all passing as of 2026-10-28: security tests, the official ADIF 3.1.7 and 3.1.6 test corpora, and forensic validation
+- **Related**: [IONIS-AI](https://ionis-ai.com/): HF propagation prediction from 14B amateur radio observations
