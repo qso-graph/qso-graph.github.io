@@ -1,16 +1,4 @@
-"""Macros for the site's pages (mkdocs-macros).
-
-Versions and tool counts come from data/servers.json, which
-scripts/collect_servers.py builds from the released packages. Nothing about
-versions or tools is typed into a page. A page opts in with
-`render_macros: true` in its front matter.
-
-An MCP server's page is generated (server_page): its README from the repo's main
-branch, then a tool reference built from the released server's tool schemas. The
-README is the one place to edit; the site follows it on its next (daily) build.
-
-An unknown server name fails the build, so a page can't quietly show nothing.
-"""
+"""Macros and tool references generated from released MCP packages."""
 
 from __future__ import annotations
 
@@ -27,22 +15,6 @@ def _load() -> dict:
     if not DATA.exists():
         raise SystemExit(f"{DATA} is missing: run `make data` (scripts/collect_servers.py) first")
     return json.loads(DATA.read_text())
-
-
-# A Markdown link or image target, or an HTML src/href, that isn't absolute.
-_REL_MD = re.compile(r"(!?\[[^\]]*\]\()(?!https?:|mailto:|#)([^)\s]+)(\))")
-_REL_HTML = re.compile(r"""((?:src|href)=")(?!https?:|mailto:|#)([^"]+)(")""")
-
-
-def _absolute_links(text: str, repo: str) -> str:
-    """README links are relative to the repo; on the site they point at GitHub."""
-    def fix(m: re.Match) -> str:
-        path = m.group(2).lstrip("./")
-        is_image = m.group(1).startswith("!") or m.group(1).startswith("src")
-        base = (f"https://raw.githubusercontent.com/{ORG}/{repo}/main/" if is_image
-                else f"https://github.com/{ORG}/{repo}/blob/main/")
-        return m.group(1) + base + path + m.group(3)
-    return _REL_HTML.sub(fix, _REL_MD.sub(fix, text))
 
 
 def _type(schema: dict) -> str:
@@ -131,14 +103,8 @@ def _macros(servers: dict) -> dict:
         return (f"[![CI](https://github.com/{ORG}/{repo}/actions/workflows/ci.yml/badge.svg)]"
                 f"(https://github.com/{ORG}/{repo}/actions/workflows/ci.yml)")
 
-    def server_page(package: str) -> str:
-        """The server's whole page: its README, then the generated tool reference."""
-        s = server(package)
-        if s["kind"] != "server":
-            raise ValueError(f"{package} is an MCP {s['kind']}, not a server")
-        return _absolute_links(s["readme"], s["repo"]).rstrip() + "\n\n---\n\n" + _tool_reference(s["tool_details"])
 
-    return {f.__name__: f for f in (version, tools, tool_names, server_count, tool_total, ci_badge, server_page)}
+    return {f.__name__: f for f in (version, tools, tool_names, server_count, tool_total, ci_badge)}
 
 
 def define_env(env):

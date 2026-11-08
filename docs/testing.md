@@ -21,20 +21,20 @@ render_macros: true
 
 | Package | Version | Tools | CI |
 |---------|---------|:-----:|:--:|
-| [adif-mcp](servers/adif-mcp.md) | {{ version("adif-mcp") }} | {{ tools("adif-mcp") }} | {{ ci_badge("adif-mcp") }} |
-| [eqsl-mcp](servers/eqsl.md) | {{ version("eqsl-mcp") }} | {{ tools("eqsl-mcp") }} | {{ ci_badge("eqsl-mcp") }} |
-| [qrz-mcp](servers/qrz.md) | {{ version("qrz-mcp") }} | {{ tools("qrz-mcp") }} | {{ ci_badge("qrz-mcp") }} |
-| [lotw-mcp](servers/lotw.md) | {{ version("lotw-mcp") }} | {{ tools("lotw-mcp") }} | {{ ci_badge("lotw-mcp") }} |
-| [hamqth-mcp](servers/hamqth.md) | {{ version("hamqth-mcp") }} | {{ tools("hamqth-mcp") }} | {{ ci_badge("hamqth-mcp") }} |
-| [pota-mcp](servers/pota.md) | {{ version("pota-mcp") }} | {{ tools("pota-mcp") }} | {{ ci_badge("pota-mcp") }} |
-| [sota-mcp](servers/sota.md) | {{ version("sota-mcp") }} | {{ tools("sota-mcp") }} | {{ ci_badge("sota-mcp") }} |
-| [solar-mcp](servers/solar.md) | {{ version("solar-mcp") }} | {{ tools("solar-mcp") }} | {{ ci_badge("solar-mcp") }} |
-| [wspr-mcp](servers/wspr.md) | {{ version("wspr-mcp") }} | {{ tools("wspr-mcp") }} | {{ ci_badge("wspr-mcp") }} |
-| [iota-mcp](servers/iota.md) | {{ version("iota-mcp") }} | {{ tools("iota-mcp") }} | {{ ci_badge("iota-mcp") }} |
-| [n1mm-mcp](servers/n1mm-mcp.md) | {{ version("n1mm-mcp") }} | {{ tools("n1mm-mcp") }} | {{ ci_badge("n1mm-mcp") }} |
-| [ionis-mcp](https://github.com/qso-graph/ionis-mcp) | {{ version("ionis-mcp") }} | {{ tools("ionis-mcp") }} | {{ ci_badge("ionis-mcp") }} |
-| [netlogger-mcp](https://github.com/qso-graph/netlogger-mcp) | {{ version("netlogger-mcp") }} | {{ tools("netlogger-mcp") }} | {{ ci_badge("netlogger-mcp") }} |
-| [omiss-mcp](servers/omiss-mcp.md) | {{ version("omiss-mcp") }} | {{ tools("omiss-mcp") }} | {{ ci_badge("omiss-mcp") }} |
+| [adif-mcp](mcp-servers/adif-mcp/index.md) | {{ version("adif-mcp") }} | {{ tools("adif-mcp") }} | {{ ci_badge("adif-mcp") }} |
+| [eqsl-mcp](mcp-servers/eqsl-mcp/index.md) | {{ version("eqsl-mcp") }} | {{ tools("eqsl-mcp") }} | {{ ci_badge("eqsl-mcp") }} |
+| [qrz-mcp](mcp-servers/qrz-mcp/index.md) | {{ version("qrz-mcp") }} | {{ tools("qrz-mcp") }} | {{ ci_badge("qrz-mcp") }} |
+| [lotw-mcp](mcp-servers/lotw-mcp/index.md) | {{ version("lotw-mcp") }} | {{ tools("lotw-mcp") }} | {{ ci_badge("lotw-mcp") }} |
+| [hamqth-mcp](mcp-servers/hamqth-mcp/index.md) | {{ version("hamqth-mcp") }} | {{ tools("hamqth-mcp") }} | {{ ci_badge("hamqth-mcp") }} |
+| [pota-mcp](mcp-servers/pota-mcp/index.md) | {{ version("pota-mcp") }} | {{ tools("pota-mcp") }} | {{ ci_badge("pota-mcp") }} |
+| [sota-mcp](mcp-servers/sota-mcp/index.md) | {{ version("sota-mcp") }} | {{ tools("sota-mcp") }} | {{ ci_badge("sota-mcp") }} |
+| [solar-mcp](mcp-servers/solar-mcp/index.md) | {{ version("solar-mcp") }} | {{ tools("solar-mcp") }} | {{ ci_badge("solar-mcp") }} |
+| [wspr-mcp](mcp-servers/wspr-mcp/index.md) | {{ version("wspr-mcp") }} | {{ tools("wspr-mcp") }} | {{ ci_badge("wspr-mcp") }} |
+| [iota-mcp](mcp-servers/iota-mcp/index.md) | {{ version("iota-mcp") }} | {{ tools("iota-mcp") }} | {{ ci_badge("iota-mcp") }} |
+| [n1mm-mcp](mcp-servers/n1mm-mcp/index.md) | {{ version("n1mm-mcp") }} | {{ tools("n1mm-mcp") }} | {{ ci_badge("n1mm-mcp") }} |
+| [ionis-mcp](mcp-servers/ionis-mcp/index.md) | {{ version("ionis-mcp") }} | {{ tools("ionis-mcp") }} | {{ ci_badge("ionis-mcp") }} |
+| [netlogger-mcp](mcp-servers/netlogger-mcp/index.md) | {{ version("netlogger-mcp") }} | {{ tools("netlogger-mcp") }} | {{ ci_badge("netlogger-mcp") }} |
+| [omiss-mcp](mcp-servers/omiss-mcp/index.md) | {{ version("omiss-mcp") }} | {{ tools("omiss-mcp") }} | {{ ci_badge("omiss-mcp") }} |
 
 ---
 

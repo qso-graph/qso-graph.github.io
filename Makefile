@@ -3,7 +3,7 @@ PYTHON  ?= python3
 MKDOCS  ?= mkdocs
 PORT    ?= 8080
 
-.PHONY: help install data build serve clean distclean publish-spec
+.PHONY: help install docs data build serve clean distclean publish-spec
 
 help:  ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
@@ -11,6 +11,9 @@ help:  ## Show this help
 
 install:  ## Install Python dependencies
 	$(PYTHON) -m pip install -r requirements.txt
+
+docs:  ## Fetch each product's README and docs/user/ at its latest Release
+	$(PYTHON) scripts/fetch_docs.py
 
 data:  ## Collect every server's released version and tools
 	$(PYTHON) scripts/collect_servers.py

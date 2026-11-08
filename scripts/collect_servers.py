@@ -1,20 +1,5 @@
 #!/usr/bin/env python3
-"""Collect every qso-graph MCP's released version, tools and README, for the site.
-
-Nothing on the site about versions or tools is typed by hand, and each server's
-page is its README (from the repo's main branch) plus a tool reference built
-from the released server's own tool schemas, so there is one copy to edit. For every org
-repo with a server.json, this installs the package from PyPI into its own
-virtual environment (with uv, which must be on PATH), starts it the way an MCP client would (stdio), and asks
-it for its tools. The result is data/servers.json, which the pages read through
-the macros in main.py.
-
-Listing tools needs no credentials and no network beyond PyPI. Each server is
-started with its <NAME>_MOCK=1 so nothing reaches the services it wraps.
-
-    python scripts/collect_servers.py            # all servers
-    python scripts/collect_servers.py pota-mcp   # just these
-"""
+"""Collect released MCP package versions and tool schemas for fetched documentation."""
 
 from __future__ import annotations
 
@@ -57,16 +42,6 @@ def get_json(url: str, token: bool = False):
         raise
 
 
-def readme(repo: str) -> str:
-    """The README on the repo's main branch: the one copy of each server's documentation."""
-    headers = {"User-Agent": UA, "Accept": "application/vnd.github.raw"}
-    if os.getenv("GITHUB_TOKEN"):
-        headers["Authorization"] = f"Bearer {os.environ['GITHUB_TOKEN']}"
-    url = f"https://api.github.com/repos/{ORG}/{repo}/readme"
-    with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=60) as r:
-        return r.read().decode("utf-8")
-
-
 def mcp_servers() -> list[dict]:
     out, page = [], 1
     while True:
@@ -106,12 +81,15 @@ class NotReleased(Exception):
     """In the org with a server.json, but not on PyPI yet (e.g. between a rename's merge and its release)."""
 
 
-def collect(server: dict, workdir: Path) -> dict:
+def collect(server: dict, workdir: Path, tag: str) -> dict:
     package = server["package"]
-    pypi = get_json(f"https://pypi.org/pypi/{package}/json")
+    pypi = get_json(f"https://pypi.org/pypi/{package}/{tag[1:]}/json")
     if pypi is None:
         raise NotReleased(package)
     version = pypi["info"]["version"]
+    tags = get_json(f"https://api.github.com/repos/{ORG}/{server['repo']}/git/ref/tags/v{version}", token=True)
+    if not tags:
+        raise NotReleased(f"{package}: no v{version} tag")
     env_dir = workdir / package
     bin_dir = env_dir / ("Scripts" if os.name == "nt" else "bin")
     python = bin_dir / "python"
@@ -123,7 +101,7 @@ def collect(server: dict, workdir: Path) -> dict:
                     f"{package}=={version}", "fastmcp"], check=True, env=uv_env)
     if package in CLIENTS:
         return {**server, "version": version, "summary": pypi["info"]["summary"] or "", "kind": "client", "tools": [],
-                "tool_details": [], "readme": readme(server["repo"])}
+                "tool_details": []}
     env = dict(os.environ)
     env[package.upper().replace("-", "_") + "_MOCK"] = "1"
     if package in NEEDS_DATA_DIR:
@@ -137,30 +115,39 @@ def collect(server: dict, workdir: Path) -> dict:
         raise RuntimeError(f"couldn't list its tools: {tail}")
     details = json.loads(result.stdout.strip().splitlines()[-1])
     return {**server, "version": version, "summary": pypi["info"]["summary"] or "", "kind": "server",
-            "tools": [t["name"] for t in details], "tool_details": details, "readme": readme(server["repo"])}
+            "tools": [t["name"] for t in details], "tool_details": details}
 
 
 def main() -> int:
     only = set(sys.argv[1:])
-    servers = [s for s in mcp_servers() if not only or s["package"] in only]
+    manifest = json.loads((OUT.parent / "docs.json").read_text())
+    eligible = {p["repo"]: p["tag"] for p in manifest if p["section"] == "mcp-servers"}
+    servers = [s for s in mcp_servers() if s["repo"] in eligible and (not only or s["package"] in only)]
     data, failed = {}, []
+    if not only:
+        failed.extend(sorted(set(eligible) - {s["repo"] for s in servers}))
+        for repo in failed:
+            print(f"{repo}: missing server metadata", flush=True)
     with tempfile.TemporaryDirectory() as tmp:
         for s in servers:
             print(f"{s['package']}: ", end="", flush=True)
             try:
-                data[s["package"]] = collect(s, Path(tmp))
+                data[s["package"]] = collect(s, Path(tmp), eligible[s["repo"]])
                 d = data[s["package"]]
+                if eligible[s["repo"]] != "v" + d["version"]:
+                    raise ValueError(f"package {d['version']} does not match documentation {eligible[s['repo']]}")
                 print(f"{d['version']}, " + (f"{len(d['tools'])} tools" if d["kind"] == "server" else "client"), flush=True)
-            except NotReleased:
-                print("not on PyPI yet; skipped (a page that names it still fails the build)", flush=True)
+            except NotReleased as exc:
+                print(f"{exc}: no matching released package tag", flush=True)
+                failed.append(s["package"])
             except Exception as e:
                 print(f"FAILED ({e})", flush=True)
                 failed.append(s["package"])
-    OUT.parent.mkdir(exist_ok=True)
-    OUT.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n")
     if failed:
         print(f"FAILED: {', '.join(failed)}")
         return 1
+    OUT.parent.mkdir(exist_ok=True)
+    OUT.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n")
     return 0
 
 
