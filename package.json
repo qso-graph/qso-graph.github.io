@@ -14,7 +14,8 @@
   },
   "scripts": {
     "build": "node scripts/generate_llms.mjs && docusaurus build --config docusaurus.config.mjs && node scripts/copy-product-assets.mjs",
-    "dev": "node scripts/generate_llms.mjs && docusaurus start --config docusaurus.config.mjs"
+    "dev": "node scripts/generate_llms.mjs && docusaurus start --config docusaurus.config.mjs",
+    "test": "node --test scripts/test_tool_markdown.mjs"
   },
   "overrides": {
     "tinypool": "2.2.0",
