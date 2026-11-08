@@ -1,5 +1,28 @@
 import unittest
+import json
+import tempfile
+from pathlib import Path
+from unittest.mock import patch
+from scripts import fetch_docs
 from scripts.fetch_docs import product_path, product_text, sanitize_html, take_title
+
+
+class ManifestTests(unittest.TestCase):
+    def test_fetch_records_repository_description_and_release(self):
+        repo = {'name': 'example', 'private': False, 'archived': False,
+                'topics': ['qso-graph-tool'], 'description': 'A useful tool'}
+        release = {'draft': False, 'prerelease': False, 'tag_name': 'v1.2.3'}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / 'docs.lock').write_text('{}')
+            with patch.object(fetch_docs, 'ROOT', root), \
+                 patch.object(fetch_docs, 'pages', side_effect=[[repo], [release]]), \
+                 patch.object(fetch_docs, 'product_files', return_value={'README.md': b'# Example\n'}):
+                fetch_docs.main()
+            manifest = json.loads((root / 'data' / 'docs.json').read_text())
+        self.assertEqual(manifest[0]['description'], 'A useful tool')
+        self.assertEqual(manifest[0]['tag'], 'v1.2.3')
+        self.assertEqual(manifest[0]['section'], 'tools')
 
 
 class SanitizerTests(unittest.TestCase):

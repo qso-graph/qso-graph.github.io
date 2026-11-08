@@ -1,5 +1,0 @@
----
-import products from '../../data/docs.json';
----
-<h2>Released product documentation</h2>
-<ul>{products.toSorted((a, b) => a.repo.localeCompare(b.repo)).map((p) => <li><a href={`/${p.section}/${p.repo}/`}>{p.repo}</a></li>)}</ul>

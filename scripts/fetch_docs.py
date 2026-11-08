@@ -288,7 +288,7 @@ def main():
                 target = dest / product_path(path)
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_bytes(product_text(path, content, files, name, tag).encode() if path.lower().endswith(('.md', '.mdoc')) else content)
-            fetched.append({'repo': name, 'section': section[0], 'tag': tag,
+            fetched.append({'repo': name, 'section': section[0], 'description': repo.get('description'), 'tag': tag,
                             'sources': {product_path(path): path for path in files if path.lower().endswith(('.md', '.mdoc'))}})
             print(f'{name}: {tag} -> src/content/docs/{section[0]}/{name}')
         for section in SECTIONS.values():
