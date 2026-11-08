@@ -29,6 +29,8 @@ jobs:
         with:
           node-version: '24'
           cache: npm
+      - name: Test documentation scripts
+        run: python3 -m unittest discover -s scripts -p 'test_*.py'
       - name: Fetch released documentation
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -39,14 +41,12 @@ jobs:
         run: python scripts/collect_servers.py
       - name: Install dependencies
         run: npm ci
-      - name: Test documentation scripts
-        run: python3 -m unittest discover -s scripts -p 'test_*.py'
       - name: Build
         run: npm run build
       - name: Deploy
         if: github.event_name != 'pull_request'
         run: |
-          cd dist
+          cd build
           git init -b gh-pages
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

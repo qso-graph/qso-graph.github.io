@@ -15,3 +15,7 @@ src/content/docs/applications/
 src/content/docs/mcp-servers/
 src/content/docs/libraries/
 src/content/docs/tools/
+
+build/
+.docusaurus/
+public/llms.txt

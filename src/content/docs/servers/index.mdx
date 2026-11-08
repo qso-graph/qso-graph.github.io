@@ -2,7 +2,9 @@
 title: "MCP Servers"
 ---
 
-QSO Graph provides {% metric name="server_count" /%} MCP servers ({% metric name="tool_total" /%} tools), plus the qso-graph-auth credential foundation and the qsp-client relay, covering amateur radio logging, confirmations, propagation services, and local LLM integration. Start with [Getting Started](/getting-started/).
+import {Metric, Products} from "@site/src/components/SiteData";
+
+QSO Graph provides <Metric name="server_count" /> MCP servers (<Metric name="tool_total" /> tools), plus the qso-graph-auth credential foundation and the qsp-client relay, covering amateur radio logging, confirmations, propagation services, and local LLM integration. Start with [Getting Started](/getting-started/).
 
 ## How it works
 
@@ -36,33 +38,33 @@ You: "You have 3 new confirmations: JA1ABC on 20m FT8, ..."
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
 | [qso-graph-auth](/libraries/qso-graph-auth/) | — | OS keyring credentials | None (local) |
-| [adif-mcp](/mcp-servers/adif-mcp/) | {% metric name="tools" package="adif-mcp" /%} | ADIF 3.1.7 spec | None (local) |
+| [adif-mcp](/mcp-servers/adif-mcp/) | <Metric name="tools" package="adif-mcp" /> | ADIF 3.1.7 spec | None (local) |
 
 ### Logbook Services
 
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
-| [eqsl-mcp](/mcp-servers/eqsl-mcp/) | {% metric name="tools" package="eqsl-mcp" /%} | eQSL.cc | Persona (session) |
-| [qrz-mcp](/mcp-servers/qrz-mcp/) | {% metric name="tools" package="qrz-mcp" /%} | QRZ.com | Persona (XML) + API key (Logbook) |
-| [lotw-mcp](/mcp-servers/lotw-mcp/) | {% metric name="tools" package="lotw-mcp" /%} | LoTW (ARRL) | Persona (HTTPS) |
-| [hamqth-mcp](/mcp-servers/hamqth-mcp/) | {% metric name="tools" package="hamqth-mcp" /%} | HamQTH.com | Persona (XML session) |
+| [eqsl-mcp](/mcp-servers/eqsl-mcp/) | <Metric name="tools" package="eqsl-mcp" /> | eQSL.cc | Persona (session) |
+| [qrz-mcp](/mcp-servers/qrz-mcp/) | <Metric name="tools" package="qrz-mcp" /> | QRZ.com | Persona (XML) + API key (Logbook) |
+| [lotw-mcp](/mcp-servers/lotw-mcp/) | <Metric name="tools" package="lotw-mcp" /> | LoTW (ARRL) | Persona (HTTPS) |
+| [hamqth-mcp](/mcp-servers/hamqth-mcp/) | <Metric name="tools" package="hamqth-mcp" /> | HamQTH.com | Persona (XML session) |
 
 ### Public Services
 
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
-| [pota-mcp](/mcp-servers/pota-mcp/) | {% metric name="tools" package="pota-mcp" /%} | Parks on the Air | None (public) |
-| [sota-mcp](/mcp-servers/sota-mcp/) | {% metric name="tools" package="sota-mcp" /%} | Summits on the Air | None (public) |
-| [iota-mcp](/mcp-servers/iota-mcp/) | {% metric name="tools" package="iota-mcp" /%} | Islands on the Air | None (public) |
-| [solar-mcp](/mcp-servers/solar-mcp/) | {% metric name="tools" package="solar-mcp" /%} | NOAA SWPC | None (public) |
-| [wspr-mcp](/mcp-servers/wspr-mcp/) | {% metric name="tools" package="wspr-mcp" /%} | wspr.live (ClickHouse) | None (public) |
-| [omiss-mcp](/mcp-servers/omiss-mcp/) | {% metric name="tools" package="omiss-mcp" /%} | OMISS (omiss.net) | None (public) |
+| [pota-mcp](/mcp-servers/pota-mcp/) | <Metric name="tools" package="pota-mcp" /> | Parks on the Air | None (public) |
+| [sota-mcp](/mcp-servers/sota-mcp/) | <Metric name="tools" package="sota-mcp" /> | Summits on the Air | None (public) |
+| [iota-mcp](/mcp-servers/iota-mcp/) | <Metric name="tools" package="iota-mcp" /> | Islands on the Air | None (public) |
+| [solar-mcp](/mcp-servers/solar-mcp/) | <Metric name="tools" package="solar-mcp" /> | NOAA SWPC | None (public) |
+| [wspr-mcp](/mcp-servers/wspr-mcp/) | <Metric name="tools" package="wspr-mcp" /> | wspr.live (ClickHouse) | None (public) |
+| [omiss-mcp](/mcp-servers/omiss-mcp/) | <Metric name="tools" package="omiss-mcp" /> | OMISS (omiss.net) | None (public) |
 
 ### Propagation Analytics
 
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
-| [ionis-mcp](https://github.com/qso-graph/ionis-mcp) | {% metric name="tools" package="ionis-mcp" /%} | IONIS-AI signature datasets | None (local) |
+| [ionis-mcp](https://github.com/qso-graph/ionis-mcp) | <Metric name="tools" package="ionis-mcp" /> | IONIS-AI signature datasets | None (local) |
 
 ### Reference Data
 
@@ -70,16 +72,16 @@ The lists ADIF's fields point to but ADIF doesn't define, each as its owner publ
 
 | Package | Tools | Owner's list | Auth Pattern |
 |---------|:-----:|---------|-------------|
-| [cq-zones-mcp](/mcp-servers/cq-zones-mcp/) | {% metric name="tools" package="cq-zones-mcp" /%} | CQ zones: CQ's WAZ Zone Definitions | None (local) |
-| [itu-zones-mcp](/mcp-servers/itu-zones-mcp/) | {% metric name="tools" package="itu-zones-mcp" /%} | ITU zones: the IARU's HF Managers Handbook, ch. 9.8 | None (local) |
-| [darc-dok-mcp](/mcp-servers/darc-dok-mcp/) | {% metric name="tools" package="darc-dok-mcp" /%} | DARC's DOKs and special DOKs | None (local) |
+| [cq-zones-mcp](/mcp-servers/cq-zones-mcp/) | <Metric name="tools" package="cq-zones-mcp" /> | CQ zones: CQ's WAZ Zone Definitions | None (local) |
+| [itu-zones-mcp](/mcp-servers/itu-zones-mcp/) | <Metric name="tools" package="itu-zones-mcp" /> | ITU zones: the IARU's HF Managers Handbook, ch. 9.8 | None (local) |
+| [darc-dok-mcp](/mcp-servers/darc-dok-mcp/) | <Metric name="tools" package="darc-dok-mcp" /> | DARC's DOKs and special DOKs | None (local) |
 
 ### Radio Logging
 
 | Package | Tools | Service | Auth Pattern |
 |---------|:-----:|---------|-------------|
-| [n1mm-mcp](/mcp-servers/n1mm-mcp/) | {% metric name="tools" package="n1mm-mcp" /%} | N1MM Logger+ (UDP broadcast) | None (local) |
-| [netlogger-mcp](/mcp-servers/netlogger-mcp/) | {% metric name="tools" package="netlogger-mcp" /%} | NetLogger | Callsign (public API) |
+| [n1mm-mcp](/mcp-servers/n1mm-mcp/) | <Metric name="tools" package="n1mm-mcp" /> | N1MM Logger+ (UDP broadcast) | None (local) |
+| [netlogger-mcp](/mcp-servers/netlogger-mcp/) | <Metric name="tools" package="netlogger-mcp" /> | NetLogger | Callsign (public API) |
 
 ### Infrastructure
 

@@ -18,7 +18,7 @@ serve:  ## Start the development server
 publish-spec:  ## Tag the spec's main as VERSION=vX.Y.Z [NOTES="..."] and publish it here now
 	@VERSION="$(VERSION)" NOTES="$(NOTES)" scripts/publish_spec.sh
 clean:  ## Remove build artifacts
-	rm -rf dist/ .astro/
+	rm -rf build/ .docusaurus/
 distclean: clean  ## Remove build artifacts and caches
 	rm -rf __pycache__ .cache node_modules
 	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true

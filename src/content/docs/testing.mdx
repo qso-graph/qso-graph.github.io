@@ -2,6 +2,8 @@
 title: "Testing & Validation"
 ---
 
+import {Metric, Products} from "@site/src/components/SiteData";
+
 **Every QSO Graph server is tested across four independent layers before release.** Each layer catches different failure modes. All four must pass before a fleet-wide release.
 
 | Layer | Name | What It Catches | Blocking? |
@@ -15,24 +17,24 @@ title: "Testing & Validation"
 
 ## Fleet Overview
 
-**{% metric name="server_count" /%} servers, {% metric name="tool_total" /%} tools, 4 test layers.** Versions and tool counts are the released packages', collected when the site is built; the CI badge is each repo's live status.
+**<Metric name="server_count" /> servers, <Metric name="tool_total" /> tools, 4 test layers.** Versions and tool counts are the released packages', collected when the site is built; the CI badge is each repo's live status.
 
 | Package | Version | Tools | CI |
 |---------|---------|:-----:|:--:|
-| [adif-mcp](/mcp-servers/adif-mcp/) | {% metric name="version" package="adif-mcp" /%} | {% metric name="tools" package="adif-mcp" /%} | {% metric name="ci_badge" package="adif-mcp" /%} |
-| [eqsl-mcp](/mcp-servers/eqsl-mcp/) | {% metric name="version" package="eqsl-mcp" /%} | {% metric name="tools" package="eqsl-mcp" /%} | {% metric name="ci_badge" package="eqsl-mcp" /%} |
-| [qrz-mcp](/mcp-servers/qrz-mcp/) | {% metric name="version" package="qrz-mcp" /%} | {% metric name="tools" package="qrz-mcp" /%} | {% metric name="ci_badge" package="qrz-mcp" /%} |
-| [lotw-mcp](/mcp-servers/lotw-mcp/) | {% metric name="version" package="lotw-mcp" /%} | {% metric name="tools" package="lotw-mcp" /%} | {% metric name="ci_badge" package="lotw-mcp" /%} |
-| [hamqth-mcp](/mcp-servers/hamqth-mcp/) | {% metric name="version" package="hamqth-mcp" /%} | {% metric name="tools" package="hamqth-mcp" /%} | {% metric name="ci_badge" package="hamqth-mcp" /%} |
-| [pota-mcp](/mcp-servers/pota-mcp/) | {% metric name="version" package="pota-mcp" /%} | {% metric name="tools" package="pota-mcp" /%} | {% metric name="ci_badge" package="pota-mcp" /%} |
-| [sota-mcp](/mcp-servers/sota-mcp/) | {% metric name="version" package="sota-mcp" /%} | {% metric name="tools" package="sota-mcp" /%} | {% metric name="ci_badge" package="sota-mcp" /%} |
-| [solar-mcp](/mcp-servers/solar-mcp/) | {% metric name="version" package="solar-mcp" /%} | {% metric name="tools" package="solar-mcp" /%} | {% metric name="ci_badge" package="solar-mcp" /%} |
-| [wspr-mcp](/mcp-servers/wspr-mcp/) | {% metric name="version" package="wspr-mcp" /%} | {% metric name="tools" package="wspr-mcp" /%} | {% metric name="ci_badge" package="wspr-mcp" /%} |
-| [iota-mcp](/mcp-servers/iota-mcp/) | {% metric name="version" package="iota-mcp" /%} | {% metric name="tools" package="iota-mcp" /%} | {% metric name="ci_badge" package="iota-mcp" /%} |
-| [n1mm-mcp](/mcp-servers/n1mm-mcp/) | {% metric name="version" package="n1mm-mcp" /%} | {% metric name="tools" package="n1mm-mcp" /%} | {% metric name="ci_badge" package="n1mm-mcp" /%} |
-| [ionis-mcp](/mcp-servers/ionis-mcp/) | {% metric name="version" package="ionis-mcp" /%} | {% metric name="tools" package="ionis-mcp" /%} | {% metric name="ci_badge" package="ionis-mcp" /%} |
-| [netlogger-mcp](/mcp-servers/netlogger-mcp/) | {% metric name="version" package="netlogger-mcp" /%} | {% metric name="tools" package="netlogger-mcp" /%} | {% metric name="ci_badge" package="netlogger-mcp" /%} |
-| [omiss-mcp](/mcp-servers/omiss-mcp/) | {% metric name="version" package="omiss-mcp" /%} | {% metric name="tools" package="omiss-mcp" /%} | {% metric name="ci_badge" package="omiss-mcp" /%} |
+| [adif-mcp](/mcp-servers/adif-mcp/) | <Metric name="version" package="adif-mcp" /> | <Metric name="tools" package="adif-mcp" /> | <Metric name="ci_badge" package="adif-mcp" /> |
+| [eqsl-mcp](/mcp-servers/eqsl-mcp/) | <Metric name="version" package="eqsl-mcp" /> | <Metric name="tools" package="eqsl-mcp" /> | <Metric name="ci_badge" package="eqsl-mcp" /> |
+| [qrz-mcp](/mcp-servers/qrz-mcp/) | <Metric name="version" package="qrz-mcp" /> | <Metric name="tools" package="qrz-mcp" /> | <Metric name="ci_badge" package="qrz-mcp" /> |
+| [lotw-mcp](/mcp-servers/lotw-mcp/) | <Metric name="version" package="lotw-mcp" /> | <Metric name="tools" package="lotw-mcp" /> | <Metric name="ci_badge" package="lotw-mcp" /> |
+| [hamqth-mcp](/mcp-servers/hamqth-mcp/) | <Metric name="version" package="hamqth-mcp" /> | <Metric name="tools" package="hamqth-mcp" /> | <Metric name="ci_badge" package="hamqth-mcp" /> |
+| [pota-mcp](/mcp-servers/pota-mcp/) | <Metric name="version" package="pota-mcp" /> | <Metric name="tools" package="pota-mcp" /> | <Metric name="ci_badge" package="pota-mcp" /> |
+| [sota-mcp](/mcp-servers/sota-mcp/) | <Metric name="version" package="sota-mcp" /> | <Metric name="tools" package="sota-mcp" /> | <Metric name="ci_badge" package="sota-mcp" /> |
+| [solar-mcp](/mcp-servers/solar-mcp/) | <Metric name="version" package="solar-mcp" /> | <Metric name="tools" package="solar-mcp" /> | <Metric name="ci_badge" package="solar-mcp" /> |
+| [wspr-mcp](/mcp-servers/wspr-mcp/) | <Metric name="version" package="wspr-mcp" /> | <Metric name="tools" package="wspr-mcp" /> | <Metric name="ci_badge" package="wspr-mcp" /> |
+| [iota-mcp](/mcp-servers/iota-mcp/) | <Metric name="version" package="iota-mcp" /> | <Metric name="tools" package="iota-mcp" /> | <Metric name="ci_badge" package="iota-mcp" /> |
+| [n1mm-mcp](/mcp-servers/n1mm-mcp/) | <Metric name="version" package="n1mm-mcp" /> | <Metric name="tools" package="n1mm-mcp" /> | <Metric name="ci_badge" package="n1mm-mcp" /> |
+| [ionis-mcp](/mcp-servers/ionis-mcp/) | <Metric name="version" package="ionis-mcp" /> | <Metric name="tools" package="ionis-mcp" /> | <Metric name="ci_badge" package="ionis-mcp" /> |
+| [netlogger-mcp](/mcp-servers/netlogger-mcp/) | <Metric name="version" package="netlogger-mcp" /> | <Metric name="tools" package="netlogger-mcp" /> | <Metric name="ci_badge" package="netlogger-mcp" /> |
+| [omiss-mcp](/mcp-servers/omiss-mcp/) | <Metric name="version" package="omiss-mcp" /> | <Metric name="tools" package="omiss-mcp" /> | <Metric name="ci_badge" package="omiss-mcp" /> |
 
 ---
 
@@ -94,9 +96,9 @@ cd solar-mcp
 pytest tests/test_live.py --live -v
 ```
 
-{% aside type="caution" title="Rate Limiting" %}
+:::warning Rate Limiting
 WSPR and HamQTH L3 tests include a 1-second pause between requests to respect volunteer-run services. Tests take longer but avoid API bans.
-{% /aside %}
+:::
 
 ---
 

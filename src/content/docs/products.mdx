@@ -2,8 +2,10 @@
 title: "Products"
 ---
 
+import {Metric, Products} from "@site/src/components/SiteData";
+
 QSO Graph is several products, not one program. Each stands alone: use the one that applies to you and ignore the rest. They follow the same [specification](/specification/), so moving between them is easy.
 
-{% products /%}
+<Products />
 
-The MCP servers provide {% metric name="tool_total" /%} tools across {% metric name="server_count" /%} servers.
+The MCP servers provide <Metric name="tool_total" /> tools across <Metric name="server_count" /> servers.
