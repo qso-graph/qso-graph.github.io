@@ -10,6 +10,7 @@ import os
 import subprocess
 import sys
 import tempfile
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -97,8 +98,7 @@ def collect(server: dict, workdir: Path, tag: str) -> dict:
     # the site reports what PyPI serves (a local index setting must not change that).
     uv_env = {k: v for k, v in os.environ.items() if not k.startswith(("UV_INDEX", "UV_EXTRA_INDEX", "UV_DEFAULT_INDEX"))}
     subprocess.run(["uv", "venv", "--quiet", "--python", PYTHON, str(env_dir)], check=True, env=uv_env)
-    subprocess.run(["uv", "pip", "install", "--quiet", "--python", str(python), "--default-index", PYPI_INDEX,
-                    f"{package}=={version}", "fastmcp"], check=True, env=uv_env)
+    install_released(python, package, version, uv_env)
     if package in CLIENTS:
         return {**server, "version": version, "summary": pypi["info"]["summary"] or "", "kind": "client", "tools": [],
                 "tool_details": []}
@@ -116,6 +116,30 @@ def collect(server: dict, workdir: Path, tag: str) -> dict:
     details = json.loads(result.stdout.strip().splitlines()[-1])
     return {**server, "version": version, "summary": pypi["info"]["summary"] or "", "kind": "server",
             "tools": [t["name"] for t in details], "tool_details": details}
+
+
+# PyPI's JSON API lists a release as soon as it is published, but its simple index, which uv
+# installs from, can trail it by a minute or more, so a deploy started right after a release
+# found "no version of jt-mcp==0.2.1" (2026-11-09). Retry only that case, a bounded number of
+# times, asking uv to read the index afresh; any other failure is raised at once.
+INDEX_RETRIES = 6
+INDEX_WAIT_SECONDS = 30
+
+
+def install_released(python: Path, package: str, version: str, uv_env: dict[str, str]) -> None:
+    command = ["uv", "pip", "install", "--quiet", "--python", str(python), "--default-index", PYPI_INDEX,
+               "--refresh-package", package, f"{package}=={version}", "fastmcp"]
+    for attempt in range(1, INDEX_RETRIES + 1):
+        result = subprocess.run(command, capture_output=True, text=True, env=uv_env)
+        if result.returncode == 0:
+            return
+        not_yet_indexed = f"there is no version of {package}=={version}" in result.stderr
+        if not not_yet_indexed or attempt == INDEX_RETRIES:
+            sys.stderr.write(result.stderr)
+            raise subprocess.CalledProcessError(result.returncode, command)
+        print(f"{package}: {version} not in PyPI's index yet; trying again in {INDEX_WAIT_SECONDS} s "
+              f"({attempt} of {INDEX_RETRIES})", flush=True)
+        time.sleep(INDEX_WAIT_SECONDS)
 
 
 def main() -> int:
