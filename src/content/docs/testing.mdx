@@ -127,7 +127,7 @@ The L4 fleet suite is not published; its results are the tables above.
 
 ## adif-mcp Validation
 
-adif-mcp is the foundation package. Beyond the standard security and unit tests, it carries a comprehensive validation suite against the ADIF 3.1.7 specification:
+adif-mcp is the foundation package. Beyond the standard security and unit tests, it carries a comprehensive validation suite against the ADIF 3.1.8 specification:
 
 ### Test matrix
 
@@ -149,17 +149,17 @@ Two figures, both measured on 2026-10-28:
 The gold standard for ADIF validation: the official test files from G3ZOD's
 `CreateADIFTestFiles`, which exercise every enumeration value in the
 specification. Both the current and previous versions are run, because logs
-written against 3.1.6 do not stop existing when 3.1.7 publishes:
+written against 3.1.7 do not stop existing when 3.1.8 publishes:
 
 | Corpus | QSO records |
 |---|---:|
+| [ADIF 3.1.8](https://adif.org.uk/318/index.htm) | 6,202 |
 | [ADIF 3.1.7](https://adif.org.uk/317/resources) | 6,197 |
-| [ADIF 3.1.6](https://adif.org.uk/316/resources) | 6,191 |
 
 | Test | Records | Result |
 |------|--------:|--------|
-| Zero false errors on all official records | 6,191 | **PASS — 0 errors** |
-| All warnings are correct behavior | 6,191 | **PASS — 39 warnings** (23 user-defined fields + 16 import-only values) |
+| Zero false errors on all official records (3.1.8) | 6,202 | **PASS — 0 errors** |
+| All warnings are correct behavior (3.1.7) | 6,197 | **PASS — 37 warnings** (21 user-defined fields + 16 import-only values) |
 | Enum JSON files match official exports | 25 files | **PASS — all identical** |
 
 **Rule:** If our validator rejects an official ADIF test record, our validator is wrong.
@@ -241,9 +241,9 @@ reviewers who are not there overstates what a reader is getting.
 
 | Resource | URL |
 |----------|-----|
+| ADIF 3.1.8 Specification | [adif.org.uk/318](https://adif.org.uk/318/ADIF_318.htm) |
 | ADIF 3.1.7 Specification | [adif.org.uk/317](https://adif.org.uk/317/ADIF_317.htm) |
-| ADIF 3.1.6 Specification | [adif.org.uk/316](https://adif.org.uk/316/ADIF_316.htm) |
-| Official Test Corpus (G3ZOD) | [adif.org.uk/317/resources](https://adif.org.uk/317/resources) |
+| Official Test Corpus (G3ZOD) | [adif.org.uk/318](https://adif.org.uk/318/index.htm) |
 | CreateADIFTestFiles | [github.com/g3zod/CreateADIFTestFiles](https://github.com/g3zod/CreateADIFTestFiles) |
 | K1MU ADIF Validator | [rickmurphy.net/adifvalidator.html](https://www.rickmurphy.net/adifvalidator.html) |
 | adif-multitool (flwyd) | [github.com/flwyd/adif-multitool](https://github.com/flwyd/adif-multitool) |

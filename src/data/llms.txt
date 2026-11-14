@@ -7,7 +7,7 @@
 ## Foundation
 
 - [qso-graph-auth](https://qso-graph.io/servers/qso-graph-auth/): OS keyring credential management, persona CRUD, provider management. Foundation for all authenticated servers.
-- [adif-mcp](https://qso-graph.io/servers/adif-mcp/): ADIF 3.1.7 spec engine, validation, parsing, enumerations, geospatial.
+- [adif-mcp](https://qso-graph.io/servers/adif-mcp/): ADIF 3.1.8 spec engine, validation, parsing, enumerations, geospatial.
 
 ## Logbook Services (Authenticated)
 
@@ -47,7 +47,7 @@
 - [Specification](https://qso-graph.io/specification/): being rewritten for QSO Graph Desktop; published again when ready.
 - [Getting Started](https://qso-graph.io/getting-started/): Installation with uv (servers run with uvx), credential setup, MCP client configuration for Claude Desktop, Claude Code, ChatGPT, Cursor, VS Code, and Gemini CLI.
 - [Architecture](https://qso-graph.io/architecture/): System design — foundation layer, credential flow, rate limiting, read-only security model.
-- [Testing & Validation](https://qso-graph.io/testing/): four test layers per server, ADIF 3.1.7 official test corpus validation, forensic tests from real operator data.
+- [Testing & Validation](https://qso-graph.io/testing/): four test layers per server, ADIF 3.1.8 official test corpus validation, forensic tests from real operator data.
 - [Security](https://qso-graph.io/security/): 10 non-negotiable security guarantees, credential architecture, forbidden patterns, release process, incident response.
 
 ## Key Facts
