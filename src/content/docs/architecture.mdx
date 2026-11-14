@@ -47,12 +47,12 @@ graph TD
         end
 
         subgraph Local["Your own station"]
+            jt["jt-mcp"]
             n1mm["n1mm-mcp"]
         end
 
         subgraph Dev["In development — no working tools yet"]
             dxe["dxe-mcp"]
-            js8["js8call-mcp"]
             contest["qso-graph-contest-mcp"]
         end
 
@@ -65,6 +65,7 @@ graph TD
 
     Logs & Act & Prop -->|"HTTPS only"| Services
     n1mm -->|"UDP, your LAN only"| Station["N1MM Logger+ on your PC"]
+    jt -->|"UDP, your LAN only"| WSJTX["WSJT-X on your PC"]
 
     subgraph Services["External Services"]
         svc["eQSL.cc · QRZ.com · LoTW · HamQTH · POTA · SOTA<br/>IOTA · OMISS · NetLogger · NOAA SWPC · WSPR · GMN · JPL"]
